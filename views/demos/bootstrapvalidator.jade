@@ -51,6 +51,7 @@ html
                                     .col-xs-8.col-phone-12.col-sm-6.col-lg-4
                                         form#loginFormSub.form-horizontal1(method='post', action='')
                                             h3 表单
+                                            h4 输入你的用户名，提示“已经存在”表明BootstrapValidator已经进行查重
                                             .form-group
                                                 input#username.form-control(type='text', name='username', autocomplete='off', required='', data-bv-notempty-message='请输入用户名', data-bv-stringlength='true', data-bv-stringlength-min='1', data-bv-stringlength-max='30', data-bv-stringlength-message='请输入30个字以内的内容', pattern='^[a-zA-Z0-9_\u4e00-\u9fa5]+$', data-bv-regexp-message='请输入中文，英文，数字或下划线', placeholder='请输入用户名')
                                             .form-group
@@ -256,7 +257,27 @@ html
         script(type='text/javascript').
             $(function () {
                 //配置
-                $('#loginFormSub').bootstrapValidator().on('success.form.bv', function (e) {
+                $('#loginFormSub').bootstrapValidator({
+                    fields: {
+                        username: {
+                            message: '',
+                            validators: {
+                                remote: {
+                                    type: 'POST',
+                                    url: '../user/checkusername',
+                                    data: {
+                                        //以匿名函数的方式传递username的值
+                                        username: function (validator) {
+                                            return $('#username').val()
+                                        }
+                                    },
+                                    message: '验证不通过',
+                                    delay: 500
+                                }
+                            }
+                        }
+                    }
+                }).on('success.form.bv', function (e) {
                     // Prevent form submission
                     e.preventDefault();
 
