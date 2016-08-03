@@ -1,0 +1,484 @@
+doctype html
+html
+    head
+        include ../includes/head
+        link(rel="stylesheet", type="text/css", href="/stylesheets/zTreeStyle/metro.css")
+    body
+        #ztree.layout
+            nav#nav-head.navbar.navbar-fixed-top.navbar-inverse.animatedParent.animateOnce
+                include ../includes/nav
+            // /.navbar
+            .container
+                .col-xs-12
+                    #container-jum.jumbotron.animatedParent
+                        h1.animated.fadeInUp.delay-250 zTree
+                        p.animated.bounceInUp.delay-500
+                            | zTree 是一个依靠 jQuery 实现的多功能 “树插件”。优异的性能、灵活的配置、多种功能的组合是 zTree 最大优点。我们在对无限级分类数据、异步数据展示的时候，此插件可以提供完备的功能。
+                        address.animated.bounceInUp.delay-1000
+                            strong Github地址：
+                            a(href='https://github.com/zTree/zTree_v3', target='_blank') https://github.com/zTree/zTree_v3
+                        address.animated.bounceInUp.delay-1000
+                            strong 官网地址：
+                            a(href='http://www.ztree.me/v3/main.php#_zTreeInfo', target='_blank') http://www.ztree.me/v3/main.php#_zTreeInfo
+                    // /.col-xs-12.col-sm-9
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a.btn.btn-primary.col-xs-12.btn-custom(href='#p-show') 展示效果
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a.btn.btn-success.col-xs-12.btn-custom(href='#p-use') 使用方法
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a.btn.btn-info.col-xs-12.btn-custom(href='#p-code') 查看源码
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a.btn.btn-warning.col-xs-12.btn-custom(href='#p-attention') 注意事项
+                #container-code.col-xs-12
+                    #p-show.p-wrap-title
+                    blockquote
+                        h1 展示效果
+                    // 实例展示
+                    .p-wrap-content.part-show
+                        .content-wrap
+                            // Nav tabs
+                            ul.nav.nav-tabs(role='tablist')
+                                li.active(role='presentation')
+                                    a(href='#home', aria-controls='home', role='tab', data-toggle='tab') 示例图
+                                li(role='presentation')
+                                    a(href='#profile', aria-controls='profile', role='tab', data-toggle='tab') 实例
+                            // Tab panes
+                            .tab-content
+                                #home.tab-pane.active(role='tabpanel')
+                                    img.img-responsive(src='../images/ztree/demo.jpg', alt='示例图')
+                                #profile.tab-pane(role='tabpanel')
+                                    .col-xs-10.col-phone-12.col-sm-8.col-lg-6
+                                        .panel-heading zTree Demo
+                                        ul#ztreeDemo.ztree
+                                    .clearfix
+                    #p-use.p-wrap-title
+                        blockquote
+                            h1 使用方法
+                        .p-wrap-content.part-file
+                            h3 文件结构
+                            .content-wrap
+                                ul
+                                    li
+                                        | js
+                                        ul
+                                            li jquery.min.js
+                                            li jquery.ztree.all-3.5.min.js
+                                    li
+                                        | css
+                                        ul
+                                            li zTreeStyle/metro.css
+                    .p-wrap-content.part-attention
+                        h3 核心代码
+                        .content-wrap
+                            pre.
+                                 &lt;!DOCTYPE html&gt;
+                                 &lt;html&gt;
+                                 &lt;head&gt;
+                                     &lt;!-- CSS --&gt;
+                                     &lt;link rel="stylesheet" type="text/css" href="zTreeStyle/metro.css"/&gt;
+                                 &lt;/head&gt;
+                                 &lt;body&gt;
+                                     &lt;ul id="ztreeDemo" class="ztree"&gt;&lt;/ul&gt;
+                                     &lt;!-- jQuery --&gt;
+                                     &lt;script type="text/javascript" src="jquery.min.js"&gt;&lt;/script&gt;
+                                     &lt;!-- zTree plugin --&gt;
+                                     &lt;script type="text/javascript" src="jquery.ztree.all-3.5.min.js"&gt;&lt;/script&gt;
+                                     &lt;script type="text/javascript"&gt;
+                                         //异步请求获取ztree节点数据
+                                         var setting = {
+                                             view: {
+                                                 dblClickExpand: false,
+                                                 selectedMulti: false
+                                             },
+                                             check: {
+                                                 enable: true    //是否显示checkbox
+                                             },
+                                             data: {
+                                                 simpleData: {   //是否为简单数据类型JSON
+                                                     enable:true,
+                                                     idKey: "id",    //使用简单必须标明的的节点对应字段
+                                                     pIdKey: "pId",  //使用简单必须标明的的父节点对应字段
+                                                     rootPId: 0  //根
+                                                 }
+                                             },
+                                             async: {
+                                                 enable: true,   //异步获取配置
+                                                 url:"xxxxxx/ztree/",    //后台url
+                                                 treeNodeKey : "id",
+                                                 treeNodeParentKey : "pId",
+                                                 autoParam:["id=id", "name=name", "level=lv", "checked"],
+                                                 otherParam:{"otherParam":"zTreeAsyncTest"},
+                                                 dataFilter: filter
+                                             },
+                                             callback: {
+                                                 onClick:reLoadOpenURL,//节点被点击时调用的函数
+                                                 onAsyncError: onAsyncError,//异步加载失败调用的函数
+                                                 onExpand: zTreeOnExpand,//用于捕获节点被展开的事件回调函数
+                                                 beforeExpand: zTreeBeforeExpand,//用于捕获父节点展开之前的事件回调函数，并且根据返回值确定是否允许展开操作
+                                             }
+                                         };
+
+                                         //如果是父节点不处理，如果是子节点，打开对应的连接
+                                         function reLoadOpenURL(event, treeId, treeNode){ }
+
+                                         //用于捕获父节点展开之前的事件回调函数，并且根据返回值确定是否允许展开操作 ，false不代开
+                                         function zTreeBeforeExpand(treeId, treeNode) {
+                                             var zTree = $.fn.zTree.getZTreeObj(treeId);
+                                             if (treeNode.isParent) {
+                                                 zTree.reAsyncChildNodes(treeNode, "refresh");//异步刷新，清空后加载，加载后打开,需要不打开加参数true
+                                                 return false;//使用了异步强行加载，如果用true,节点展开将不会按照expandSpeed属性展开，false将按照设定速度展开
+                                             } else {
+                                                 return true;
+                                             }
+                                         };
+
+                                         //用于捕获节点被展开后的事件回调函数
+                                         function zTreeOnExpand(event, treeId, treeNode) { };
+
+                                         //数据过滤方法，如后台数据已确认无误可直接返回数据，不需注册此回调函数
+                                         function filter(treeId, parentNode, childNodes) {
+                                             if (!childNodes) return null;
+                                             return childNodes;
+                                         }
+
+                                         //异步加载失败时调用的方法
+                                         function onAsyncError(event, treeId, treeNode, XMLHttpRequest, textStatus, errorThrown) { }
+
+                                         $(function(){
+                                             //配置：
+                                             $.fn.zTree.init($("#ztreeDemo"), setting, null);    //第三个参数可以为null，此时根节点也是从后台异步获取
+                                         });
+                                     &lt;/script&gt;
+                                     &lt;/body&gt;
+                                 &lt;/html&gt;
+                    #p-code.p-wrap-title
+                        blockquote
+                            h1 页面源码
+                    .p-wrap-content.part-html
+                        h3 HTML
+                        .content-wrap
+                            p 1.加载所需的css文件和jQuery库文件，以及zTree插件。
+                            p html代码：
+                            pre.
+                                &lt;!-- CSS --&gt;
+                                &lt;link rel="stylesheet" type="text/css" href="zTreeStyle/metro.css"/&gt;
+                                &lt;!-- jQuery --&gt;
+                                &lt;script type="text/javascript" src="jquery.min.js"&gt;&lt;/script&gt;
+                                &lt;!-- zTree plugin --&gt;
+                                &lt;script type="text/javascript" src="jquery.ztree.all-3.5.min.js"&gt;&lt;/script&gt;
+                        .content-wrap
+                            p 2.在页面中加入一个带id的无序列表，以便配置显示zTree。
+                            p html代码：
+                            pre.
+                                &lt;ul id="ztreeDemo" class="ztree"&gt;&lt;/ul&gt;
+                    .p-wrap-content.part-js
+                        h3 Javascript
+                        .content-wrap
+                            p
+                                | 1.可在页面
+                                code <javascript>
+                                | 标签中使用jquery配置并调用zTree。
+                            p JS代码：
+                            pre.
+                                //静态数组初始化ztree配置
+                                var zNodes = [{
+                                    "id": "1",  //节点id
+                                    "isParent": true,   //是否包含子节点
+                                    "level": "1",   //节点等级
+                                    "name": "tree", //节点名称
+                                    "nodeType": "type",
+                                    "pId": "0", //父节点id，为0时表示此节点为根节点
+                                    "open":true //默认打开节点
+                                }, {
+                                    "id": "225",
+                                    "isParent": true,
+                                    "level": "2",
+                                    "name": "11",
+                                    "nodeType": "type",
+                                    "pId": "1"
+                                }, {
+                                    "id": "216",
+                                    "isParent": false,
+                                    "level": "3",
+                                    "name": "\u4e0d\u4e0d\u4e0d",
+                                    "nodeType": "type",
+                                    "pId": "225"
+                                }, {
+                                    "id": "211",
+                                    "isParent": true,
+                                    "level": "2",
+                                    "name": "\u4f20\u8bb0",
+                                    "nodeType": "type",
+                                    "pId": "1"
+                                }, {
+                                    "id": "210",
+                                    "isParent": true,
+                                    "level": "3",
+                                    "name": "\u91d1\u878d",
+                                    "nodeType": "type",
+                                    "pId": "211"
+                                }, {
+                                    "id": "209",
+                                    "isParent": true,
+                                    "level": "2",
+                                    "name": "\u7ecf\u6d4e",
+                                    "nodeType": "type",
+                                    "pId": "1"
+                                }, {
+                                    "id": "180",
+                                    "isParent": false,
+                                    "level": "3",
+                                    "name": "\u79d1\u6280",
+                                    "nodeType": "type",
+                                    "pId": "209"
+                                }, {
+                                    "id": "178",
+                                    "isParent": false,
+                                    "level": "4",
+                                    "name": "\u5386\u53f2",
+                                    "nodeType": "type",
+                                    "pId": "210"
+                                }, {
+                                    "id": "177",
+                                    "isParent": true,
+                                    "level": "2",
+                                    "name": "\u8d38\u6613",
+                                    "nodeType": "type",
+                                    "pId": "1"
+                                }, {
+                                    "id": "174",
+                                    "isParent": false,
+                                    "level": "3",
+                                    "name": "\u7f8e\u98df",
+                                    "nodeType": "type",
+                                    "pId": "177"
+                                }, {
+                                    "id": "173",
+                                    "isParent": true,
+                                    "level": "2",
+                                    "name": "\u8bd7\u7ecf",
+                                    "nodeType": "type",
+                                    "pId": "1"
+                                }, {
+                                    "id": "170",
+                                    "isParent": false,
+                                    "level": "3",
+                                    "name": "\u601d\u8def",
+                                    "nodeType": "type",
+                                    "pId": "173"
+                                }, {
+                                    "id": "169",
+                                    "isParent": false,
+                                    "level": "3",
+                                    "name": "\u5fc3\u7406",
+                                    "nodeType": "type",
+                                    "pId": "173"
+                                }];
+
+                                //配置ztree
+                                var setting = {
+                                    view: {
+                                        dblClickExpand: false,
+                                        selectedMulti: false
+                                    },
+                                    check: {
+                                        enable: false
+                                    },
+                                    data: {
+                                        simpleData: {//是否为简单数据类型JSON
+                                            enable:true,
+                                            idKey: "id",//使用简单必须标明的的节点对应字段
+                                            pIdKey: "pId",//使用简单必须标明的的父节点对应字段
+                                            rootPId: 0//根
+                                        }
+                                    },
+                                    callback: {
+                                    }
+                                };
+
+                                $(function() {
+                                    //调用
+                                    $.fn.zTree.init($("#ztreeDemo"), setting, zNodes);
+                                });
+
+                    #p-attention.p-wrap-title
+                        blockquote
+                            h1 注意事项
+                    .p-wrap-content.part-attention
+                        // <h2>注意事项</h2>
+                        .content-wrap
+                            p
+                                | 1.zTree支持样式自定义，本文档引入的样式为文件树样式类，图标为组织和人员。
+                            p
+                                | 2.zTree包含两种方式展示树形结构，静态数组和异步请求。所用数据需严格按照api的格式进行传递，否则无法正确展示。
+                    // /.col-xs-12
+                    .clearfix
+                    // <hr>
+                // /.container
+            footer
+                include ../includes/footer
+
+        // javascript
+        include ../includes/javascripts
+        // Custom javascripts for this template
+        script(type='text/javascript', src='../javascripts/jquery.ztree.all-3.5.min.js')
+        script(type='text/javascript').
+            //配置
+            var zNodes = [{
+                "id": "1",
+                "isParent": true,
+                "level": "1",
+                "name": "tree",
+                "nodeType": "type",
+                "pId": "0",
+                "open":true
+            }, {
+                "id": "225",
+                "isParent": true,
+                "level": "2",
+                "name": "11",
+                "nodeType": "type",
+                "pId": "1"
+            }, {
+                "id": "216",
+                "isParent": false,
+                "level": "3",
+                "name": "\u4e0d\u4e0d\u4e0d",
+                "nodeType": "type",
+                "pId": "225"
+            }, {
+                "id": "211",
+                "isParent": true,
+                "level": "2",
+                "name": "\u4f20\u8bb0",
+                "nodeType": "type",
+                "pId": "1"
+            }, {
+                "id": "210",
+                "isParent": true,
+                "level": "3",
+                "name": "\u91d1\u878d",
+                "nodeType": "type",
+                "pId": "211"
+            }, {
+                "id": "209",
+                "isParent": true,
+                "level": "2",
+                "name": "\u7ecf\u6d4e",
+                "nodeType": "type",
+                "pId": "1"
+            }, {
+                "id": "180",
+                "isParent": false,
+                "level": "3",
+                "name": "\u79d1\u6280",
+                "nodeType": "type",
+                "pId": "209"
+            }, {
+                "id": "178",
+                "isParent": false,
+                "level": "4",
+                "name": "\u5386\u53f2",
+                "nodeType": "type",
+                "pId": "210"
+            }, {
+                "id": "177",
+                "isParent": true,
+                "level": "2",
+                "name": "\u8d38\u6613",
+                "nodeType": "type",
+                "pId": "1"
+            }, {
+                "id": "174",
+                "isParent": false,
+                "level": "3",
+                "name": "\u7f8e\u98df",
+                "nodeType": "type",
+                "pId": "177"
+            }, {
+                "id": "173",
+                "isParent": true,
+                "level": "2",
+                "name": "\u8bd7\u7ecf",
+                "nodeType": "type",
+                "pId": "1"
+            }, {
+                "id": "170",
+                "isParent": false,
+                "level": "3",
+                "name": "\u601d\u8def",
+                "nodeType": "type",
+                "pId": "173"
+            }, {
+                "id": "169",
+                "isParent": false,
+                "level": "3",
+                "name": "\u5fc3\u7406",
+                "nodeType": "type",
+                "pId": "173"
+            }];
+
+            var setting = {
+                view: {
+                    dblClickExpand: false,
+                    selectedMulti: false
+                },
+                check: {
+                    enable: true
+                },
+                data: {
+                    simpleData: {//是否为简单数据类型JSON
+                        enable: true,
+                        idKey: "id",//使用简单必须标明的的节点对应字段
+                        pIdKey: "pId",//使用简单必须标明的的父节点对应字段
+                        rootPId: 0//根
+                    }
+                },
+                callback: {
+                    //onClick:reLoadOpenURL,//节点被点击时调用的函数
+                    //onAsyncError: onAsyncError,//异步加载失败调用的函数
+                    //onExpand: zTreeOnExpand,//用于捕获节点被展开的事件回调函数
+                    //beforeExpand: zTreeBeforeExpand,//用于捕获父节点展开之前的事件回调函数，并且根据返回值确定是否允许展开操作
+                }
+            };
+
+            //如果是父节点不处理，如果是子节点，打开对应的连接
+            function reLoadOpenURL(event, treeId, treeNode) {
+            }
+
+            //用于捕获父节点展开之前的事件回调函数，并且根据返回值确定是否允许展开操作 ，false不代开
+            function zTreeBeforeExpand(treeId, treeNode) {
+                var zTree = $.fn.zTree.getZTreeObj(treeId);
+                if (treeNode.isParent) {
+                    zTree.reAsyncChildNodes(treeNode, "refresh");//异步刷新，清空后加载，加载后打开,需要不打开加参数true
+                    return false;//使用了异步强行加载，如果用true,节点展开将不会按照expandSpeed属性展开，false将按照设定速度展开
+                } else {
+                    return true;
+                }
+            }
+
+            //用于捕获节点被展开后的事件回调函数
+            function zTreeOnExpand(event, treeId, treeNode) {
+            }
+
+            //数据过滤方法，如后台数据已确认无误可直接返回数据，不需注册此回调函数
+            /*function filter(treeId, parentNode, childNodes) {
+                if (!childNodes) return null;
+                return childNodes;
+            }*/
+            function filter(treeId, parentNode, childNodes) {
+                if (!childNodes) return null;
+                for (var i = 0, l = childNodes.length; i < l; i++) {
+                    childNodes[i].name = childNodes[i].name.replace(/\.n/g, '.');
+                }
+                return childNodes;
+            }
+
+            //异步加载失败时调用的方法
+            function onAsyncError(event, treeId, treeNode, XMLHttpRequest, textStatus, errorThrown) {
+            }
+
+            $(function () {
+                //配置
+                $.fn.zTree.init($("#ztreeDemo"), setting, zNodes);
+            });

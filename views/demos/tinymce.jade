@@ -1,0 +1,203 @@
+doctype html
+html
+    head
+        include ../includes/head
+        link(rel="stylesheet", type="text/css", href="../javascripts/tiny_mce/skins/lightgray/skin.min.css")
+    body
+        #tinymce.layout
+            nav#nav-head.navbar.navbar-fixed-top.navbar-inverse.animatedParent.animateOnce
+                include ../includes/nav
+            // /.navbar
+            .container
+                .col-xs-12
+                    #container-jum.jumbotron.animatedParent
+                        h1.animated.fadeInUp.delay-250 TinyMCE
+                        p.animated.bounceInUp.delay-500
+                            | TinyMCE是基于jQuery的富文本编辑插件，可以实现文本输入，添加图片视频，修改字体字号，源代码编辑等功能。
+                        address.animated.bounceInUp.delay-1000
+                            strong Github地址：
+                            a(href='https://github.com/tinymce/tinymce', target='_blank') https://github.com/tinymce/tinymce
+                        address.animated.bounceInUp.delay-1000
+                            strong 官网地址：
+                            a(href='https://www.tinymce.com/', target='_blank') https://www.tinymce.com/
+                        address.animated.bounceInUp.delay-1000
+                            strong 中文资料地址：
+                            a(href='http://www.cnblogs.com/nkxyf/p/3883586.html', target='_blank') http://www.cnblogs.com/nkxyf/p/3883586.html
+                // /.col-xs-12.col-sm-9
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a.btn.btn-primary.col-xs-12.btn-custom(href='#p-show') 展示效果
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a.btn.btn-success.col-xs-12.btn-custom(href='#p-use') 使用方法
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a.btn.btn-info.col-xs-12.btn-custom(href='#p-code') 查看源码
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a.btn.btn-warning.col-xs-12.btn-custom(href='#p-attention') 注意事项
+                #container-code.col-xs-12
+                    #p-show.p-wrap-title
+                    blockquote
+                        h1 展示效果
+                    // 实例展示
+                    .p-wrap-content.part-show
+                        .content-wrap
+                            // Nav tabs
+                            ul.nav.nav-tabs(role='tablist')
+                                li.active(role='presentation')
+                                    a(href='#home', aria-controls='home', role='tab', data-toggle='tab') 示例图
+                                li(role='presentation')
+                                    a(href='#profile', aria-controls='profile', role='tab', data-toggle='tab') 实例
+                            // Tab panes
+                            .tab-content
+                                #home.tab-pane.active(role='tabpanel')
+                                    img.img-responsive(src='../images/tinymce/demo_1.png', alt='示例图')
+                                #profile.tab-pane(role='tabpanel')
+                                    .col-xs-10.col-phone-12.col-sm-8.col-lg-6
+                                        textarea.col-xs-12 欢迎使用TinyMCE！
+                                    .clearfix
+                    #p-use.p-wrap-title
+                        blockquote
+                            h1 使用方法
+                        .p-wrap-content.part-file
+                            h3 文件结构
+                            .content-wrap
+                                ul
+                                    li
+                                        | js
+                                        ul
+                                            li jquery.min.js
+                                            li tinymce.min.js
+                                    li
+                                        | css
+                                        ul
+                                            li (无需引入)
+                    .p-wrap-content.part-attention
+                        h3 核心代码
+                        .content-wrap
+                            pre.
+                                &lt;!DOCTYPE html&gt;
+                                &lt;html&gt;
+                                &lt;head&gt;
+                                &lt;/head&gt;
+                                &lt;body&gt;
+                                    &lt;textarea class="col-xs-12"&gt;&lt;/textarea&gt;
+                                    &lt;!-- jQuery --&gt;
+                                    &lt;script type="text/javascript" src="jquery.min.js"&gt;&lt;/script&gt;
+                                    &lt;!-- TinyMCE plugin --&gt;
+                                    &lt;script type="text/javascript" src="tiny_mce/tinymce.min.js"&gt;&lt;/script&gt;
+                                    &lt;script type="text/javascript"&gt;
+                                    $(function(){
+                                        //配置：
+                                        tinyMCE.init({
+                                            selector: "textarea",   //选择器，选取要套用插件的textarea元素
+                                            theme: "modern",    //主题
+                                            resize: false,  //大小可变，建议false
+                                            width: 650, //初始宽度
+                                            height: 200,    //初始高度
+                                            toolbar_items_size: 'small',    //工具图标大小
+                                            plugins: [
+                                                "advlist autolink link image lists charmap print preview hr anchor pagebreak",
+                                                "searchreplace visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+                                                "table contextmenu directionality emoticons template textcolor paste fullpage textcolor"
+                                            ],  //插件加载
+                                            toolbar1: "undo redo | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | preview | forecolor backcolor | link unlink anchor image",
+                                            toolbar2: "styleselect formatselect fontselect fontsizeselect | bold italic underline strikethrough | removeformat",  //工具栏工具
+                                            language:'zh_CN',   //语言
+                                            image_advtab: false
+                                        });
+                                    });
+                                    &lt;/script&gt;
+                                &lt;/body&gt;
+                                &lt;/html&gt;
+                    #p-code.p-wrap-title
+                        blockquote
+                            h1 页面源码
+                    .p-wrap-content.part-html
+                        h3 HTML
+                        .content-wrap
+                            p 1.加载所需的jQuery库文件，以及TinyMCE插件。
+                            p html代码：
+                            pre.
+                                &lt;!-- jQuery --&gt;
+                                &lt;script type="text/javascript" src="jquery.min.js"&gt;&lt;/script&gt;
+                                &lt;!-- TinyMCE plugin --&gt;
+                                &lt;script type="text/javascript" src="tiny_mce/tinymce.min.js"&gt;&lt;/script&gt;
+                        .content-wrap
+                            p 2.在页面表单中的输入框中添加必要的属性，配置TinyMCE。
+                            p html代码：
+                            pre.
+                                &lt;textarea class="col-xs-12"&gt;欢迎使用TinyMCE！&lt;/textarea&gt;
+                    .p-wrap-content.part-js
+                        h3 Javascript
+                        .content-wrap
+                            p
+                                | 1.可在页面
+                                code <javascript>
+                                | 标签中使用jquery配置TinyMCE。
+                            p JS代码：
+                            pre.
+                                $(function() {
+                                    //配置
+                                    tinyMCE.baseURL = "http://localhost:3000/javascripts/tiny_mce";// 自定义url路径
+                                    tinyMCE.init({
+                                        selector: "textarea",
+                                        theme: "modern",
+                                        resize: false,
+                                        width: 650,
+                                        height: 200,
+                                        toolbar_items_size: 'small',
+                                        plugins: [
+                                            "advlist autolink link image lists charmap print preview hr anchor pagebreak",
+                                            "searchreplace visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+                                            "table contextmenu directionality emoticons template textcolor paste fullpage textcolor"
+                                        ],
+                                        toolbar1: "undo redo | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | preview | forecolor backcolor | link unlink anchor image",
+                                        toolbar2: "styleselect formatselect fontselect fontsizeselect | bold italic underline strikethrough | removeformat",
+                                        language:'zh_CN',
+                                        image_advtab: false
+                                    });
+                                });
+                    #p-attention.p-wrap-title
+                        blockquote
+                            h1 注意事项
+                    .p-wrap-content.part-attention
+                        // <h2>注意事项</h2>
+                        .content-wrap
+                            p
+                                | 作为一款富文本编辑器，tinymce有众多的实用功能，完善的文档，并且支持自定义插件。
+                                | 本页面使用的插件是tinymce4.17版本的改编版，改编者通过修改使得本插件比较适合国内需求，并且简单易用。
+                                | 由于express框架的url机制，需要指定tinymce的baseURL属性，并且在tinymce.js文件的10177行加入对变量o的定义，暂时处理未知原因导致undefined带来的无法初始化问题。
+                    // /.col-xs-12
+                    .clearfix
+                    // <hr>
+                // /.container
+            footer
+                include ../includes/footer
+
+        // javascript
+        include ../includes/javascripts
+        // Custom javascripts for this template
+        script(type='text/javascript', src='../javascripts/tiny_mce/tinymce.js')
+        script(type='text/javascript').
+            $(function () {
+                tinyMCE.baseURL = "http://localhost:3000/javascripts/tiny_mce";// 自定义url路径
+                //配置
+                tinyMCE.init({
+                    /*relative_urls :false,
+                    remove_script_host :false,
+                    document_base_url :"../",*/
+                    selector: "textarea",
+                    theme: "modern",
+                    resize: false,
+                    width: 650,
+                    height: 200,
+                    toolbar_items_size: 'small',
+                    plugins: [
+                        "advlist autolink link image lists charmap print preview hr anchor pagebreak",
+                        "searchreplace visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+                        "table contextmenu directionality emoticons template textcolor paste fullpage textcolor"
+                    ],
+                    toolbar1: "undo redo | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | preview | forecolor backcolor | link unlink anchor image",
+                    toolbar2: "styleselect formatselect fontselect fontsizeselect | bold italic underline strikethrough | removeformat",
+                    language: 'zh_CN',
+                    image_advtab: false
+                });
+            });

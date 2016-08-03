@@ -1,0 +1,646 @@
+doctype html
+html
+    head
+        include ../includes/head
+        link(rel="stylesheet", type="text/css", href="/stylesheets/jqueryfileupload.css")
+    body
+        #jqueryfileupload.layout
+            nav#nav-head.navbar.navbar-fixed-top.navbar-inverse.animatedParent.animateOnce
+                include ../includes/nav
+            // /.navbar
+            .container
+                .col-xs-12
+                    #container-jum.jumbotron.animatedParent
+                        h1.animated.fadeInUp.delay-250 jQuery-File-Upload
+                        p.animated.bounceInUp.delay-500
+                            | jQuery-File-Upload是基于jQuery的文件上传插件，包含多文件上传，进度监听，自定义回调等功能。适用于任何服务器端平台（PHP, Python, Ruby on Rails, Java, Node.js, Go etc.） ，支持标准的HTML表单文件上传。
+                        address.animated.bounceInUp.delay-1000
+                            strong Github地址：
+                            a(href='https://github.com/blueimp/jQuery-File-Upload', target='_blank') https://github.com/blueimp/jQuery-File-Upload
+                        address.animated.bounceInUp.delay-1000
+                            strong 官网地址：
+                            a(href='http://plugins.jquery.com/blueimp-file-upload/', target='_blank') http://plugins.jquery.com/blueimp-file-upload/
+                        address.animated.bounceInUp.delay-1000
+                            strong 中文资料地址：
+                            a(href='http://www.jq22.com/jquery-info230', target='_blank') http://www.jq22.com/jquery-info230
+                // /.col-xs-12.col-sm-9
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a.btn.btn-primary.col-xs-12.btn-custom(href='#p-show') 展示效果
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a.btn.btn-success.col-xs-12.btn-custom(href='#p-use') 使用方法
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a.btn.btn-info.col-xs-12.btn-custom(href='#p-code') 查看源码
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a.btn.btn-warning.col-xs-12.btn-custom(href='#p-attention') 注意事项
+                #container-code.col-xs-12
+                    #p-show.p-wrap-title
+                        blockquote
+                            h1 展示效果
+                    // 实例展示
+                    .p-wrap-content.part-show
+                        .content-wrap
+                            // Nav tabs
+                            ul.nav.nav-tabs(role='tablist')
+                                li.active(role='presentation')
+                                    a(href='#home', aria-controls='home', role='tab', data-toggle='tab') 示例图
+                                li(role='presentation')
+                                    a(href='#profile', aria-controls='profile', role='tab', data-toggle='tab') 实例
+                            // Tab panes
+                            .tab-content
+                                #home.tab-pane.active(role='tabpanel')
+                                    img.img-responsive(src='../images/jqueryfileupload/demo_1.png', alt='示例图')
+                                #profile.tab-pane(role='tabpanel')
+                                    //.col-xs-10.col-phone-12.col-sm-8.col-lg-6
+                                    .col-xs-12.col-phone-12
+                                        #uploaded-files
+
+                                        button#upload-btn.btn.btn-success 上传文件
+                                        input#fileupload(type='file', style='display: none;', data-url='../upload/jqueryfileupload', formmethod='post', formenctype='multipart/form-data', multiple='multiple', accept='image/png')
+                                        button#reset-btn.btn.btn-primary 重置
+                                        #tips(style='margin: 15px 0;')
+                                            span
+                                        // 进度条
+                                        #progress(style='display: none;')
+                                            span 上传进度：  
+                                            span.progress-extended(style='font-weight: bold;color: #31A8FF;')
+                                            .bar_div(style='width:300px;border:1px solid gold;')
+                                                .bar(style='height: 15px;background: gold;')
+                                    .clearfix
+                    #p-use.p-wrap-title
+                        blockquote
+                            h1 使用方法
+                    .p-wrap-content.part-file
+                        h3 文件结构
+                        .content-wrap
+                            ul
+                                li
+                                    | js(注意顺序)
+                                    ul
+                                        li jquery.min.js
+                                        li vendor/jquery.ui.widget.js
+                                        li jQuery.fileupload.js
+                                        li jquery.iframe-transport.js
+                                        li jQuery.fileupload-process.js
+                                        li cors/jquery.xdr-transport.js
+                                li
+                                    | css
+                                    ul
+                                        li (无需引入)
+                    .p-wrap-content.part-attention
+                        h3 核心代码
+                        .content-wrap
+                            pre.
+                                &lt;!DOCTYPE html&gt;
+                                &lt;html&gt;
+                                &lt;head&gt;
+                                &lt;!-- CSS --&gt;
+                                &lt;/head&gt;
+                                &lt;body&gt;
+                                &lt;button class="btn btn-success" id="upload-btn"&gt;上传文件&lt;/button&gt;
+                                &lt;input type="file" style="display: none;" id="fileupload" data-url="" formmethod="post" formenctype="multipart/form-data" multiple="multiple" accept="image/png" /&gt;
+                                &lt;div id="tips" style="margin: 15px 0;"&gt;
+                                    &lt;span&gt;&lt;/span&gt;
+                                &lt;/div&gt;
+                                &lt;!-- 进度条 --&gt;
+                                &lt;table class="table"&gt;
+                                    &lt;thead&gt;
+                                    &lt;tr&gt;
+                                        &lt;th style="width:165px;"&gt;文件名称&lt;/th&gt;
+                                        &lt;th style="width:112px;"&gt;大小&lt;/th&gt;
+                                        &lt;th style="width:150px;"&gt;状态&lt;/th&gt;
+                                        &lt;th style="width:170px;"&gt;&lt;/th&gt;
+                                    &lt;/tr&gt;
+                                    &lt;/thead&gt;
+                                    &lt;tbody id="upload_process_tbody"&gt;
+                                    &lt;/tbody&gt;
+                                &lt;/table&gt;
+                                &lt;!-- jQuery --&gt;
+                                &lt;script type="text/javascript" src="jquery.min.js"&gt;&lt;/script&gt;
+                                &lt;!-- jQuery-File-Upload plugin --&gt;
+                                &lt;script type="text/javascript" src="vendor/jquery.ui.widget.js"&gt;&lt;/script&gt;
+                                &lt;script type="text/javascript" src="jquery.fileupload.js"&gt;&lt;/script&gt;
+                                &lt;script type="text/javascript" src="jquery.fileupload-process.js"&gt;&lt;/script&gt;
+                                &lt;script type="text/javascript" src="jquery.iframe-transport.js"&gt;&lt;/script&gt;
+                                &lt;script type="text/javascript" src="cors/jquery.xdr-transport.js"&gt;&lt;/script&gt;
+                                &lt;script type="text/javascript"&gt;
+                                $(function(){
+                                    //配置：
+                                    //上传 修改jquery.fileupload.js中_initProgressObject(346行)及_beforeSend(857行)方法，手动添加srnum参数以区分不同的进度div元素的id名
+                                    $("#upload-btn").click(function(){ $("#fileupload").click(); });    //上传按钮绑定
+                                    //文件校验及写入多文件进度条
+                                    $('#fileupload').change(function(){
+                                        if(!$('#fileupload').prop('files') || $('#fileupload').prop('files').length < 1){	//判断浏览器是否支持h5的file属性
+                                            return;
+                                        }
+                                        var htmlones = '';
+                                        checkext = true;
+                                        var srnumStart = 1;
+                                        //循环处理选中的文件
+                                        $.each($('#fileupload').prop('files'), function(key, value){
+                                            var srdate = (new Date()).getTime();
+                                            var srnum0 = srdate + '_' + srnumStart;
+                                            value.srnum = srnum0;   //为每个文件分配一个带时间戳和自增数的标记，写入value中，以备显示进度使用
+                                            var fname = value.name;
+                                            fnameext = fname.substring(fname.lastIndexOf('.')+1,fname.length);
+                                            if(fnameext.toLowerCase() != 'mp3'){    //判断文件后缀是否符合标准
+                                                alert("请选择正确的mp3文件");
+                                                $('#fileupload').val('');
+                                                $("#upload_process_tbody").html('');
+                                                checkext = false;
+                                                return false;
+                                            }
+                                            //获取文件大小
+                                            var byteSize  = value.size;
+                                            var filesize =  Math.ceil(byteSize / (1024 * 1024)) + " M"; // Size returned in M.
+                                            //定义需要展示的文件进度条，srnum0即为刚才的标记
+                                            htmlones += '&lt;tr&gt;'
+                                                        + '&lt;td&gt;&lt;i class="fa fa-music"&gt;&lt;/i&gt; ' + fname + '&lt;/td&gt;'
+                                                        + '&lt;td&gt;' + filesize + '&lt;/td&gt;'
+                                                        + '&lt;td&gt;'
+                                                            + '&lt;div id="uploadsucc_' + srnum0 + '" style="display:none;"&gt;'
+                                                                + '&lt;i class="fa fa-check icon-edit-col e-pass"&gt;&lt;/i&gt;&emsp;&lt;span&gt;传输成功&lt;/span&gt;'
+                                                                +'&lt;/div&gt;'
+                                                            + '&lt;div id="uploadcov_' + srnum0 + '" style="display:none;"&gt;'
+                                                                + '&lt;i class="fa fa-arrow-circle-o-up icon-edit-col e-pass"&gt;&lt;/i&gt;&emsp;&lt;span&gt;已覆盖&lt;/span&gt;'
+                                                                +'&lt;/div&gt;'
+                                                            + '&lt;div id="uploadfail_' + srnum0 + '" style="display:none;"&gt;'
+                                                                + '&lt;i class="fa fa-remove icon-remove-col"&gt;&lt;/i&gt;&emsp;&lt;span&gt;传输失败&lt;/span&gt;'
+                                                                +'&lt;/div&gt;'
+                                                            + '&lt;div id="uploadwait_' + srnum0 + '"&gt;'
+                                                                + '&lt;i class="fa fa-clock-o"&gt;&lt;/i&gt;&emsp;&lt;span&gt;等待传输&lt;/span&gt;'
+                                                                +'&lt;/div&gt;'
+                                                            + '&lt;div id="progress_datam_' + srnum0 + '" style="display:none;"&gt;'
+                                                                + '&lt;div class="progress-extended_' + srnum0 + '"&gt;&lt;/div&gt;'
+                                                                + '&lt;/div&gt;'
+                                                            + '&lt;/td&gt;'
+                                                        + '&lt;td&gt;'
+                                                            + '&lt;div id="progress_datam_bar_' + srnum0 + '" style="display:none;"&gt;'
+                                                                + '&lt;div class="datam_bar_div progress-extended_bar_' + srnum0 + '"&gt;'
+                                                                    + '&lt;div class="bar"&gt;&lt;/div&gt;'
+                                                                    + '&lt;/div&gt;'
+                                                                + '&lt;/div&gt;'
+                                                            + '&lt;/td&gt;'
+                                                        '&lt;/tr&gt;';
+                                            srnumStart++;
+                                        });
+                                        if(!checkext){
+                                            return;
+                                        }
+                                        $(htmlones).appendTo("#upload_process_tbody");
+                                    });
+                                    //检查浏览器版本，低版本ie使用iframe方式提交
+                                    var iframe = false;
+                                    var browser = navigator.userAgent.toLowerCase();
+                                    var browserVer=(browser.match(/.+(?:rv|it|ra|ie)[\/: ]([\d.]+)/) || [0, '0'])[1];
+                                    var msie = /msie/.test(browser);
+                                    if(msie && browserVer < 10){ //ie10以下浏览器使用iframe提交
+                                        iframe = true;
+                                    }
+                                    //文件上传配置
+                                    $('#fileupload').fileupload({
+                                        dataType: 'json',   //数据格式
+                                        iframe: iframe,     //是否使用iframe
+                                        autoUpload: false,  //是否自动上传
+                                        add: function (e, data) {   //上传前执行
+                                            var srnum = data.files[0].srnum;    //获取文件标记
+                                            $("#upload_soundbook").prop("disabled",true);
+                                            $("#uploadwait_" + srnum).css("display","none");
+                                            $("#progress_datam_" + srnum).css("display","block");
+                                            $("#progress_datam_bar_" + srnum).css("display","block");
+                                            data.formData = { ftype : 'file' };//此处formdata中的数据为要传递的参数
+                                            data.submit();
+                                            data.srnum = srnum;
+                                            //绑定beforeunload事件
+                                            $(window).bind('beforeunload',function(){
+                                                return '文件尚未传输完毕，确定离开此页面吗？';
+                                            });
+                                            //存储当前上传的文件个数以供判断是否绑定离开页面时的弹窗
+                                            var countnow = $("#fileupload").data("upcount");
+                                            $("#fileupload").data("upcount", Number(countnow) + 1);
+                                        },
+                                        done: function (e, data) {  //上传完成后执行
+                                            $("#progress_datam_" + data.files[0].srnum).css("display","none");
+                                            $("#progress_datam_bar_" + data.files[0].srnum).css("display","none");
+                                            //解除绑定，一般放在提交触发事件中
+                                            var countn = Number($("#fileupload").data("upcount")) - 1;
+                                            $("#fileupload").data("upcount", countn);
+                                            if((countn) == 0){
+                                                $(window).unbind('beforeunload');
+                                                $("#upload_soundbook").prop("disabled",false);
+                                            }
+                                            if(data.result.status == 'success'){    //服务器返回成功
+                                                if(data.result.isold == true){  //旧有文件覆盖
+                                                    $("#uploadcov_" + data.files[0].srnum).css("display","block");
+                                                    $("#resource_" + data.result.id).html(data.result.cname);
+                                                    $("#resource_" + data.result.id).parents('.data-width').find('.tabtd4').html(Math.ceil(data.result.s_size / (1024 * 1024)) + ' M');
+                                                    $("#resource_" + data.result.id).parents('.data-width').find('.tabtd5').html(data.result.times);
+                                                } else {    //新文件
+                                                    $("#uploadsucc_" + data.files[0].srnum).css("display","block");
+                                                    var htmlsucc = '';
+                                                    $(htmlsucc).appendTo(".data-list");
+                                                }
+                                                $(".resource_num").html('共 ' + $(".data-list").find(".data-width").length + ' 项');
+                                            } else {
+                                                $("#upload_soundbook").prop("disabled",false);
+                                                $("#uploadfail_" + data.files[0].srnum).css("display","block");
+                                            }
+                                        },
+                                        progress: function (e, data) {  //进度，多文件可用progress，单个文件可用progressall
+                                            var progress = parseInt(data.loaded / data.total * 100, 10);
+                                            $('.progress-extended_' + data._progress.srnum).html(progress + '%');
+                                            $('.progress-extended_bar_' + data._progress.srnum + ' .bar').css(
+                                                'width',
+                                                progress + '%'
+                                            );
+                                        }
+                                    });
+                                });
+                                &lt;/script&gt;
+                                &lt;/body&gt;
+                                &lt;/html&gt;
+                    #p-code.p-wrap-title
+                        blockquote
+                            h1 页面源码
+                    .p-wrap-content.part-html
+                        h3 HTML
+                        .content-wrap
+                            p 1.加载所需的css文件和jQuery库文件，以及jQuery-File-Upload插件。
+                            p html代码：
+                            pre.
+                                &lt;!-- CSS --&gt;
+                                &lt;!-- jQuery --&gt;
+                                &lt;script type="text/javascript" src="jquery.min.js"&gt;&lt;/script&gt;
+                                &lt;script type="text/javascript" src="vendor/jquery.ui.widget.js"&gt;&lt;/script&gt;
+                                &lt;script type="text/javascript" src="jquery.fileupload.js"&gt;&lt;/script&gt;
+                                &lt;script type="text/javascript" src="jquery.fileupload-process.js"&gt;&lt;/script&gt;
+                                &lt;script type="text/javascript" src="jquery.iframe-transport.js"&gt;&lt;/script&gt;
+                                &lt;script type="text/javascript" src="cors/jquery.xdr-transport.js"&gt;&lt;/script&gt;
+                                &lt;!-- jQuery-File-Upload plugin --&gt;
+                        .content-wrap
+                            p 2.在页面表单中的输入框中添加必要的属性，配置jQuery-File-Upload。
+                            p html代码：
+                            pre.
+                                &lt;button class="btn btn-success" id="upload-btn"&gt;上传文件&lt;/button&gt;
+                                &lt;input type="file" style="display: none;" id="fileupload" data-url="" formmethod="post" formenctype="multipart/form-data" multiple="multiple" accept="image/png" /&gt;
+                                &lt;button class="btn btn-primary" id="reset-btn"&gt;重置&lt;/button&gt;
+                                &lt;div id="tips" style="margin: 15px 0;"&gt;
+                                    &lt;span&gt;&lt;/span&gt;
+                                &lt;/div&gt;
+                                &lt;!-- 进度条 --&gt;
+                                &lt;div id="progress" style="display: none;"&gt;
+                                    &lt;span&gt;上传进度：&nbsp;&nbsp;&lt;/span&gt;
+                                    &lt;span class="progress-extended" style="font-weight: bold;color: #31A8FF;"&gt;&lt;/span&gt;
+                                    &lt;div class="bar_div" style="width:300px;border:1px solid gold;"&gt;
+                                    &lt;div class="bar" style="height: 15px;background: gold;"&gt;&lt;/div&gt;
+                                    &lt;/div&gt;
+                                &lt;/div&gt;
+                    .p-wrap-content.part-js
+                        h3 Javascript
+                        .content-wrap
+                            p
+                                | 1.可在页面
+                                code <javascript>
+                                | 标签中使用jquery配置jQuery-File-Upload。
+                            p JS代码：
+                            pre.
+                                $(function() {
+                                    //重置按钮
+                                    $("#reset-btn").click(function(){
+                                        $("#tips").css("display","none");
+                                        $("#progress").css("display","none");
+                                        $("#progress .bar").css('width', '0%');
+                                        $('.progress-extended').html('');
+                                    });
+                                    //配置
+                                    //上传按钮
+                                    $("#upload-btn").click(function(){
+                                        $("#fileupload").click();
+                                    });
+                                    //判断浏览器版本
+                                    var iframe = false;
+                                    var browser = navigator.userAgent.toLowerCase();
+                                    var browserVer=(browser.match(/.+(?:rv|it|ra|ie)[\/: ]([\d.]+)/) || [0, '0'])[1];
+                                    var msie = /msie/.test(browser);
+                                    if(msie && browserVer < 10){ //ie10以下浏览器使用iframe提交
+                                        iframe = true;
+                                    }
+                                    //文件校验
+                                    $("#fileupload").change(function(){
+                                        if(!$('#fileupload').prop('files') || $('#fileupload').prop('files').length < 1){\t//判断浏览器是否支持h5的file属性
+                                            return;
+                                        }
+                                        var fname = $('#fileupload').prop('files')[0].name;
+                                        fname = fname.substring(fname.lastIndexOf('.')+1,fname.length);
+                                        if(fname != 'png'){
+                                            alert("请选择一个正确的png格式文件");
+                                            $('#fileupload').val('');
+                                        }
+                                    });
+                                    //上传配置
+                                    $("#fileupload").fileupload({
+                                        dataType: 'json',
+                                        iframe: iframe,
+                                        autoUpload: false,
+                                        formData: { ftype: 'file' },
+                                        add: function (e, data) {
+                                            $("#upload_book").css("display","none");
+                                            $("#tips").css("display","block").find("span").html("上传中，请稍后。。。");
+                                            $("#progress").css("display","block");
+                                            data.submit();
+                                            //模拟上传完成
+                                        },
+                                        done: function (e, data) {
+                                            $("#tips").css("display","none");
+                                            $("#progress").css("display","none");
+                                            $("#progress .bar").css('width', '0%');
+                                            $('.progress-extended').html('');
+                                            if(data.result.status == 'success'){
+                                                //上传成功且服务器返回成功后需要完成的
+                                            } else {
+                                                $("#upload_book").css("display","block");
+                                            }
+                                        },
+                                        progressall: function (e, data) {
+                                            var progress = parseInt(data.loaded / data.total * 100, 10);
+                                            $('#progress .bar').css(
+                                                    'width',
+                                                    progress + '%'
+                                            );
+                                            $('.progress-extended').html(progress + '%');
+                                        }
+                                    });
+                                });
+                    .p-wrap-content.part-nodejs
+                        h3 Node.js
+                        .content-wrap
+                            p 1.官方建议采用multiparty进行文件上传后台开发，只需在项目中引入即可。
+                            p 在项目目录下，shift+鼠标右键调出命令行，输入以下命令即可：
+                            pre.
+                                npm install multiparty
+                        .content-wrap
+                            p 2.在后台编写代码接收上传文件。
+                            p 后台node.js代码：
+                            pre.
+                                var multiparty = require('multiparty');
+                                var fs = require('fs');
+                                var util = require('util');
+
+                                router.all('/jqueryfileupload', function(req, res, next) {
+                                    var ret = {};
+                                    var date = new Date();
+                                    var dateUrl = date.toLocaleDateString().replace(/-/g, '');
+                                    var uid = req.cookies.webfe_user; //这是个字典对象，你可以用括号的方式获得
+
+                                    //创建路径 fs.mkdirSync方法只能建立单级目录，需要多次创建目录
+                                    var dstheadPath = './public/upload_tmp/jqueryfileupload/' + dateUrl + '/';
+                                    if (fs.existsSync(dstheadPath)) {
+                                        console.log(dstheadPath + '已存在');
+                                    } else {
+                                        fs.mkdirSync(dstheadPath);
+                                        console.log(dstheadPath + '已创建\n');
+                                    }
+                                    dstheadPath += uid.toString() + '/';
+                                    if (fs.existsSync(dstheadPath)) {
+                                        console.log(dstheadPath + '已存在');
+                                    } else {
+                                        fs.mkdirSync(dstheadPath);
+                                        console.log(dstheadPath + '已创建\n');
+                                    }
+
+                                    //生成multiparty对象，并配置上传目标路径
+                                    var form = new multiparty.Form({uploadDir: dstheadPath});
+
+                                    //上传完成后处理
+                                    form.parse(req, function (err, fields, files) {
+                                        var filesTmp = JSON.stringify(files, null, 2);
+
+                                        if (err) {
+                                            console.log('parse error: ' + err);
+                                            ret = {
+                                                code : 1,
+                                                msg : '上传失败，服务器接收错误'
+                                            };
+                                        } else {
+                                            console.log('parse files: ' + filesTmp);
+                                            var inputFile = files['files[]'][0];
+                                            var uploadedPath = inputFile.path;
+                                            var dstPath = dstheadPath + inputFile.originalFilename;
+
+                                            //重命名为真实文件名
+                                            fs.rename(uploadedPath, dstPath, function (err) {
+                                                if (err) {
+                                                    console.log('rename error: ' + err);
+                                                    ret = {
+                                                        code : 2,
+                                                        msg : '上传失败，重命名错误'
+                                                    };
+                                                } else {
+                                                    console.log('rename ok');
+                                                }
+                                            });
+
+                                            //获取文件类型
+                                            var filetype = filename.substring(filename.lastIndexOf('.') + 1, filename.length);
+
+                                            //获取文件大小
+                                            var filesizeOrigin = inputFile['size'];
+                                            var filesize = '';
+                                            if(filesizeOrigin/1024 < 1){
+                                                filesize = filesizeOrigin + ' 字节';
+                                            } else {
+                                                if(filesizeOrigin/(1024*1024) <1){
+                                                    filesize = Math.ceil(filesizeOrigin/1024) + ' KB';
+                                                } else {
+                                                    if(filesizeOrigin/(1024*1024*1024) <1){
+                                                        filesize = Math.ceil(filesizeOrigin/(1024*1024)) + ' MB';
+                                                    } else {
+                                                        filesize = Math.ceil(filesizeOrigin/(1024*1024*1024)) + ' GB';
+                                                    }
+                                                }
+                                            }
+                                            var fileInfo = {
+                                                filename : inputFile.originalFilename,
+                                                fileurl : dstheadPath,
+                                                filesize : filesize,
+                                                filetype : filetype,
+                                                uid : uid
+                                            };
+
+                                            //存放文件信息到数据库
+                                            var crudResult = fileDao.addFile(req, res, fileInfo);
+                                            ret = {
+                                                code : 200,
+                                                msg : '上传成功，接收文件：' + filename + '， 文件大小：' + filesize + '， 文件类型：' + filetype + '， 存放路径：' + dstheadPath
+                                            };
+                                        }
+                                        if(typeof ret === 'undefined'){
+                                            res.json({
+                                                code : '1',
+                                                msg : '失败，未获取到返回结果'
+                                            });
+                                        } else {
+                                            res.json(ret);
+                                        }
+                                    });
+                                });
+                    #p-attention.p-wrap-title
+                        blockquote
+                            h1 注意事项
+                    .p-wrap-content.part-attention
+                        // <h2>注意事项</h2>
+                        .content-wrap
+                            p
+                                | 1.input标签的文件上传控件，html5新特性可以使用prop('files')属性，而在不支持html5的浏览器中则会报错，因此在使用时需要对此进行判断。
+                            p
+                                | 2.此文档的upload.js文件本人曾进行过修改，加入了一个参数，使其在上传逻辑中包含在data属性中，从而再多文件上传时可以判断某一个文件的实时进度。
+                // /.col-xs-12
+                .clearfix
+                // <hr>
+            // /.container
+            footer
+                include ../includes/footer
+
+        // javascript
+        include ../includes/javascripts
+        // Custom javascripts for this template
+        script(type='text/javascript', src='/javascripts/jquery-fileupload/vendor/jquery.ui.widget.js')
+        script(type='text/javascript', src='/javascripts/jquery-fileupload/jquery.fileupload.js')
+        script(type='text/javascript', src='/javascripts/jquery-fileupload/jquery.fileupload-process.js')
+        script(type='text/javascript', src='/javascripts/jquery-fileupload/jquery.iframe-transport.js')
+        script(type='text/javascript', src='/javascripts/jquery-fileupload/cors/jquery.xdr-transport.js')
+        script(type='text/javascript').
+            //获取已上传的文件
+            function getUploadedFiles(){
+                var json = { };
+                $.ajax({
+                    type: "POST",
+                    url: "../../demos/getuploadedfiles",
+                    dataType:"JSON",
+                    data: json,
+                    success:function(data){
+                        if(data && data.length > 0){
+                            var htmlForAdd = '';
+                            $.each(data, function(key, val){
+                                htmlForAdd += '<div class="uploaded-files-div" id="uploadedFile_' + val.id + '">'
+                                                + '<a class="filedel-a" href="javascript:void(0);" onclick="delUploadedFile(' + val.id + ')"><i class="fa fa-times-circle fa-2x"></i></a>'
+                                                + '<span class="filename-span">文件：' + val.filename + '</span>'
+                                                + '<img class="file-img" src="../' + val.fileurl + val.filename + '">'
+                                                + '<span class="filesize-span">' + val.filesize + '</span>'
+                                            + '</div>';
+                            });
+                            $(htmlForAdd).appendTo('#uploaded-files');
+                        } else {
+                            //layer.msg('获取已上传文件失败');
+                        }
+                    },
+                    error:function(data){
+                        layer.msg('操作失败');
+                    }
+                });
+            }
+
+            //删除已上传的文件
+            function delUploadedFile(fid){
+                var json = {
+                    fid : fid
+                };
+                $.ajax({
+                    type: "POST",
+                    url: "../../demos/delUploadedfile",
+                    dataType:"JSON",
+                    data: json,
+                    success:function(data){
+                        if(data.code == 200){
+                            $('#uploadedFile_' + fid).remove();
+                            layer.msg('删除成功');
+                        } else {
+                            layer.msg('删除失败');
+                        }
+                    },
+                    error:function(data){
+                        layer.msg('操作失败');
+                    }
+                });
+            }
+
+            $(function () {
+
+                $("#reset-btn").click(function(){
+                    $("#tips").css("display","none");
+                    $("#progress").css("display","none");
+                    $("#progress .bar").css('width', '0%');
+                    $('.progress-extended').html('');
+                });
+                //配置
+                $("#upload-btn").click(function(){
+                    $("#fileupload").click();
+                });
+                var iframe = false;
+                var browser = navigator.userAgent.toLowerCase();
+                var browserVer=(browser.match(/.+(?:rv|it|ra|ie)[\\/: ]([\d.]+)/) || [0, '0'])[1];
+                var msie = /msie/.test(browser);
+                if(msie && browserVer < 10){ //ie10以下浏览器使用iframe提交
+                    iframe = true;
+                }
+
+                //文件校验
+                $("#fileupload").change(function(){
+                    if(!$('#fileupload').prop('files') || $('#fileupload').prop('files').length < 1){	//判断浏览器是否支持h5的file属性
+                        return;
+                    }
+                    var fname = $('#fileupload').prop('files')[0].name;
+                    fname = fname.substring(fname.lastIndexOf('.')+1,fname.length);
+                    if(fname != 'png'){
+                        alert("请选择一个正确的png格式文件");
+                        $('#fileupload').val('');
+                    }
+                });
+                //上传配置
+                $("#fileupload").fileupload({
+                    dataType: 'json',
+                    iframe: iframe,
+                    autoUpload: false,
+                    formData: { ftype: 'file' },
+                    add: function (e, data) {
+                        $("#upload_book").css("display","none");
+                        $("#tips").css("display","block").find("span").html("上传中，请稍后。。。");
+                        $("#progress").css("display","block");
+                        data.submit();
+                        //模拟上传完成
+                        /*setTimeout(function(){
+                            $("#tips").css("display","block").find("span").html("上传成功");
+                        }, 1000);*/
+                    },
+                    done: function (e, data) {
+                        $("#tips").css("display","none");
+                        $("#progress").css("display","none");
+                        $("#progress .bar").css('width', '0%');
+                        $('.progress-extended').html('');
+                        if(data.result.code == 200){
+                            //上传成功且服务器返回成功后需要完成的
+                            layer.msg(data.result.msg);
+                            var htmlForAdd = '';
+                            htmlForAdd += '<div class="uploaded-files-div" id="uploadedFile_' + data.result.fid + '">'
+                                            + '<a class="filedel-a" href="javascript:void(0);" onclick="delUploadedFile(' + data.result.fid + ')"><i class="fa fa-times-circle fa-2x"></i></a>'
+                                            + '<span class="filename-span">文件：' + data.result.filename + '</span>'
+                                            + '<img class="file-img" src="../' + data.result.fileurl + data.result.filename + '">'
+                                            + '<span class="filesize-span">' + data.result.filesize + '</span>'
+                                        + '</div>';
+                            $(htmlForAdd).appendTo('#uploaded-files');
+                        } else {
+                            $("#upload_book").css("display","block");
+                            layer.msg(data.result.msg);
+                        }
+                    },
+                    progressall: function (e, data) {
+                        var progress = parseInt(data.loaded / data.total * 100, 10);
+                        $('#progress .bar').css(
+                                'width',
+                                progress + '%'
+                        );
+                        $('.progress-extended').html(progress + '%');
+                    }
+                });
+
+                getUploadedFiles();
+            });

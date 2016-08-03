@@ -1,0 +1,376 @@
+doctype html
+html
+    head
+        include ../includes/head
+    body
+        #echarts.layout
+            nav#nav-head.navbar.navbar-fixed-top.navbar-inverse.animatedParent.animateOnce
+                include ../includes/nav
+            // /.navbar
+            .container
+                .col-xs-12
+                    #container-jum.jumbotron.animatedParent
+                        h1.animated.fadeInUp.delay-250 ECharts
+                        p.animated.bounceInUp.delay-500
+                            | ECharts，一个纯 Javascript 的图表库，可以流畅的运行在 PC 和移动设备上，兼容当前绝大部分浏览器（IE8/9/10/11，Chrome，Firefox，Safari等），底层依赖轻量级的 Canvas 类库 ZRender，提供直观，生动，可交互，可高度个性化定制的数据可视化图表。
+                        address.animated.bounceInUp.delay-1000
+                            strong Github地址：
+                            a(href='https://github.com/ecomfe/echarts', target='_blank') https://github.com/ecomfe/echarts
+                        address.animated.bounceInUp.delay-1000
+                            strong 官网地址：
+                            a(href='http://echarts.baidu.com/', target='_blank') http://echarts.baidu.com/
+                // /.col-xs-12.col-sm-9
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a.btn.btn-primary.col-xs-12.btn-custom(href='#p-show') 展示效果
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a.btn.btn-success.col-xs-12.btn-custom(href='#p-use') 使用方法
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a.btn.btn-info.col-xs-12.btn-custom(href='#p-code') 查看源码
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a.btn.btn-warning.col-xs-12.btn-custom(href='#p-attention') 注意事项
+                #container-code.col-xs-12
+                    #p-show.p-wrap-title
+                    blockquote
+                        h1 展示效果
+                    // 实例展示
+                    .p-wrap-content.part-show
+                        .content-wrap
+                            // Nav tabs
+                            ul.nav.nav-tabs(role='tablist')
+                                li.active(role='presentation')
+                                    a(href='#home', aria-controls='home', role='tab', data-toggle='tab') 示例图
+                                li(role='presentation')
+                                    a(href='#profile', aria-controls='profile', role='tab', data-toggle='tab') 实例
+                            // Tab panes
+                            .tab-content
+                                #home.tab-pane.active(role='tabpanel')
+                                    img.img-responsive(src='../images/echarts/demo1.png', alt='示例图')
+                                    img.img-responsive(src='../images/echarts/demo2.png', alt='示例图')
+                                    img.img-responsive(src='../images/echarts/demo3.png', alt='示例图')
+                                #profile.tab-pane(role='tabpanel')
+                                    .col-xs-10.col-phone-12.col-sm-8.col-lg-6
+                                        #mainChart1.ECharts(style='height: 500px; width: 500px;')
+                                    .col-xs-10.col-phone-12.col-sm-8.col-lg-6.echarts-div
+                                        #mainChart2.ECharts(style='height: 500px; width: 550px;')
+                                    .clearfix
+                    #p-use.p-wrap-title
+                        blockquote
+                            h1 使用方法
+                        .p-wrap-content.part-file
+                            h3 文件结构
+                            .content-wrap
+                                ul
+                                    li
+                                        | js
+                                        ul
+                                            li echarts.min.js
+                    .p-wrap-content.part-attention
+                        h3 核心代码
+                        .content-wrap
+                            pre.
+                                &lt;!DOCTYPE html&gt;
+                                &lt;html&gt;
+                                &lt;head&gt;
+                                &lt;/head&gt;
+                                &lt;body&gt;
+                                    &lt;div id="main" class="" style="width:100%;height:300px;"&gt;&lt;/div&gt;
+                                    &lt;!-- ECharts plugin --&gt;
+                                    &lt;script type="text/javascript" src="echarts.min.js"&gt;&lt;/script&gt;
+                                    &lt;script type="text/javascript"&gt;
+                                        //配置
+                                        var option = {
+                                            title : {
+                                                text: '',
+                                                subtext: ''
+                                            },
+                                            tooltip : {
+                                                trigger: 'axis'
+                                            },
+                                            toolbox: {
+                                                show : true,
+                                                feature : {
+                                                    dataView : {show: true, readOnly: false},
+                                                    magicType : {show: true, type: ['line', 'bar']},
+                                                    restore : {show: true},
+                                                    saveAsImage : {show: true}
+                                                }
+                                            },
+                                            xAxis : [
+                                                {
+                                                    type : 'category',
+                                                    boundaryGap : false,
+                                                    data : <{if $xAxisdata}><{$xAxisdata}><{else}>['无数据']<{/if}>
+                                                }
+                                            ],
+                                            yAxis : [
+                                                {
+                                                    type : 'value',
+                                                    axisLabel : {
+                                                        formatter: function(value){
+                                                            return value + ' 次';
+                                                        },
+                                                    },
+                                                }
+                                            ],
+                                            series : [
+                                                {
+                                                    name:'启动次数',
+                                                    type:'line',
+                                                    data:<{if $seriesdata}><{$seriesdata}><{else}>[0]<{/if}>,
+                                                    markPoint : {
+                                                        data : [
+                                                            {type : 'max', name: '最大启动次数'},
+                                                            {type : 'min', name: '最小启动次数'}
+                                                        ]
+                                                    },
+                                                    itemStyle:
+                                                        {
+                                                            normal: {
+                                                            lineStyle: {
+                                                                color : 'skyblue'
+                                                            }
+                                                        }
+                                                    },
+                                                }
+                                            ],
+                                        };
+
+                                        $(function(){
+                                            //配置：
+                                            var myChart = echarts.init(document.getElementById('main'));
+                                            myChart.setOption(option);
+                                        });
+                                    &lt;/script&gt;
+                                &lt;/body&gt;
+                                &lt;/html&gt;
+                    #p-code.p-wrap-title
+                        blockquote
+                            h1 页面源码
+                    .p-wrap-content.part-html
+                        h3 HTML
+                        .content-wrap
+                            p 1.echarts并不基于jquery，可独立使用，仅需引入ECharts插件。
+                            p html代码：
+                            pre.
+                                &lt;!-- ECharts plugin --&gt;
+                                &lt;script type="text/javascript" src="echarts.min.js"&gt;&lt;/script&gt;
+                        .content-wrap
+                            p 2.在页面中加入一个div，以便配置显示ECharts。
+                            p html代码：
+                            pre.
+                                &lt;div id="mainChart1" class="ECharts" style="height: 500px; width: 500px;"&gt;&lt;/div&gt;
+                    .p-wrap-content.part-js
+                        h3 Javascript
+                        .content-wrap
+                            p
+                                | 1.可在页面
+                                code <javascript>
+                                | 标签中配置ECharts。
+                            p JS代码：
+                            pre.
+                                option1 = {
+                                    title: {
+                                        text: '世界人口总量',
+                                        subtext: '数据来自网络'
+                                    },
+                                    tooltip: {
+                                        trigger: 'axis',
+                                        axisPointer: {
+                                            type: 'shadow'
+                                        }
+                                    },
+                                    legend: {
+                                        data: ['2011年', '2012年']
+                                    },
+                                    grid: {
+                                        left: '3%',
+                                        right: '4%',
+                                        bottom: '3%',
+                                        containLabel: true
+                                    },
+                                    xAxis: {
+                                        type: 'value',
+                                        boundaryGap: [0, 0.01]
+                                    },
+                                    yAxis: {
+                                        type: 'category',
+                                        data: ['巴西','印尼','美国','印度','中国','世界人口(万)']
+                                    },
+                                    series: [
+                                        {
+                                            name: '2011年',
+                                            type: 'bar',
+                                            data: [18203, 23489, 29034, 104970, 131744, 630230]
+                                        },
+                                        {
+                                            name: '2012年',
+                                            type: 'bar',
+                                            data: [19325, 23438, 31000, 121594, 134141, 681807]
+                                        }
+                                    ]
+                                };
+
+                                $(function() {
+                                    //配置
+                                    var myChart1 = echarts.init(document.getElementById('mainChart1'));
+                                    myChart1.setOption(option1);
+                                });
+                    #p-attention.p-wrap-title
+                        blockquote
+                            h1 注意事项
+                    .p-wrap-content.part-attention
+                        // <h2>注意事项</h2>
+                        .content-wrap
+                            p ECharts 在初始化图表的时候，选定的展示图表的div标签必须设定固定的width和height属性值，否则其内层标签无长宽，图表无法显示。
+                    // /.col-xs-12
+                    .clearfix
+                    // <hr>
+                // /.container
+            footer
+                include ../includes/footer
+
+        // javascript
+        include ../includes/javascripts
+        // Custom javascripts for this template
+        script(type='text/javascript', src='../javascripts/echarts.min.js')
+        script(type='text/javascript').
+            //配置1
+            var s2011 = [18203, 23489, 29034, 104970, 131744, 630230];
+            var s2012 = [19325, 23438, 31000, 121594, 134141, 681807];
+            option1 = {
+                title: {
+                    text: '世界人口总量',
+                    subtext: '数据来自网络'
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'shadow'
+                    }
+                },
+                legend: {
+                    data: ['2011年', '2012年']
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: {
+                    type: 'value',
+                    boundaryGap: [0, 0.01]
+                },
+                yAxis: {
+                    type: 'category',
+                    data: ['巴西', '印尼', '美国', '印度', '中国', '世界人口(万)']
+                },
+                series: [
+                    {
+                        name: '2011年',
+                        type: 'bar',
+                        data: [18203, 23489, 29034, 104970, 131744, 630230]
+                    },
+                    {
+                        name: '2012年',
+                        type: 'bar',
+                        data: [19325, 23438, 31000, 121594, 134141, 681807]
+                    }
+                ]
+            };
+            //配置2
+            option2 = {
+                title: {
+                    text: '未来一周气温变化',
+                    subtext: '纯属虚构'
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data: ['最高气温', '最低气温']
+                },
+                toolbox: {
+                    show: true,
+                    feature: {
+                        dataZoom: {},
+                        dataView: {readOnly: false},
+                        magicType: {type: ['line', 'bar']},
+                        restore: {},
+                        saveAsImage: {}
+                    }
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+                },
+                yAxis: {
+                    type: 'value',
+                    axisLabel: {
+                        formatter: '{value} °C'
+                    }
+                },
+                series: [
+                    {
+                        name: '最高气温',
+                        type: 'line',
+                        data: [11, 11, 15, 13, 12, 13, 10],
+                        markPoint: {
+                            data: [
+                                {type: 'max', name: '最大值'},
+                                {type: 'min', name: '最小值'}
+                            ]
+                        },
+                        markLine: {
+                            data: [
+                                {type: 'average', name: '平均值'}
+                            ]
+                        }
+                    },
+                    {
+                        name: '最低气温',
+                        type: 'line',
+                        data: [1, -2, 2, 5, 3, 2, 0],
+                        markPoint: {
+                            data: [
+                                {name: '周最低', value: -2, xAxis: 1, yAxis: -1.5}
+                            ]
+                        },
+                        markLine: {
+                            data: [
+                                {type: 'average', name: '平均值'},
+                                [{
+                                    symbol: 'arrow',
+                                    label: {
+                                        normal: {
+                                            formatter: '最大值'
+                                        }
+                                    },
+                                    type: 'max',
+                                    name: '最大值'
+                                }, {
+                                    symbol: 'circle',
+                                    x: '60%',
+                                    y: '50%'
+                                }]
+                            ]
+                        }
+                    }
+                ]
+            };
+            $(function () {
+                //配置1
+                /*if(s2011.length >= 1 && s2012.length >= 1){
+                 $("#mainChart1").css("height", 40 * (s2011.length + s2012.length) + "px");
+                 }*/
+                setTimeout(function () {
+                    var myChart1 = echarts.init(document.getElementById('mainChart1'));
+                    myChart1.setOption(option1);
+                }, 500);
+                //配置2
+                setTimeout(function () {
+                    var myChart2 = echarts.init(document.getElementById('mainChart2'));
+                    myChart2.setOption(option2);
+                }, 500);
+            });

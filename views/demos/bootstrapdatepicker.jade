@@ -1,0 +1,361 @@
+doctype html
+html
+    head
+        include ../includes/head
+        link(rel="stylesheet", type="text/css", href="../stylesheets/bootstrap-datepicker.min.css")
+    body
+        #bootstrapdatepicker.layout
+            nav#nav-head.navbar.navbar-fixed-top.navbar-inverse.animatedParent.animateOnce
+                include ../includes/nav
+            // /.navbar
+            .container
+                .col-xs-12
+                    #container-jum.jumbotron.animatedParent
+                        h1.animated.fadeInUp.delay-250 BootstrapDatePicker
+                        p.animated.bounceInUp.delay-500
+                            | BootstrapDatePicker是基于bootstrap的日期插件，可设置选择年、月、日三个级别的日期，可格式化，设置可选范围，配置回调方法、控件元素等。
+                        address.animated.bounceInUp.delay-1000
+                            strong Github地址：
+                            a(href='https://github.com/eternicode/bootstrap-datepicker', target='_blank') https://github.com/eternicode/bootstrap-datepicker
+                        address.animated.bounceInUp.delay-1000
+                            strong 文档地址：
+                            a(href='http://bootstrap-datepicker.readthedocs.org/en/latest/', target='_blank') http://bootstrap-datepicker.readthedocs.org/en/latest/
+                // /.col-xs-12.col-sm-9
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a.btn.btn-primary.col-xs-12.btn-custom(href='#p-show') 展示效果
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a.btn.btn-success.col-xs-12.btn-custom(href='#p-use') 使用方法
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a.btn.btn-info.col-xs-12.btn-custom(href='#p-code') 查看源码
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a.btn.btn-warning.col-xs-12.btn-custom(href='#p-attention') 注意事项
+                #container-code.col-xs-12
+                    #p-show.p-wrap-title
+                    blockquote
+                        h1 展示效果
+                    // 实例展示
+                    .p-wrap-content.part-show
+                        .content-wrap
+                            // Nav tabs
+                            ul.nav.nav-tabs(role='tablist')
+                                li.active(role='presentation')
+                                    a(href='#home', aria-controls='home', role='tab', data-toggle='tab') 示例图
+                                li(role='presentation')
+                                    a(href='#profile', aria-controls='profile', role='tab', data-toggle='tab') 实例
+                            // Tab panes
+                            .tab-content
+                                #home.tab-pane.active(role='tabpanel')
+                                    img.img-responsive(src='../images/bootstrapdatepicker/demo_head.png', alt='示例图')
+                                #profile.tab-pane(role='tabpanel')
+                                    .col-xs-8.col-phone-12.col-sm-6.col-lg-4
+                                        form#timesub(method='post', action='')
+                                            h3 日期——标准型式
+                                            .form-group.date
+                                                label(for='start_time') 标准时间：
+                                                input#otime.form-control.form_datetime.ro-bg-white(type='text', name='otime', required='', data-bv-notempty-message='请选择', value='', size='16', readonly='')
+                                                //
+                                                  <div class="input-group-addon">
+                                                  <span class="glyphicon glyphicon-th"></span>
+                                                  </div>
+                                            .form-group
+                                                button.btn.btn-primary(type='submit') 提  交
+                                    .col-xs-8.col-phone-12.col-sm-6.col-lg-4
+                                        form#timesesub(method='post', action='')
+                                            h3 日期——起止时间
+                                            .form-group
+                                                label(for='start_time') 起始时间：
+                                                input#start_time.form-control.form_datetime.ro-bg-white(type='text', name='start_time', required='', data-bv-notempty-message='请选择', value='', size='16', readonly='')
+                                            .form-group
+                                                label(for='end_time') 终止时间：
+                                                input#end_time.form-control.form_datetime.ro-bg-white(type='text', name='end_time', required='', data-bv-notempty-message='请选择', value='', size='16', readonly='')
+                                            .form-group
+                                                button.btn.btn-primary(type='submit') 提  交
+                                    .col-xs-8.col-phone-12.col-sm-6.col-lg-4
+                                        form#timecbsub(method='post', action='')
+                                            h3 日期——包含回调方法
+                                            .form-group.date
+                                                label(for='start_time') 时间回调：
+                                                input#ctime.form-control.form_datetime.ro-bg-white(type='text', name='ctime', required='', data-bv-notempty-message='请选择', value='2016-06-06', size='16', readonly='')
+                                                //
+                                                  <div class="input-group-addon">
+                                                  <span class="glyphicon glyphicon-th"></span>
+                                                  </div>
+                                            .form-group
+                                                button.btn.btn-primary(type='submit') 提  交
+                                    .clearfix
+                    #p-use.p-wrap-title
+                        blockquote
+                            h1 使用方法
+                        .p-wrap-content.part-file
+                            h3 文件结构
+                            .content-wrap
+                                ul
+                                    li
+                                        | js
+                                        ul
+                                            li jquery.min.js
+                                            li bootstrap.min.js
+                                            li bootstrap-datepicker.min.js
+                                            li bootstrap-datepicker.zh-CN.min.js
+                                    li
+                                        | css
+                                        ul
+                                            li bootstrap.min.css
+                                            li bootstrap-datepicker.min.css
+                    .p-wrap-content.part-attention
+                        h3 核心代码
+                        .content-wrap
+                            pre.
+                                &lt;!DOCTYPE html&gt;
+                                &lt;html&gt;
+                                &lt;head&gt;
+                                    &lt;!-- CSS --&gt;
+                                    &lt;link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" /&gt;
+                                    &lt;link type="text/css" rel="stylesheet" href="css/bootstrap-datepicker.min.css" /&gt;
+                                &lt;/head&gt;
+                                &lt;body&gt;
+                                    &lt;form id="loginFormSub" class="form-horizontal1" method="post" action=""&gt;
+                                        &lt;div class="form-group"&gt;
+                                            &lt;input type="text" class="form-control form_datetime"
+                                                id="otime" name="otime" required data-bv-notempty-message="请选择"
+                                                value="" size="16" readonly/&gt;
+                                        &lt;/div&gt;
+                                        &lt;button class="btn btn-primary btn-block" type="submit"&gt;提  交&lt;/button&gt;
+                                    &lt;/form&gt;
+                                    &lt;!-- jQuery --&gt;
+                                    &lt;script type="text/javascript" src="jquery.min.js"&gt;&lt;/script&gt;
+                                    &lt;script type="text/javascript" src="bootstrap.min.js"&gt;&lt;/script&gt;
+                                    &lt;!-- BootstrapDatePicker plugin --&gt;
+                                    &lt;script type="text/javascript" src="bootstrap-datepicker.min.js"&gt;&lt;/script&gt;
+                                    &lt;script type="text/javascript" src="bootstrap-datepicker.zh-CN.min.js"&gt;&lt;/script&gt;
+                                    &lt;script type="text/javascript"&gt;
+                                        $(function(){
+                                            //配置：
+                                            $("#otime").datepicker({
+                                                language:  'zh-CN', //语言
+                                                format: 'yyyy-mm-dd', //日期格式
+                                                autoclose: true,  //点选日期后关闭下拉框
+                                                todayBtn: true, //显示到今天的位置，如果为‘linked’则会直接选中
+                                                endDate: new Date(), //设定可选的最大时间
+                                                todayHighlight: true, //当前日期高亮
+                                                clearBtn: true //清空按钮，若autoclose为true则同时关闭下拉框
+                                            });
+                                        });
+                                    &lt;/script&gt;
+                                &lt;/body&gt;
+                                &lt;/html&gt;
+                    #p-code.p-wrap-title
+                        blockquote
+                            h1 页面源码
+                    .p-wrap-content.part-html
+                        h3 HTML
+                        .content-wrap
+                            p 1.加载所需的css文件和jQuery库文件，以及bootstrapDatePicker插件。
+                            p html代码：
+                            pre.
+                                &lt;!-- CSS --&gt;
+                                &lt;link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" /&gt;
+                                &lt;link type="text/css" rel="stylesheet" href="css/bootstrap-datepicker.min.css" /&gt;
+                                &lt;!-- jQuery --&gt;
+                                &lt;script type="text/javascript" src="jquery.min.js"&gt;&lt;/script&gt;
+                                &lt;!-- Bootstrap --&gt;
+                                &lt;script type="text/javascript" src="bootstrap.min.js"&gt;&lt;/script&gt;
+                                &lt;!-- BootstrapDatePicker plugin --&gt;
+                                &lt;script type="text/javascript" src="bootstrap-datepicker.min.js"&gt;&lt;/script&gt;
+                                &lt;script type="text/javascript" src="bootstrap-datepicker.zh-CN.min.js"&gt;&lt;/script&gt;
+                        .content-wrap
+                            p 2.在页面表单中的输入框中添加必要的属性，配置bootstrapDatePicker。在datepicker方法中配置所需参数，如日期格式，语言，日期范围等。
+                            p html代码：
+                            pre.
+                                &lt;form id="loginFormSub" method="post" class="form-horizontal1" action=""&gt;
+                                    &lt;h3&gt;表单&lt;/h3&gt;
+                                    &lt;div class="form-group"&gt;
+                                        &lt;label for="start_time">标准时间：&lt;/label&gt;;
+                                        &lt;input type="text" class="form-control form_datetime"
+                                            id="otime" name="otime" required data-bv-notempty-message="请选择"
+                                            value="" size="16" readonly/&gt;;
+                                    &lt;/div&gt;
+                                    &lt;div class="form-group"&gt;
+                                        &lt;label for="start_time"&gt;;起始时间：&lt;/label&gt;;
+                                        &lt;input type="text" class="form-control form_datetime"
+                                            id="start_time" name="start_time" required data-bv-notempty-message="请选择"
+                                            value="" size="16" readonly/&gt;;
+                                    &lt;/div&gt;
+                                    &lt;div class="form-group"&gt;
+                                        &lt;label for="end_time"&gt;;终止时间：&lt;/label&gt;;
+                                        &lt;input type="text" class="form-control form_datetime"
+                                            id="end_time" name="end_time" required data-bv-notempty-message="请选择"
+                                            value="" size="16" readonly/&gt;;
+                                    &lt;/div&gt;
+                                &lt;/form&gt;
+                    .p-wrap-content.part-js
+                        h3 Javascript
+                        .content-wrap
+                            p
+                                | 1.可在页面
+                                code <javascript>
+                                | 标签中使用jquery配置bootstrapDatePicker。
+                            p JS代码：
+                            pre.
+                                $(function() {
+                                    //配置
+                                    //日期选择器--标准型
+                                    $("#otime").datepicker({
+                                        language:  'zh-CN',
+                                        format: 'yyyy-mm-dd',
+                                        autoclose: true,
+                                        todayBtn: 'linked',
+                                        todayHighlight: true,
+                                        clearBtn: true
+                                    });
+
+                                    //日期选择器--起止时间
+                                    $("#start_time").datepicker({
+                                        language:  'zh-CN',
+                                        format: 'yyyy-mm-dd',
+                                        autoclose: true,
+                                        //todayBtn: true,
+                                        endDate: new Date()
+                                    });
+
+                                    $("#end_time").datepicker({
+                                        language:  'zh-CN',
+                                        format: 'yyyy-mm-dd',
+                                        autoclose: true,
+                                        //todayBtn: true
+                                    });
+
+                                    //手动配置回调方法
+                                    $("#ctime").datepicker({
+                                        language:  'zh-CN',
+                                        format: 'yyyy-mm-dd',
+                                        autoclose: false,
+                                        todayBtn: 'linked',
+                                        todayHighlight: true,
+                                        clearBtn: true
+                                    }).on('changeDate', function(e) {   //选择日期后关闭
+                                        $("#timecbsub").data('bootstrapValidator').resetForm();
+                                        layer.msg('选择日期后调用，关闭选框。已选择日期为：' + '&lt;br&gt;' + $("#ctime").val());
+                                        $(".datepicker").css("display","none");
+                                    }).on('show', function(e){  //日期显示时调用
+                                        layer.msg('日期显示时调用，清空日期');
+                                        $("#ctime").datepicker('update', '');
+                                    });
+                                });
+                    #p-attention.p-wrap-title
+                        blockquote
+                            h1 注意事项
+                    .p-wrap-content.part-attention
+                        // <h2>注意事项</h2>
+                        .content-wrap
+                            p
+                                | 1.本插件名称为BootstrapDatePicker，并非DatetimePicker，只能显示精确到日期。如需精确到时分秒可以考虑选择BootstrapDatetimePicker。
+                            p
+                                | 2.在bootstrap框架中与bootstrapValidator插件同时使用时，需要注意，如果插件写在modal里，设置autoclose属性为true的时候，会自动调用modal的hide，从而使所选日期无法显示在input标签中，建议设置autoclose为false，并手写一个隐藏日期选框的回调方法。
+                    // /.col-xs-12
+                    .clearfix
+                    // <hr>
+                // /.container
+            footer
+                include ../includes/footer
+
+        // javascript
+        include ../includes/javascripts
+        // Custom javascripts for this template
+        script(type='text/javascript', src='../javascripts/bootstrapValidator.min.js')
+        script(type='text/javascript', src='../javascripts/bootstrap-datepicker.min.js')
+        script(type='text/javascript', src='../javascripts/bootstrap-datepicker.zh-CN.min.js')
+        script(type='text/javascript').
+            $(function () {
+                //配置
+                //日期选择器--标准型
+                $("#otime").datepicker({
+                    language: 'zh-CN',
+                    format: 'yyyy-mm-dd',
+                    autoclose: true,
+                    todayBtn: 'linked',
+                    todayHighlight: true,
+                    clearBtn: true
+                }).on('changeDate', function (e) {
+                    $("#timesub").data('bootstrapValidator').resetForm();
+                });
+
+                //日期选择器--起止时间
+                $("#start_time").datepicker({
+                    language: 'zh-CN',
+                    format: 'yyyy-mm-dd',
+                    autoclose: true,
+                    //todayBtn: true,
+                    endDate: new Date()
+                }).on('changeDate', function (e) {
+                    $("#timesesub").data('bootstrapValidator').resetForm();
+                });
+
+                $("#end_time").datepicker({
+                    language: 'zh-CN',
+                    format: 'yyyy-mm-dd',
+                    autoclose: true,
+                    //todayBtn: true
+                }).on('changeDate', function (e) {
+                    $("#timesesub").data('bootstrapValidator').resetForm();
+                });
+
+                //手动配置回调方法
+                $("#ctime").datepicker({
+                    language: 'zh-CN',
+                    format: 'yyyy-mm-dd',
+                    autoclose: false,
+                    todayBtn: 'linked',
+                    todayHighlight: true,
+                    clearBtn: true
+                }).on('changeDate', function (e) {   //选择日期后关闭
+                    $("#timecbsub").data('bootstrapValidator').resetForm();
+                    layer.msg('选择日期后调用，关闭选框。已选择日期为：' + '<br>' + $("#ctime").val());
+                    $(".datepicker").css("display", "none");
+                }).on('show', function (e) {  //日期显示时调用
+                    layer.msg('日期显示时调用，清空日期');
+                    $("#ctime").datepicker('update', '');
+                });
+
+                //配置表单提交方法
+                $('#timesub').bootstrapValidator().on('success.form.bv', function (e) {
+                    // Prevent form submission
+                    e.preventDefault();
+                    // Get the form instance
+                    var $form = $(e.target);
+                    // Get the BootstrapValidator instance
+                    var bv = $form.data('bootstrapValidator');
+                    //提交表单
+                    var otimev = jQuery.trim($("#otime").val());
+                    layer.alert('提交表单' + '\n' + 'otime : ' + otimev);
+                    return false;
+                });
+
+                $('#timesesub').bootstrapValidator().on('success.form.bv', function (e) {
+                    // Prevent form submission
+                    e.preventDefault();
+                    // Get the form instance
+                    var $form = $(e.target);
+                    // Get the BootstrapValidator instance
+                    var bv = $form.data('bootstrapValidator');
+                    //提交表单
+                    var stimev = jQuery.trim($("#start_time").val());
+                    var etimev = jQuery.trim($("#end_time").val());
+                    layer.alert('提交表单' + '<br >' + 'start_time : ' + stimev + '<br >' + 'end_time : ' + etimev);
+                    return false;
+                });
+
+                $('#timecbsub').bootstrapValidator().on('success.form.bv', function (e) {
+                    // Prevent form submission
+                    e.preventDefault();
+                    // Get the form instance
+                    var $form = $(e.target);
+                    // Get the BootstrapValidator instance
+                    var bv = $form.data('bootstrapValidator');
+                    //提交表单
+                    var ctimev = jQuery.trim($("#ctime").val());
+                    layer.alert('提交表单' + '\n' + 'ctime : ' + ctimev);
+                    return false;
+                });
+
+            });

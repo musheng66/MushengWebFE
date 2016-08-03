@@ -1,0 +1,319 @@
+doctype html
+html
+    head
+        include ../includes/head
+    body
+        #css3animateit.layout.css3-animate-it
+            nav#nav-head.navbar.navbar-fixed-top.navbar-inverse.animatedParent.animateOnce
+                include ../includes/nav
+            // /.navbar
+            .container
+                .col-xs-12
+                    #container-jum.jumbotron.animatedParent
+                        h1.animated.fadeInUp.delay-250 CSS3 Animate It
+                        p.animated.bounceInUp.delay-500
+                            | CSS3 Animate It是基于jQuery和CSS3实现的网页元素动画效果插件。支持放大缩小、从不同方向渐变显示，旋转等CSS3动画特效集合。
+                        p.animated.bounceInUp.delay-500
+                            | 注：浏览器支持：IE9+，Chrome，Firefox，Safari
+                        address.animated.bounceInUp.delay-1000
+                            strong 官网地址：
+                            a(href='http://jackonthe.net/css3animateit/', target='_blank') http://jackonthe.net/css3animateit/
+                // /.col-xs-12.col-sm-9
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a.btn.btn-primary.col-xs-12.btn-custom(href='#p-show') 展示效果
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a.btn.btn-success.col-xs-12.btn-custom(href='#p-use') 使用方法
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a.btn.btn-info.col-xs-12.btn-custom(href='#p-code') 查看源码
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a.btn.btn-warning.col-xs-12.btn-custom(href='#p-attention') 注意事项
+                #container-code.col-xs-12
+                    #p-show.p-wrap-title
+                    blockquote
+                        h1 展示效果
+                    // 实例展示
+                    .p-wrap-content.part-show
+                        .content-wrap
+                            // Nav tabs
+                            ul.nav.nav-tabs(role='tablist')
+                                // <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">示例图</a></li>
+                                li.active(role='presentation')
+                                    a(href='#profile', aria-controls='profile', role='tab', data-toggle='tab') 实例
+                            // Tab panes
+                            .tab-content
+                                //
+                                  <div role="tabpanel" class="tab-pane" id="home">
+                                  <img src="../images/CSS3AnimateIt/demo_1.png" class="img-responsive form-group" alt="示例图1">
+                                  <img src="../images/CSS3AnimateIt/demo_2.png" class="img-responsive form-group" alt="示例图1">
+                                  </div>
+                                #profile.tab-pane.active(role='tabpanel')
+                                    h2 点击元素可查看动画效果
+                                    .animatedParent.animateOnce.col-xs-12.col-md-6
+                                        h2.animated.growIn.slower 展现一次
+                                    .animatedParent.col-xs-12.col-md-6
+                                        h2.animated.fadeInUpShort.slowest 向上淡入
+                                    .animatedParent.col-xs-12.col-md-6
+                                        h2.animated.rollIn.slowest 慢速旋转
+                                    .animatedParent.col-xs-12.col-md-6
+                                        h2.animated.lightSpeedInRight.delay-1000 延时1000ms出现
+                                    .animatedParent.col-xs-12.col-md-6
+                                        h2.animated.shake.slow 水平晃动
+                                    .animatedParent.col-xs-12.col-md-6(data-appear-top-offset='-200')
+                                        h2.animated.flipInY 距离顶部200px时出现
+                                    .animatedParent.col-xs-12.col-md-6(data-sequence='1000')
+                                        h2.animated.rotateInUpLeft(data-id='1') 第一顺序
+                                        h2.animated.rotateInDownLeft(data-id='2') 第二顺序，延时1000ms
+                                        h2.animated.rotateInUpRight(data-id='3') 第三顺序，延时1000ms
+                                    .animatedParent.col-xs-12.col-md-6
+                                        h2.animated.bounceInUp.slow 从底部飞入
+                                    .clearfix
+                    #p-use.p-wrap-title
+                        blockquote
+                            h1 使用方法
+                        .p-wrap-content.part-file
+                            h3 文件结构
+                            .content-wrap
+                                ul
+                                    li
+                                        | js
+                                        ul
+                                            li jquery.min.js
+                                            li css3-animate-it.js
+                                    li
+                                        | css
+                                        ul
+                                            li animations.css
+                    .p-wrap-content.part-attention
+                        h3 核心代码
+                        .content-wrap
+                            pre.
+                                &lt;!DOCTYPE html&gt;
+                                &lt;html&gt;
+                                &lt;head&gt;
+                                    &lt;!-- CSS --&gt;
+                                    &lt;link type="text/css" rel="stylesheet" href="css/animations.css" /&gt;
+                                &lt;/head&gt;
+                                &lt;body&gt;
+                                    &lt;!-- 方法列表 --&gt;
+
+                                    &lt;!-- 基本 --&gt;
+                                    &lt;div class="animatedParent"&gt;
+                                        &lt;h2 class="animated bounceInDown"&gt;It Works!&lt;/h2&gt;
+                                    &lt;/div&gt;
+
+                                    &lt;!-- 序列显示 --&gt;
+                                    &lt;div class="animatedParent" data-sequence="500"&gt;
+                                        &lt;h2 class="animated bounceInDown" data-id="1"&gt;It Works!&lt;/h2&gt;
+                                        &lt;h2 class="animated bounceInDown" data-id="2"&gt;This animation will start 500ms after&lt;/h2&gt;
+                                        &lt;h2 class="animated bounceInDown" data-id="3"&gt;This animation will start 500ms after&lt;/h2&gt;
+                                    &lt;/div&gt;
+
+                                    &lt;!-- 偏移触发 --&gt;
+                                    &lt;div class="animatedParent"data-appear-top-offset="-300"&gt;
+                                        &lt;h2 class="animated bounceInDown"&gt;It Works!&lt;/h2&gt;
+                                    &lt;/div&gt;
+
+                                    &lt;!-- 单次显示 --&gt;
+                                    &lt;div class="animatedParent animateOnce"&gt;
+                                        &lt;h2 class="animated bounceInDown"&gt;It Works!&lt;/h2&gt;
+                                    &lt;/div&gt;
+
+                                    &lt;!-- 动画速度 --&gt;
+                                    &lt;div class="animatedParent"&gt;
+                                        &lt;h2 class="animated bounceInDown slowest"&gt;It Works!&lt;/h2&gt;
+                                    &lt;/div&gt;
+
+                                    &lt;!-- 延迟显示 --&gt;
+                                    &lt;div class="animatedParent"&gt;
+                                        &lt;h2 class="animated bounceInDown delay-250"&gt;It Works!&lt;/h2&gt;
+                                    &lt;/div&gt;
+
+                                    &lt;!-- 动效列表 --&gt;
+                                    &lt;!-- Bounce --&gt;
+                                    &lt;h2 class="animated bounceIn"&gt;It Works!&lt;/h2&gt;
+                                    &lt;h2 class="animated bounceInDown"&gt;It Works!&lt;/h2&gt;
+                                    &lt;h2 class="animated bounceInRight"&gt;It Works!&lt;/h2&gt;
+                                    &lt;h2 class="animated bounceInUp"&gt;It Works!&lt;/h2&gt;
+                                    &lt;h2 class="animated bounceInLeft"&gt;It Works!&lt;/h2&gt;
+
+                                    &lt;!-- Fade --&gt;
+                                    &lt;h2 class="animated fadeInDownShort"&gt;It Works!&lt;/h2&gt;
+                                    &lt;h2 class="animated fadeInUpShort"&gt;It Works!&lt;/h2&gt;
+                                    &lt;h2 class="animated fadeInLeftShort"&gt;It Works!&lt;/h2&gt;
+                                    &lt;h2 class="animated fadeInRightShort"&gt;It Works!&lt;/h2&gt;
+                                    &lt;h2 class="animated fadeInDown"&gt;It Works!&lt;/h2&gt;
+                                    &lt;h2 class="animated fadeInUp"&gt;It Works!&lt;/h2&gt;
+                                    &lt;h2 class="animated fadeInLeft"&gt;It Works!&lt;/h2&gt;
+                                    &lt;h2 class="animated fadeInRight"&gt;It Works!&lt;/h2&gt;
+                                    &lt;h2 class="animated fadeIn"&gt;It Works!&lt;/h2&gt;
+
+                                    &lt;!-- GrowIn --&gt;
+                                    &lt;h2 class="animated growIn"&gt;It Works!&lt;/h2&gt;
+
+                                    &lt;!-- Shake --&gt;
+                                    &lt;h2 class="animated shake"&gt;It Works!&lt;/h2&gt;
+                                    &lt;h2 class="animated shakeUp"&gt;It Works!&lt;/h2&gt;
+
+                                    &lt;!-- Rotate --&gt;
+                                    &lt;h2 class="animated rotateIn"&gt;It Works!&lt;/h2&gt;
+                                    &lt;h2 class="animated rotateInUpLeft"&gt;It Works!&lt;/h2&gt;
+                                    &lt;h2 class="animated rotateInDownLeft"&gt;It Works!&lt;/h2&gt;
+                                    &lt;h2 class="animated rotateInUpRight"&gt;It Works!&lt;/h2&gt;
+                                    &lt;h2 class="animated rotateInDownRight"&gt;It Works!&lt;/h2&gt;
+
+                                    &lt;!-- RollIn --&gt;
+                                    &lt;h2 class="animated rollIn"&gt;It Works!&lt;/h2&gt;
+
+                                    &lt;!-- Wiggle --&gt;
+                                    &lt;h2 class="animated wiggle"&gt;It Works!&lt;/h2&gt;
+
+                                    &lt;!-- Swing --&gt;
+                                    &lt;h2 class="animated swing"&gt;It Works!&lt;/h2&gt;
+
+                                    &lt;!-- Tada --&gt;
+                                    &lt;h2 class="animated tada"&gt;It Works!&lt;/h2&gt;
+
+                                    &lt;!-- Wobble --&gt;
+                                    &lt;h2 class="animated wobble"&gt;It Works!&lt;/h2&gt;
+
+                                    &lt;!-- Pulse --&gt;
+                                    &lt;h2 class="animated pulse"&gt;It Works!&lt;/h2&gt;
+
+                                    &lt;!-- LightSpeed --&gt;
+                                    &lt;h2 class="animated lightSpeedInRight"&gt;It Works!&lt;/h2&gt;
+                                    &lt;h2 class="animated lightSpeedInLeft"&gt;It Works!&lt;/h2&gt;
+
+                                    &lt;!-- Flip --&gt;
+                                    &lt;h2 class="animated flip"&gt;It Works!&lt;/h2&gt;
+                                    &lt;h2 class="animated flipInX"&gt;It Works!&lt;/h2&gt;
+                                    &lt;h2 class="animated flipInY"&gt;It Works!&lt;/h2&gt;
+
+                                    &lt;!-- jQuery --&gt;
+                                    &lt;script type="text/javascript" src="jquery.min.js"&gt;&lt;/script&gt;
+                                    &lt;!-- jQuery Cookie plugin --&gt;
+                                    &lt;script type="text/javascript" src="css3-animate-it.js"&gt;&lt;/script&gt;
+                                    &lt;script type="text/javascript"&gt;
+                                        $(function(){
+                                        //无需代码
+                                        });
+                                    &lt;/script&gt;
+                                &lt;/body&gt;
+                                &lt;/html&gt;
+                    #p-code.p-wrap-title
+                        blockquote
+                            h1 页面源码
+                    .p-wrap-content.part-html
+                        h3 HTML
+                        .content-wrap
+                            p 1.加载所需的css文件和jQuery库文件，以及css3-animate-it插件。
+                            p html代码：
+                            pre.
+                                &lt;!-- CSS --&gt;
+                                &lt;link type="text/css" rel="stylesheet" href="css/animations.css" /&gt;
+                                &lt;!-- jQuery --&gt;
+                                &lt;script type="text/javascript" src="jquery.min.js"&gt;&lt;/script&gt;
+                                &lt;!-- jQuery Cookie plugin --&gt;
+                                &lt;script type="text/javascript" src="css3-animate-it.js"&gt;&lt;/script&gt;
+                        .content-wrap
+                            p 2.页面书写html元素，并赋予指定的类名，调用不同的动效方法。
+                            p html代码：
+                            pre.
+                                &lt;div class="animatedParent animateOnce col-xs-12 col-md-6"&gt;
+                                    &lt;h2 class="animated growIn slower"&gt;展现一次&lt;/h2&gt;
+                                &lt;/div&gt;
+                                &lt;div class="animatedParent col-xs-12 col-md-6"&gt;
+                                    &lt;h2 class="animated fadeInUpShort slowest"&gt;向上淡入&lt;/h2&gt;
+                                &lt;/div&gt;
+                                &lt;div class="animatedParent col-xs-12 col-md-6"&gt;
+                                    &lt;h2 class="animated rollIn slowest"&gt;慢速旋转&lt;/h2&gt;
+                                &lt;/div&gt;
+                                &lt;div class="animatedParent col-xs-12 col-md-6"&gt;
+                                    &lt;h2 class="animated lightSpeedInRight delay-1000"&gt;延时1000ms出现&lt;/h2&gt;
+                                &lt;/div&gt;
+                                &lt;div class="animatedParent col-xs-12 col-md-6"&gt;
+                                    &lt;h2 class="animated shake slow"&gt;水平晃动&lt;/h2&gt;
+                                &lt;/div&gt;
+                                &lt;div class="animatedParent col-xs-12 col-md-6" data-appear-top-offset="-200"&gt;
+                                    &lt;h2 class="animated flipInY"&gt;距离顶部200px时出现&lt;/h2&gt;
+                                &lt;/div&gt;
+                                &lt;div class="animatedParent col-xs-12 col-md-6" data-sequence="1000"&gt;
+                                    &lt;h2 class="animated rotateInUpLeft" data-id="1"&gt;第一顺序&lt;/h2&gt;
+                                    &lt;h2 class="animated rotateInDownLeft" data-id="2"&gt;第二顺序，延时1000ms&lt;/h2&gt;
+                                    &lt;h2 class="animated rotateInUpRight" data-id="3"&gt;第三顺序，延时1000ms&lt;/h2&gt;
+                                &lt;/div&gt;
+                                &lt;div class="animatedParent col-xs-12 col-md-6"&gt;
+                                    &lt;h2 class="animated bounceInUp slow"&gt;从底部飞入&lt;/h2&gt;
+                                &lt;/div&gt;
+                    .p-wrap-content.part-js
+                        h3 Javascript
+                        .content-wrap
+                            p
+                                | 1.主要由css类名控制，js代码辅助控制，可省略。
+                            p JS代码：
+                            pre.
+                                $(function() {
+                                    //辅助代码，点击事件
+                                    $("#profile .animatedParent").click(function () {
+                                        var obj = $(this);
+                                        obj.find("h2").each(function(){
+                                            var h2Obj = $(this);
+                                            var classNames = $(this).prop("class");
+                                            var classArr = classNames.split(" ");
+                                            for (var i = 0; i < classArr.length; i++) {
+                                                $(this).removeClass(classArr[i]);
+                                            }
+                                            h2Obj.css("display", "none");
+                                            //先去除class再添加class，需注意对class的操作需要有间隔，否则浏览器无法响应。
+                                            setTimeout(function () {
+                                                for (var j = 0; j < classArr.length; j++) {
+                                                    h2Obj.addClass(classArr[j]);
+                                                }
+                                                h2Obj.css("display", "block");
+                                            }, 100);
+                                        });
+                                    });
+                                });
+                    #p-attention.p-wrap-title
+                        blockquote
+                            h1 注意事项
+                    .p-wrap-content.part-attention
+                        // <h2>注意事项</h2>
+                        .content-wrap
+                            p
+                                | 1.css3-animate-it插件可以方便的通过为元素赋予相应类名而使其获得不同的效果，通常为当页面滚动到元素可见时触发，在不需要复杂的动效情况下，是比较好的选择。
+                    // /.col-xs-12
+                    .clearfix
+                    // <hr>
+                // /.container
+            footer
+                include ../includes/footer
+
+        // javascript
+        include ../includes/javascripts
+        // Custom javascripts for this template
+        script(type='text/javascript', src='../javascripts/css3-animate-it.js')
+        script(type='text/javascript').
+            $(function () {
+                //无需代码
+                $("#profile .animatedParent").click(function () {
+                    var obj = $(this);
+                    obj.find("h2").each(function () {
+                        var h2Obj = $(this);
+                        var classNames = $(this).prop("class");
+                        var classArr = classNames.split(" ");
+                        for (var i = 0; i < classArr.length; i++) {
+                            $(this).removeClass(classArr[i]);
+                        }
+                        h2Obj.css("display", "none");
+                        //先去除class再添加class，需注意对class的操作需要有间隔，否则浏览器无法响应。
+                        setTimeout(function () {
+                            for (var j = 0; j < classArr.length; j++) {
+                                h2Obj.addClass(classArr[j]);
+                            }
+                            h2Obj.css("display", "block");
+                        }, 100);
+                    });
+
+                });
+
+            });

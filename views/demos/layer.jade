@@ -1,0 +1,240 @@
+doctype html
+html
+    head
+        include ../includes/head
+    body
+        #layer.layout
+            nav#nav-head.navbar.navbar-fixed-top.navbar-inverse.animatedParent.animateOnce
+                include ../includes/nav
+            // /.navbar
+            .container
+                .col-xs-12
+                    #container-jum.jumbotron.animatedParent
+                        h1.animated.fadeInUp.delay-250 layer
+                        p.animated.bounceInUp.delay-500
+                            | layer是一款近年来备受青睐的web弹层组件，具备全方位的解决方案，拥有跨平台兼容的强大功能，丰富的弹层方式提供了良好的用户体验，且项目开源免费，便于使用。
+                        address.animated.bounceInUp.delay-1000
+                            strong Github地址：
+                            a(href='https://github.com/sentsin/layer/', target='_blank') https://github.com/sentsin/layer/
+                        address.animated.bounceInUp.delay-1000
+                            strong 官网地址：
+                            a(href='http://layer.layui.com/', target='_blank') http://layer.layui.com/
+                        address.animated.bounceInUp.delay-1000
+                            strong 文档地址：
+                            a(href='http://layer.layui.com/api.html', target='_blank') http://layer.layui.com/api.html
+                    // /.col-xs-12.col-sm-9
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a.btn.btn-primary.col-xs-12.btn-custom(href='#p-show') 展示效果
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a.btn.btn-success.col-xs-12.btn-custom(href='#p-use') 使用方法
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a.btn.btn-info.col-xs-12.btn-custom(href='#p-code') 查看源码
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a.btn.btn-warning.col-xs-12.btn-custom(href='#p-attention') 注意事项
+                #container-code.col-xs-12
+                    #p-show.p-wrap-title
+                        blockquote
+                            h1 展示效果
+                    // 实例展示
+                    .p-wrap-content.part-show
+                        .content-wrap
+                            // Nav tabs
+                            ul.nav.nav-tabs(role='tablist')
+                                li.active(role='presentation')
+                                    a(href='#home', aria-controls='home', role='tab', data-toggle='tab') 示例图
+                                li(role='presentation')
+                                    a(href='#profile', aria-controls='profile', role='tab', data-toggle='tab') 实例
+                            // Tab panes
+                            .tab-content
+                                #home.tab-pane.active(role='tabpanel')
+                                    img.img-responsive.form-group(src='../images/layer/demo_1.png', alt='示例图1')
+                                    img.img-responsive.form-group(src='../images/layer/demo_2.png', alt='示例图2')
+                                    img.img-responsive.form-group(src='../images/layer/demo_3.png', alt='示例图3')
+                                    img.img-responsive.form-group(src='../images/layer/demo_4.png', alt='示例图4')
+                                    img.img-responsive.form-group(src='../images/layer/demo_5.png', alt='示例图5')
+                                #profile.tab-pane(role='tabpanel')
+                                    .form-group.col-lg-2.col-md-4.col-xs-6.col-phone-12
+                                        button#simple_alert.btn.btn-primary.btn-group.col-xs-12 简单警告
+                                    .form-group.col-lg-2.col-md-4.col-xs-6.col-phone-12
+                                        button#confirm_ask.btn.btn-primary.btn-group.col-xs-12 询问框
+                                    .form-group.col-lg-2.col-md-4.col-xs-6.col-phone-12
+                                        button#simple_msg.btn.btn-primary.btn-group.col-xs-12 简单提示框
+                                    .form-group.col-lg-2.col-md-4.col-xs-6.col-phone-12
+                                        button#loding_layer_1.btn.btn-primary.btn-group.col-xs-12 加载层_默认
+                                    .form-group.col-lg-2.col-md-4.col-xs-6.col-phone-12
+                                        button#loding_layer_2.btn.btn-primary.btn-group.col-xs-12 加载层_2
+                                    .form-group.col-lg-2.col-md-4.col-xs-6.col-phone-12
+                                        button#loding_layer_3.btn.btn-primary.btn-group.col-xs-12 加载层_3
+                                    .form-group.col-lg-2.col-md-4.col-xs-6.col-phone-12
+                                        button#noscroll_layer.btn.btn-primary.btn-group.col-xs-12 屏蔽滚动条
+                                    .form-group.col-lg-2.col-md-4.col-xs-6.col-phone-12
+                                        button#iframe_layer.btn.btn-primary.btn-group.col-xs-12 iframe-父子页面
+                                    .clearfix
+                    #p-use.p-wrap-title
+                        blockquote
+                            h1 使用方法
+                        .p-wrap-content.part-file
+                            h3 文件结构
+                            .content-wrap
+                                ul
+                                    li
+                                        | js
+                                        ul
+                                            li jquery.min.js
+                                            li layer（文件夹）
+                    .p-wrap-content.part-attention
+                        h3 核心代码
+                        .content-wrap
+                            pre.
+                                &lt;!DOCTYPE html&gt;
+                                &lt;html&gt;
+                                &lt;head&gt;
+                                &lt;/head&gt;
+                                &lt;body&gt;
+                                    &lt;button id="simple_alert" class="btn btn-primary btn-group col-xs-12"&gt;简单警告&lt;/button&gt;
+                                    &lt;!-- jQuery --&gt;
+                                    &lt;script type="text/javascript" src="jquery.min.js"&gt;&lt;/script&gt;
+                                    &lt;!-- layer plugin --&gt;
+                                    &lt;script type="text/javascript" src="layer.js"&gt;&lt;/script&gt;
+                                    &lt;script type="text/javascript"&gt;
+                                        $(function(){
+                                            //配置：
+                                            $("#simple_alert").click(function () {
+                                                //简单提示
+                                                layer.alert('这是一个简单的警告框');
+                                            });
+                                        });
+                                    &lt;/script&gt;
+                                &lt;/body&gt;
+                                &lt;/html&gt;
+                    #p-code.p-wrap-title
+                        blockquote
+                            h1 页面源码
+                    .p-wrap-content.part-html
+                        h3 HTML
+                        .content-wrap
+                            p 1.加载所需的jQuery库文件，以及layer插件。
+                            p html代码：
+                            pre.
+                                &lt;!-- CSS --&gt;
+                                &lt;!-- jQuery --&gt;
+                                &lt;script type="text/javascript" src="jquery.min.js"&gt;&lt;/script&gt;
+                                &lt;!-- Bootstrap --&gt;
+                                &lt;!-- layer plugin --&gt;
+                                &lt;script type="text/javascript" src="layer.js"&gt;&lt;/script&gt;
+                        .content-wrap
+                            p 2.在页面中写入需要弹出的内容，配置layer。在layer方法中配置所需的弹出框方法等。
+                            p html代码：
+                            pre.
+                                &lt;button id="simple_alert" class="btn btn-primary btn-group col-xs-12"&gt;简单警告&lt;/button&gt;
+                    .p-wrap-content.part-js
+                        h3 Javascript
+                        .content-wrap
+                            p
+                                | 1.可在页面
+                                code <javascript>
+                                | 标签中使用jquery配置layer。
+                            p JS代码：
+                            pre.
+                                $(function() {
+                                    //配置
+                                    $("#simple_alert").click(function () {
+                                        //简单提示
+                                        layer.alert('这是一个简单的警告框');
+                                    });
+                                });
+                    #p-attention.p-wrap-title
+                        blockquote
+                            h1 注意事项
+                    .p-wrap-content.part-attention
+                        // <h2>注意事项</h2>
+                        .content-wrap
+                            p
+                                | 1.功能强大，仅需要引入layer.js，因此需要注意其所需其他资源文件的相对路径，最好进行整体拷贝使用。
+                // /.col-xs-12
+                .clearfix
+                // <hr>
+                // /.container
+            footer
+                include ../includes/footer
+
+        // javascript
+        include ../includes/javascripts
+        // Custom javascripts for this template
+        script(type='text/javascript').
+            $(function () {
+                //配置
+
+                $("#simple_alert").click(function () {
+                    //简单提示
+                    layer.alert('这是一个简单的警告框');
+                });
+
+                $("#confirm_ask").click(function () {
+                    //询问框
+                    layer.confirm('您是如何看待前端开发？', {
+                        btn: ['重要', '奇葩'] //按钮
+                    }, function () {
+                        layer.msg('的确很重要', {icon: 1});
+                    }, function () {
+                        layer.msg('也可以这样，20秒后自动关闭', {
+                            time: 20000, //20s后自动关闭
+                            btn: ['明白了', '知道了']
+                        });
+                    });
+                });
+
+                $("#simple_msg").click(function () {
+                    //提示层
+                    layer.msg('玩命提示中');
+                });
+
+                $("#loding_layer_1").click(function () {
+                    //加载层-默认风格
+                    layer.load();
+                    //此处演示关闭
+                    setTimeout(function () {
+                        layer.closeAll('loading');
+                    }, 3000);
+                });
+
+                $("#loding_layer_2").click(function () {
+                    //加载层-风格2
+                    layer.load(1);
+                    //此处演示关闭
+                    setTimeout(function () {
+                        layer.closeAll('loading');
+                    }, 3000);
+                });
+
+                $("#loding_layer_3").click(function () {
+                    //加载层-风格3
+                    layer.load(2);
+                    //此处演示关闭
+                    setTimeout(function () {
+                        layer.closeAll('loading');
+                    }, 3000);
+                });
+
+                $("#noscroll_layer").click(function () {
+                    //屏蔽浏览器滚动条
+                    layer.open({
+                        title: '我是标题',
+                        content: '浏览器滚动条已锁',
+                        scrollbar: false
+                    });
+                });
+
+                //iframe层-父子操作
+                $("#iframe_layer").click(function () {
+                    layer.open({
+                        type: 2,
+                        area: ['90%', '530px'],
+                        fix: false, //不固定
+                        maxmin: true,
+                        content: 'layer-iframe',
+                        scrollbar: false
+                    });
+                });
+
+            });

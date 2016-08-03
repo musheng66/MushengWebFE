@@ -1,0 +1,136 @@
+doctype html
+html
+    head
+        include includes/head
+        //Custom styles for this template
+        link(rel="stylesheet", type="text/css", href="/stylesheets/carousel.css")
+    body
+        #page_mark.layout.aboutspage(data-mark='abouts')
+        nav#nav-head.navbar.navbar-fixed-top.navbar-inverse.animatedParent.animateOnce
+            include includes/nav
+        // /.navbar
+        // Carousel ==================================================
+        #myCarousel.carousel.slide(data-ride='carousel')
+            // Indicators
+            ol.carousel-indicators
+                li.active(data-target='#myCarousel', data-slide-to='0')
+                li(data-target='#myCarousel', data-slide-to='1')
+                li(data-target='#myCarousel', data-slide-to='2')
+            .carousel-inner(role='listbox')
+                .item.active
+                    .container
+                        .carousel-caption
+                            h1 随时
+                            i.fa.fa-paper-plane-o.fa-5x
+                            h2 邮件
+                            h1
+                            //p
+                                | Note: If you're viewing this page via a
+                                code file://
+                                |  URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.
+                            //p
+                                a.btn.btn-lg.btn-primary(href='#', role='button') Sign up today
+                .item
+                    .container
+                        .carousel-caption
+                            h1 正式
+                            i.fa.fa-wechat.fa-5x
+                            h2 微信
+                            h1
+                            //p
+                                | Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                            //p
+                                a.btn.btn-lg.btn-primary(href='#', role='button') Learn more
+                .item
+                    .container
+                        .carousel-caption
+                            h1 工作
+                            i.fa.fa-qq.fa-5x
+                            h2 QQ
+                            h1
+                            //p
+                                | Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                            //p
+                                a.btn.btn-lg.btn-primary(href='#', role='button') Browse gallery
+            a.left.carousel-control(href='#myCarousel', role='button', data-slide='prev')
+                span.glyphicon.glyphicon-chevron-left(aria-hidden='true')
+                span.sr-only Previous
+            a.right.carousel-control(href='#myCarousel', role='button', data-slide='next')
+                span.glyphicon.glyphicon-chevron-right(aria-hidden='true')
+                span.sr-only Next
+        // /.carousel
+        // Marketing messaging and featurettes ==================================================
+        // Wrap the rest of the page in another container to center all the content.
+        .container.marketing
+            // Three columns of text below the carousel
+            .row
+                .col-lg-4
+                    i.fa.fa-paper-plane-o.fa-5x(style="color: #FFA700;")
+                    h2 邮件
+                    p
+                        | poetchen@foxmail.com
+                    p
+                        //a.btn.btn-default(href='#', role='button') View details »
+                // /.col-lg-4
+                .col-lg-4
+                    i.fa.fa-wechat.fa-5x(style="color: #01B500;")
+                    h2 微信
+                    p
+                        | musheng6666
+                    p
+                        //a.btn.btn-default(href='#', role='button') View details »
+                // /.col-lg-4
+                .col-lg-4
+                    i.fa.fa-qq.fa-5x(style="color: #009FFF;")
+                    h2 QQ
+                    p
+                        | 425893642
+                    p
+                        //a.btn.btn-default(href='#', role='button') View details »
+                // /.col-lg-4
+            // /.row
+
+            // START THE FEATURETTES
+                hr.featurette-divider
+                .row.featurette
+                    .col-md-7
+                        h2.featurette-heading
+                            | First featurette heading.
+                            span.text-muted It'll blow your mind.
+                        p.lead
+                            | Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
+                    .col-md-5
+                        img.featurette-image.img-responsive.center-block(data-src='holder.js/500x500/auto', alt='Generic placeholder image')
+                hr.featurette-divider
+                .row.featurette
+                    .col-md-7.col-md-push-5
+                        h2.featurette-heading
+                            | Oh yeah, it's that good.
+                            span.text-muted See for yourself.
+                        p.lead
+                            | Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
+                    .col-md-5.col-md-pull-7
+                        img.featurette-image.img-responsive.center-block(data-src='holder.js/500x500/auto', alt='Generic placeholder image')
+                hr.featurette-divider
+                .row.featurette
+                    .col-md-7
+                        h2.featurette-heading
+                            | And lastly, this one.
+                            span.text-muted Checkmate.
+                        p.lead
+                            | Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
+                    .col-md-5
+                        img.featurette-image.img-responsive.center-block(data-src='holder.js/500x500/auto', alt='Generic placeholder image')
+                hr.featurette-divider
+            // /END THE FEATURETTES
+
+
+        // Bootstrap core JavaScript
+        script(type='text/javascript', src='/javascripts/jquery.min.js')
+        script(type='text/javascript', src='/javascripts/bootstrap.min.js')
+        // Custom javascripts for this template
+        script(type='text/javascript', src='/javascripts/css3-animate-it.js')
+        script(type='text/javascript', src='/javascripts/commonjs.js')
+        script(type='text/javascript').
+            $(function () {
+            });

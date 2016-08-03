@@ -1,0 +1,264 @@
+doctype html
+html
+    head
+        include includes/head
+        link(rel="stylesheet", type="text/css", href="/stylesheets/offcanvas.css")
+    body(data-spy='scroll', data-target='#sidebar', data-offset='60', style='position:relative;')
+        #page_mark.layout.homepage(data-mark='home')
+        nav#nav-head.navbar.navbar-fixed-top.navbar-inverse.animatedParent.animateOnce
+            include includes/nav
+        // /.navbar
+        .container
+            #home.row.row-offcanvas.row-offcanvas-right
+                .col-xs-12.col-sm-9
+                    p.pull-right.visible-xs
+                        button.btn.btn-primary.btn-xs(type='button', data-toggle='offcanvas') 菜单
+                    .jumbotron.animatedParent
+                        h1.animated.fadeInUp.delay-250 Web前端工具文档
+                        p.animated.bounceInUp.delay-500 此页面是文档首页，作者制作这个文档的目的主要是为方便的查看和使用工作中的常用类库。
+                        p.animated.bounceInUp.delay-750 文档包含JS、CSS插件，JS库中的jQuery类库可独立使用，Bootstrap类库则需先引入jQuery再行使用。观者可点击需要查看的功能模块进入详细页面。
+                        p.animated.bounceInUp.delay-1000
+                            | 注：本页面基于Bootstrap的Offcanvas模板制作，并加入了简单动效。
+                            a(href='http://v3.bootcss.com/examples/offcanvas/') 浏览源网页
+                    #scroll-div.row
+                        .bs-docs-section.animatedParent
+                            h1#performance-jquery.page-header.animated.fadeInDownShort
+                                a.anchorjs-link(href='javascript:void(0);')
+                                | 表现类-jQuery
+                            .col-phone-12.col-xs-6.col-lg-4.animated.fadeInUpShort.delay-250
+                                .home-desc-piece
+                                    h3
+                                        | 引导图层
+                                        br
+                                        | pagewalkthrough
+                                    p.content-introduce 基于jQuery的页面引导插件，通常用于为首次登入页面的用户介绍页面功能模块而设计。
+                                    hr
+                                    p.btn-outer
+                                        a.btn.btn-default(href='demos/pagewalkthrough', role='button') 详细 »
+                            // /.col-xs-6.col-lg-4
+                            .col-phone-12.col-xs-6.col-lg-4.animated.fadeInUpShort.delay-500
+                                .home-desc-piece
+                                    h3
+                                        | 结构树
+                                        br
+                                        | zTree
+                                    p.content-introduce zTree是支持数据以树形结构展示的js类库，接收json数据，支持异步加载，无限级分类，可配置各种回调函数，方便易用。
+                                    hr
+                                    p.btn-outer
+                                        a.btn.btn-default(href='demos/ztree', role='button') 详细 »
+                            // /.col-xs-6.col-lg-4
+                            .col-phone-12.col-xs-6.col-lg-4.animated.fadeInUpShort.delay-750
+                                .home-desc-piece
+                                    h3
+                                        | 弹层工具
+                                        br
+                                        | layer
+                                    p.content-introduce layer是一款近年来备受青睐的web弹层组件，具备全方位的解决方案，方便的配置和调用，使页面拥有丰富友好的操作体验。
+                                    hr
+                                    p.btn-outer
+                                        a.btn.btn-default(href='demos/layer', role='button') 详细 »
+                            // /.col-xs-6.col-lg-4
+                            .col-phone-12.col-xs-6.col-lg-4.animated.fadeInUpShort.delay-1000
+                                .home-desc-piece
+                                    h3
+                                        | 动效
+                                        br
+                                        | css3-animate-it.js
+                                    p.content-introduce css3-animate-it是支持CSS3animate和transform等属性的动画特效集合，包含简单动画效果。
+                                    hr
+                                    p.btn-outer
+                                        a.btn.btn-default(href='demos/css3animateit', role='button') 详细 »
+                            // /.col-xs-6.col-lg-4
+                            .clearfix
+                        .bs-docs-section.animatedParent
+                            h1#function-jquery.page-header.animated.fadeInUpShort
+                                a.anchorjs-link(href='javascript:void(0);')
+                                | 功能类-jQuery
+                            .col-phone-12.col-xs-6.col-lg-4.animated.fadeInDownShort.delay-250
+                                .home-desc-piece
+                                    h3
+                                        | 文本编辑器
+                                        br
+                                        | tinymce
+                                    p.content-introduce 文本编辑器tinymce，包括对文本字体，字号，段落，标题等编辑的功能，可插入图表，图片，链接等，可用代码模式编辑。
+                                    hr
+                                    p.btn-outer
+                                        a.btn.btn-default(href='demos/tinymce', role='button') 详细 »
+                            // /.col-xs-6.col-lg-4
+                            .col-phone-12.col-xs-6.col-lg-4.animated.fadeInDownShort.delay-500
+                                .home-desc-piece
+                                    h3
+                                        | 上传工具
+                                        br
+                                        | jquery-fileupload
+                                    p.content-introduce jquery-fileupload是基于jquery的文件上传插件，支持多文件上传，显示进度，取消上传，暂停等功能，同时包括完整ui界面。
+                                    hr
+                                    p.btn-outer
+                                        a.btn.btn-default(href='demos/jqueryfileupload', role='button') 详细 »
+                            // /.col-xs-6.col-lg-4
+                            .col-phone-12.col-xs-6.col-lg-4.animated.fadeInDownShort.delay-750
+                                .home-desc-piece
+                                    h3
+                                        | 缓存操作
+                                        br
+                                        | jquery-cookie
+                                    p.content-introduce jquery-coocie是基于jquery的cookie操作插件，支持对cookie的增删改查，设置有效期等功能，使用简便。
+                                    hr
+                                    p.btn-outer
+                                        a.btn.btn-default(href='demos/jquerycookie', role='button') 详细 »
+                            // /.col-xs-6.col-lg-4
+                            .clearfix
+                        .bs-docs-section.animatedParent
+                            h1#performance-bootstrap.page-header.animated.lightSpeedInLeft
+                                a.anchorjs-link(href='javascript:void(0);')
+                                | 表现类-Bootstrap
+                            .col-phone-12.col-xs-6.col-lg-4.animated.lightSpeedInLeft.delay-500
+                                .home-desc-piece
+                                    h3
+                                        | 日期插件
+                                        br
+                                        | BootstrapDatePicker
+                                    p.content-introduce BootstrapDatePicker是基于Bootstrap的日期插件，可配置起止日期，回掉函数等。
+                                    hr
+                                    p.btn-outer
+                                        a.btn.btn-default(href='demos/bootstrapdatepicker', role='button') 详细 »
+                            // /.col-xs-6.col-lg-4
+                            .clearfix
+                        .bs-docs-section.animatedParent
+                            h1#function-bootstrap.page-header.animated.lightSpeedInRight
+                                a.anchorjs-link(href='javascript:void(0);')
+                                | 功能类-Bootstrap
+                            .col-phone-12.col-xs-6.col-lg-4.animated.lightSpeedInRight.delay-500
+                                .home-desc-piece
+                                    h3
+                                        | 表单验证
+                                        br
+                                        | BootstrapValidator
+                                    p.content-introduce BootstrapValidator是基于bootstrap的表单验证插件，可进行非空，正则，运算，异步请求等验证。
+                                    hr
+                                    p.btn-outer
+                                        a.btn.btn-default(href='demos/bootstrapvalidator', role='button') 详细 »
+                            // /.col-xs-6.col-lg-4
+                            .clearfix
+                        .bs-docs-section.animatedParent
+                            h1#performance-else.page-header.animated.flipInX
+                                a.anchorjs-link(href='javascript:void(0);')
+                                | 表现类-其他
+                            .col-phone-12.col-xs-6.col-lg-4.animated.flipInY
+                                .home-desc-piece
+                                    h3
+                                        | 动效
+                                        br
+                                        | Animate.css
+                                    p.content-introduce Animate.css是一个有趣的，跨浏览器的css3动画库，内置了很多典型的css3动画，兼容性好使用方便。
+                                    hr
+                                    p.btn-outer
+                                        a.btn.btn-default(href='demos/animate', role='button') 详细 »
+                            // /.col-xs-6.col-lg-4
+                            .clearfix
+                        .bs-docs-section.animatedParent
+                            h1#function-else.page-header.animated.fadeIn
+                                a.anchorjs-link(href='javascript:void(0);')
+                                | 功能类-其他
+                            .col-phone-12.col-xs-6.col-lg-4.animated.fadeInLeft.delay-500
+                                .home-desc-piece
+                                    h3
+                                        | 图表工具
+                                        br
+                                        | eCharts
+                                    p.content-introduce eCharts是由百度开发的用于展示图表类数据的js类库，支持多种图表，由固定格式数据初始化，可进行异步加载，功能强大。
+                                    hr
+                                    p.btn-outer
+                                        a.btn.btn-default(href='demos/echarts', role='button') 详细 »
+                            // /.col-xs-6.col-lg-4
+                            .col-phone-12.col-xs-6.col-lg-4.animated.fadeInRight.delay-500
+                                .home-desc-piece
+                                    h3
+                                        | 缓存操作
+                                        br
+                                        | JavaScript Cookie
+                                    p.content-introduce js-coocie是基于jquery-cookie演化而来的缓存操作插件，脱离jquery库独立存在，支持对cookie的增删改查，设置有效期等功能，使用简便。
+                                    hr
+                                    p.btn-outer
+                                        a.btn.btn-default(href='demos/jscookie', role='button') 详细 »
+                            // /.col-xs-6.col-lg-4
+                            //
+                              <div class="col-phone-12 col-xs-6 col-lg-4">
+                              <h3>待添加</h3>
+                              <div class="home-desc-piece">
+                              <h3>暂无</h3>
+                              <p>待添加</p>
+                              <p><a class="btn btn-default" href="javascript:void(0);" role="button">详细 &raquo;</a></p>
+                              </div>
+                              </div>
+                            // /.col-xs-6.col-lg-4
+                            .clearfix
+                        .bs-docs-section.animatedParent
+                            h1#custom-js.page-header.animated.bounceIn
+                                a.anchorjs-link(href='javascript:void(0);')
+                                | MsJs插件
+                            .col-phone-12.col-xs-6.col-lg-4.animated.bounceInLeft.delay-500
+                                .home-desc-piece
+                                    h3
+                                        | 返回顶部
+                                        br
+                                        | backtotop
+                                    p.content-introduce 自定义函数，改写为jquery插件形式，用以实现返回顶部功能，支持动画时间设置。
+                                    hr
+                                    p.btn-outer
+                                        a.btn.btn-default(href='demos/msjs#backtotop', role='button') 详细 »
+                            // /.col-xs-6.col-lg-4
+                            .col-phone-12.col-xs-6.col-lg-4.animated.bounceInRight.delay-500
+                                .home-desc-piece
+                                    h3
+                                        | 复选框多选
+                                        br
+                                        | checkboxs
+                                    p.content-introduce 自定义函数，改写为jquery插件形式，用以实现复选框全选功能，可反向判断全选勾选框是否勾选。
+                                    hr
+                                    p.btn-outer
+                                        a.btn.btn-default(href='demos/msjs#checkboxs', role='button') 详细 »
+                            // /.col-xs-6.col-lg-4
+                            .clearfix
+                    // /row
+                // /.col-xs-12.col-sm-9
+                #sidebar.col-xs-6.col-sm-3.sidebar-offcanvas.sidebar-fixed-top-right
+                    ul.nav.list-group
+                        li.list-group-item
+                            a.list-group-item-a(href='#performance-jquery') 表现类-jQuery
+                        li.list-group-item
+                            a.list-group-item-a(href='#function-jquery') 功能类-jQuery
+                        li.list-group-item
+                            a.list-group-item-a(href='#performance-bootstrap') 表现类-Bootstrap
+                        li.list-group-item
+                            a.list-group-item-a(href='#function-bootstrap') 功能类-Bootstrap
+                        li.list-group-item
+                            a.list-group-item-a(href='#performance-else') 表现类-其他
+                        li.list-group-item
+                            a.list-group-item-a(href='#function-else') 功能类-其他
+                        li.list-group-item
+                            a.list-group-item-a(href='#custom-js') MsJs插件
+                    //
+                      <div class="list-group">
+                      <a href="#performance-jquery" class="list-group-item active">表现类-jQuery</a>
+                      <a href="#function-jquery" class="list-group-item">功能类-jQuery</a>
+                      <a href="#performance-bootstrap" class="list-group-item">表现类-Bootstrap</a>
+                      <a href="#function-bootstrap" class="list-group-item">功能类-Bootstrap</a>
+                      <a href="#performance-else" class="list-group-item">表现类-其他</a>
+                      <a href="#function-else" class="list-group-item">功能类-其他</a>
+                      </div>
+                // /.sidebar-offcanvas
+            // /row
+            // <hr>
+        // /.container
+        footer
+            include includes/footer
+
+        // javascript
+        include includes/javascripts
+        // Custom javascripts for this template
+        script(type='text/javascript', src='/javascripts/offcanvas.js')
+        script(type='text/javascript', src='/javascripts/css3-animate-it.js')
+        script(type='text/javascript').
+            $(function(){
+            });

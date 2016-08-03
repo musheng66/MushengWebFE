@@ -1,0 +1,203 @@
+doctype html
+html
+    head
+        include ../includes/head
+        link(rel="stylesheet", type="text/css", href="/stylesheets/offcanvas.css")
+    body(data-spy='scroll', data-target='#sidebar', data-offset='60', style='position:relative;')
+        #msjs.layout
+            nav#nav-head.navbar.navbar-fixed-top.navbar-inverse.animatedParent.animateOnce
+                include ../includes/nav
+            // /.navbar
+            .container
+                #msjs.row.row-offcanvas.row-offcanvas-right
+                    .col-xs-12.col-sm-9
+                        p.pull-right.visible-xs
+                            button.btn.btn-primary.btn-xs(type='button', data-toggle='offcanvas') 菜单
+                        .jumbotron
+                            h1 MsJS文档
+                            p 这是一个懒人收集和改编的一些常用JS方法，希望在以后的工作和学习中可以更轻松的使用。需要jQuery1.9.0+版本。
+                            p
+                                | 注：此工具文件已上传到Github。
+                                a(href='https://github.com/musheng66/MsJS/blob/master/MsJS.js', target='_blank') 浏览Github页面
+                        #scroll-div
+                            .bs-docs-section
+                                h1#document-use.page-header
+                                    a.anchorjs-link(href='javascript:void(0);')
+                                    | 使用说明
+                                .col-xs-12
+                                    p 1.需要引入MsJS.js文件
+                                    p 2.根据需要配置不同的方法
+                                .clearfix
+                            #backtotop.bs-docs-section
+                                h2#performance-else.page-header
+                                    a.anchorjs-link(href='javascript:void(0);')
+                                    | 返回顶部
+                                .col-xs-12
+                                    .p-wrap-title
+                                        blockquote
+                                            h3 展示效果
+                                    .form-group
+                                        button#b-t-top.btn.btn-group.btn-primary 返回顶部
+                                .col-xs-12
+                                    .p-wrap-title
+                                        blockquote
+                                            h3 使用方法
+                                    div
+                                        pre.
+                                            &lt;!-- html --&gt;
+                                             &lt;button class="btn btn-group btn-primary" id="b-t-top"&gt;返回顶部&lt;/button&gt;
+                                             &lt;!-- javascript --&gt;
+                                             &lt;script type="text/javascript"&gt;
+                                             $(function(){
+                                                 //返回顶部配置
+                                                 $("#b-t-top").backtotop({
+                                                     speed : 500,    //动画时间，单位：ms
+                                                     mscroll : function(){   //页面滚动时调用
+                                                         if($(window).scrollTop() > 0){
+                                                             $("#b-t-top").css("display","block");
+                                                         } else {
+                                                             $("#b-t-top").css("display","none");
+                                                         }
+                                                     },
+                                                     mback : function(){}    //返回顶部后调用
+                                                 });
+                                             });
+                                             &lt;/script&gt;
+                                .col-xs-12
+                                    .p-wrap-title
+                                        blockquote
+                                            h3 注意事项
+                                    div
+                                        p
+                                            | 1.可以在滚动页面时判断距离顶端的距离，控制是否显示按钮，按钮样式可自定义。
+                                        p
+                                            | 2.目前存在一个问题，在页面初次加载或刷新时也会调用回调函数，需继续改进。
+                                .clearfix
+                            hr
+                            #checkboxs.bs-docs-section
+                                h2#function-else.page-header
+                                    a.anchorjs-link(href='javascript:void(0);')
+                                    | 复选框多选
+                                .col-xs-12
+                                    .p-wrap-title
+                                        blockquote
+                                            h3 展示效果
+                                    .checkbox.col-xs-12.col-md-3
+                                        label
+                                            input.checkall(type='checkbox')
+                                            span 全选
+                                    .checkbox.col-xs-12.col-md-3
+                                        label
+                                            input.checkone(type='checkbox')
+                                            span 选项1
+                                    .checkbox.col-xs-12.col-md-3
+                                        label
+                                            input.checkone(type='checkbox')
+                                            span 选项2
+                                    .checkbox.col-xs-12.col-md-3
+                                        label
+                                            input.checkone(type='checkbox')
+                                            span 选项3
+                                .col-xs-12
+                                    .p-wrap-title
+                                        blockquote
+                                            h3 使用方法
+                                    div
+                                        pre.
+                                            &lt;!-- html --&gt;
+                                            &lt;div class="checkbox"&gt;
+                                                &lt;label class=""&gt;&lt;input type="checkbox" class="checkall"/&gt;&lt;span&gt;全选&lt;/span&gt;&lt;/label&gt;
+                                            &lt;/div&gt;
+                                            &lt;div class="checkbox"&gt;
+                                                &lt;label class=""&gt;&lt;input type="checkbox" class="checkone"/&gt;&lt;span&gt;选项1&lt;/span&gt;&lt;/label&gt;
+                                            &lt;/div&gt;
+                                            &lt;div class="checkbox"&gt;
+                                                &lt;label class=""&gt;&lt;input type="checkbox" class="checkone"/&gt;&lt;span&gt;选项2&lt;/span&gt;&lt;/label&gt;
+                                            &lt;/div&gt;
+                                            &lt;div class="checkbox"&gt;
+                                                &lt;label class=""&gt;&lt;input type="checkbox" class="checkone"/&gt;&lt;span&gt;选项3&lt;/span&gt;&lt;/label&gt;
+                                            &lt;/div&gt;
+                                            &lt;!-- javascript --&gt;
+                                            &lt;script type="text/javascript"&gt;
+                                            $(function(){
+                                                //复选框配置
+                                                $(".checkall").checkboxs({  //设置全选按钮
+                                                    handler : ".checkone",  //需要控制的选框
+                                                    mback : function(){
+                                                        //需要添加的回调方法
+                                                    },
+                                                });
+                                            });
+                                            &lt;/script&gt;
+                                .col-xs-12
+                                    .p-wrap-title
+                                        blockquote
+                                            h3 注意事项
+                                    div
+                                        p
+                                            | 1.需注意checkbox的选择器，设置一个全选框和多个选择框。
+                                .clearfix
+                            .clearfix
+                        // /row
+                    // /.col-xs-12.col-sm-9
+                    #sidebar.col-xs-6.col-sm-3.sidebar-offcanvas.sidebar-fixed-top-right
+                        ul.nav.list-group
+                            li.list-group-item
+                                a.list-group-item-a(href='#backtotop') 返回顶部
+                            li.list-group-item
+                                a.list-group-item-a(href='#checkboxs') 复选框多选
+                    // /.sidebar-offcanvas
+                    // /row
+                // <hr>
+            // /.container
+            footer
+                include ../includes/footer
+
+        // javascript
+        include ../includes/javascripts
+        script(type='text/javascript', src='/javascripts/offcanvas.js')
+        script(type='text/javascript', src='/javascripts/MsJS.js')
+        // Custom javascripts for this template
+        script(type='text/javascript').
+            $(function () {
+                $("#return-top").backtotop({
+                    speed: 500,
+                    mscroll: function () {
+                        if ($(window).scrollTop() > 0) {
+                            $("#return-top").css("display", "block");
+                        } else {
+                            $("#return-top").css("display", "none");
+                        }
+                    },
+                });
+                /*$('body').scrollspy({ target: '#sidebar' })*/
+
+
+                //复选框配置
+                $(".checkall").checkboxs({
+                    handler: ".checkone",
+                    mback: function () {
+                        //需要添加的回调方法
+                    },
+                });
+            });
+
+            $.getScript("../javascripts/MsJS.js", function () {
+                //返回顶部配置
+                $("#b-t-top").backtotop({
+                    speed: 500,
+                    mscroll: function () {
+                        if ($(window).scrollTop() > 0) {
+                            $("#b-t-top").css("display", "block");
+                        } else {
+                            $("#b-t-top").css("display", "none");
+                        }
+                    },
+                    mback: function () {
+                        if ($(window).scrollTop() == 0) {
+                            layer.msg('已返回顶部');
+                        }
+                    }
+                });
+
+            });

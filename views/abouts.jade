@@ -1,0 +1,215 @@
+doctype html
+html
+    head
+        include includes/head
+    body(data-spy='scroll', data-target='#sidebar', data-offset='60', style='position:relative;')
+        #page_mark.layout.aboutspage(data-mark='abouts')
+        nav#nav-head.navbar.navbar-fixed-top.navbar-inverse.animatedParent.animateOnce
+            include includes/nav
+        // /.navbar
+        .container
+            .blog-header
+                h1.blog-title Web前端工具文档说明
+                p.lead.blog-description 这是一个为了本人和其他需要它的朋友们写成的Web前端工具文档。作为尝试，前端部分使用了比较流行的Bootstrap框架，服务端则采用了基于node.js的Express+Jade编写。
+            .row
+                .col-sm-8.blog-main
+                    .blog-post
+                        h2.blog-post-title 项目总结
+                        h3 WebFE工具文档（node.js版）
+                        p.blog-post-meta
+                            | 2016年7月
+                        p 掌握技术：
+                        ul
+                            li Express
+                            li Jade
+                        p
+                            | 为了练习使用基于node.js的Express服务端框架和迁移静态版web工具文档而开发，同时也学习了jade模板框架。
+                            | Express框架结构简单清晰，搭建效率较高，或许轻量级的Web站点可以使用此框架开发（需评估）。
+                        blockquote
+                            a(href="http://www.expressjs.com.cn/")
+                                strong Express
+                            p
+                                | 制作这个页面的时候，作者正在学习搭建node.js环境，创建Express项目。
+                                | 以前从未接触过node.js，希望可以由此初步了解node.js的功能与基于其开发的Express框架在轻量级Web项目中的适用性。
+                        blockquote
+                            a(href="https://segmentfault.com/a/1190000000357534")
+                                strong Jade
+                            p
+                                | 模板框架Jade，对于html代码结构的重新定义是其一大特点。这种方式的便利性在于代码结构更加清晰，突出元素名，简化元素写法，利用行凸进识别包含关系，利于代码的查看和修改。
+                                | 同时，这意味着使用者需要付出一定时间成本学习，而通过框架对页面整体进行渲染的效率和可靠性也可能不如原生html代码。
+                        p 学习重点：
+                        ul
+                            li Express路由规则
+                            li Express与mysql数据库连接
+                            li Jade模板缩进式结构
+                            li Jade模板include规则
+                        p
+                            | 目前为止，对node.js已有初步了解，它是一个使用c++开发的，基于v8引擎的服务端运行时环境。
+                            | 语言的优势主要在于javascript的易学易用，对于初学者，相比于C，C++等语言，学习Js会比较简单。
+                            | 而对于前端开发者，本身掌握的Js可以用作开发服务端程序，本身也是一件很值得投入的新的挑战。
+                            | node.js的事件驱动特性可以减少服务端的资源浪费和时间延迟，它以单进程、单线程模式运行，凭借事件驱动处理http请求，通过高效的事件循环队列实现，减少内存使用，而对处理器的要求可能会成为瓶颈。
+                        hr
+                        p
+                            | Cum sociis natoque penatibus et magnis
+                            a(href='#') dis parturient montes
+                            | , nascetur ridiculus
+                            |                         mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere
+                            |                         consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.
+                        p
+                            | Etiam porta
+                            em sem malesuada magna
+                            |  mollis euismod. Cras mattis consectetur purus sit amet
+                            |                         fermentum. Aenean lacinia bibendum nulla sed consectetur.
+                        h2 Heading
+                        p
+                            | Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non
+                            | commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus,
+                            | porta ac consectetur ac, vestibulum at eros.
+                        h3 Sub-heading
+                        p
+                            | Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                        pre.
+                        p
+                            | Aenean lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod.
+                            | Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.
+                        h3 Sub-heading
+                        p
+                            | Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean
+                            | lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce
+                            | dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit
+                            | amet risus.
+                        ul
+                            li Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+                            li Donec id elit non mi porta gravida at eget metus.
+                            li Nulla vitae elit libero, a pharetra augue.
+                        p
+                            | Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra
+                            | augue.
+                        ol
+                            li Vestibulum id ligula porta felis euismod semper.
+                            li
+                                | Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                            li Maecenas sed diam eget risus varius blandit sit amet non magna.
+                        p
+                            | Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.
+                    // /.blog-post
+                    .blog-post
+                        h2.blog-post-title Another blog post
+                        p.blog-post-meta
+                            | December 23, 2013 by
+                            a(href='#') Jacob
+                        p
+                            | Cum sociis natoque penatibus et magnis
+                            a(href='#') dis parturient montes
+                            | , nascetur ridiculus
+                            |                         mus. Aenean eu leo quam. Pellentesque ornare sem lacinia quam venenatis vestibulum. Sed posuere
+                            |                         consectetur est at lobortis. Cras mattis consectetur purus sit amet fermentum.
+                        blockquote
+                            p
+                                | Curabitur blandit tempus porttitor.
+                                strong Nullam quis risus eget urna mollis
+                                |                             ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.
+                        p
+                            | Etiam porta
+                            em sem malesuada magna
+                            |  mollis euismod. Cras mattis consectetur purus sit amet
+                            |                         fermentum. Aenean lacinia bibendum nulla sed consectetur.
+                        p
+                            | Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non
+                            | commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus,
+                            | porta ac consectetur ac, vestibulum at eros.
+                    // /.blog-post
+                    .blog-post
+                        h2.blog-post-title New feature
+                        p.blog-post-meta
+                            | December 14, 2013 by
+                            a(href='#') Chris
+                        p
+                            | Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aenean
+                            | lacinia bibendum nulla sed consectetur. Etiam porta sem malesuada magna mollis euismod. Fusce
+                            | dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit
+                            | amet risus.
+                        ul
+                            li Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
+                            li Donec id elit non mi porta gravida at eget metus.
+                            li Nulla vitae elit libero, a pharetra augue.
+                        p
+                            | Etiam porta
+                            em sem malesuada magna
+                            |  mollis euismod. Cras mattis consectetur purus sit amet
+                            |                         fermentum. Aenean lacinia bibendum nulla sed consectetur.
+                        p
+                            | Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra
+                            | augue.
+                    // /.blog-post
+
+                // /.blog-main
+                .col-sm-3.col-sm-offset-1.blog-sidebar
+                    .sidebar-module.sidebar-module-inset
+                        h4 关于
+                        p
+                            | 前端之路
+                            em 无捷径
+                            |  。
+                            |  希望这个由懒人写就的小工具可以帮助或启发需要它的人们。
+                    .sidebar-module
+                        h4 项目节点
+                        ol.list-unstyled
+                            li
+                                <span>2016.07 </span>
+                                a(href='#') WebFE工具文档(node.js版)
+                            li
+                                <span>2016.06 </span>
+                                a(href='#') 在线百科app
+                            li
+                                <span>2016.03 </span>
+                                a(href='#') 终端授权统计系统
+                            li
+                                <span>2016.01 </span>
+                                a(href='#') WebFE工具文档(静态版)
+                            li
+                                <span>2015.12 </span>
+                                a(href='#') E问E答app
+                            li
+                                <span>2015.04 </span>
+                                a(href='#') 壹人壹本官网改版
+                            li
+                                <span>2014.12 </span>
+                                a(href='#') 移动办公服务管理平台
+                            li
+                                <span>2013.10 </span>
+                                a(href='#') EMMS
+                            li
+                                <span>2013.01 </span>
+                                a(href='#') EAI
+                    .sidebar-module
+                        h4 工作节点
+                        ol.list-unstyled
+                            li
+                                <span>2013.01 - 2014.12 </span>
+                                a(href='#') JAVA WEB
+                            li
+                                <span>2015.01 - 今 </span>
+                                a(href='#') WEB前端
+                    .sidebar-module
+                        h4 供职地点
+                        ol.list-unstyled
+                            li
+                                <span>2013 - 今 </span>
+                                a(href='http://www.eben.cn/') 北京壹人壹本信息科技有限公司
+                // /.blog-sidebar
+            // /row
+        // /.container
+        footer
+            include includes/footer
+
+        // javascript
+        script(type='text/javascript', src='/javascripts/jquery.min.js')
+        script(type='text/javascript', src='/javascripts/bootstrap.min.js')
+        script(type='text/javascript', src='/javascripts/offcanvas.js')
+        script(type='text/javascript', src='/javascripts/css3-animate-it.js')
+        script(type='text/javascript', src='/javascripts/MsJS.js')
+        script(type='text/javascript', src='/javascripts/commonjs.js')
+        script(type='text/javascript').
+            $(function(){
+            });

@@ -1,0 +1,351 @@
+doctype html
+html
+    head
+        include ../includes/head
+        link(rel='stylesheet', type='text/css', href='../stylesheets/animate.css')
+    body
+        #animate.layout
+            nav#nav-head.navbar.navbar-fixed-top.navbar-inverse.animatedParent.animateOnce
+                include ../includes/nav
+            // /.navbar
+            .container
+                .col-xs-12
+                    #container-jum.jumbotron.animatedParent
+                        h1.animated.fadeInUp.delay-250 Animate.css
+                        p.animated.fadeInUp.delay-500
+                            | Animate.css是一个有趣的，跨浏览器的css3动画库，它内置了很多典型的css3动画，兼容性好使用方便。
+                        p.animated.fadeInUp.delay-500
+                            | 注：浏览器支持：IE9+，Chrome，Firefox，Safari
+                        address.animated.fadeInUp.delay-1000
+                            strong Github地址：
+                            a(href='https://github.com/daneden/animate.css', target='_blank') https://github.com/daneden/animate.css
+                        address.animated.fadeInUp.delay-1000
+                            strong 官网地址：
+                            a(href='https://daneden.github.io/animate.css/', target='_blank') https://daneden.github.io/animate.css/
+                // /.col-xs-12.col-sm-9
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a#show-CSS3AnimateIt.btn.btn-primary.col-xs-12.btn-custom(href='#p-show') 展示效果
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a.btn.btn-success.col-xs-12.btn-custom(href='#p-use') 使用方法
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a.btn.btn-info.col-xs-12.btn-custom(href='#p-code') 查看源码
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a.btn.btn-warning.col-xs-12.btn-custom(href='#p-attention') 注意事项
+                #container-code.col-xs-12
+                    #p-show.p-wrap-title
+                    blockquote
+                        h1 展示效果
+                    // 实例展示
+                    .p-wrap-content.part-show
+                        .content-wrap
+                            // Nav tabs
+                            ul.nav.nav-tabs(role='tablist')
+                                // <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">示例图</a></li>
+                                li.active(role='presentation')
+                                    a(href='#profile', aria-controls='profile', role='tab', data-toggle='tab') 实例
+                            // Tab panes
+                            .tab-content
+                                // <div role="tabpanel" class="tab-pane" id="home"></div>
+                                #profile.tab-pane.active(role='tabpanel')
+                                    h3.form-group.col-xs-12 点选下拉菜单可查看动画效果
+                                    .form-group.col-xs-12
+                                        span#animationSandbox(style='display: block;')
+                                            h1.site__title.mega Animate.css
+                                    .form-group.col-xs-12.col-md-4
+                                        select.form-control.input.input--dropdown.js--animations
+                                            optgroup(label='Attention Seekers')
+                                                option(value='bounce') bounce
+                                                option(value='flash') flash
+                                                option(value='pulse') pulse
+                                                option(value='rubberBand') rubberBand
+                                                option(value='shake') shake
+                                                option(value='swing') swing
+                                                option(value='tada') tada
+                                                option(value='wobble') wobble
+                                                option(value='jello') jello
+                                            optgroup(label='Bouncing Entrances')
+                                                option(value='bounceIn') bounceIn
+                                                option(value='bounceInDown') bounceInDown
+                                                option(value='bounceInLeft') bounceInLeft
+                                                option(value='bounceInRight') bounceInRight
+                                                option(value='bounceInUp') bounceInUp
+                                            optgroup(label='Bouncing Exits')
+                                                option(value='bounceOut') bounceOut
+                                                option(value='bounceOutDown') bounceOutDown
+                                                option(value='bounceOutLeft') bounceOutLeft
+                                                option(value='bounceOutRight') bounceOutRight
+                                                option(value='bounceOutUp') bounceOutUp
+                                            optgroup(label='Fading Entrances')
+                                                option(value='fadeIn') fadeIn
+                                                option(value='fadeInDown') fadeInDown
+                                                option(value='fadeInDownBig') fadeInDownBig
+                                                option(value='fadeInLeft') fadeInLeft
+                                                option(value='fadeInLeftBig') fadeInLeftBig
+                                                option(value='fadeInRight') fadeInRight
+                                                option(value='fadeInRightBig') fadeInRightBig
+                                                option(value='fadeInUp') fadeInUp
+                                                option(value='fadeInUpBig') fadeInUpBig
+                                            optgroup(label='Fading Exits')
+                                                option(value='fadeOut') fadeOut
+                                                option(value='fadeOutDown') fadeOutDown
+                                                option(value='fadeOutDownBig') fadeOutDownBig
+                                                option(value='fadeOutLeft') fadeOutLeft
+                                                option(value='fadeOutLeftBig') fadeOutLeftBig
+                                                option(value='fadeOutRight') fadeOutRight
+                                                option(value='fadeOutRightBig') fadeOutRightBig
+                                                option(value='fadeOutUp') fadeOutUp
+                                                option(value='fadeOutUpBig') fadeOutUpBig
+                                            optgroup(label='Flippers')
+                                                option(value='flip') flip
+                                                option(value='flipInX') flipInX
+                                                option(value='flipInY') flipInY
+                                                option(value='flipOutX') flipOutX
+                                                option(value='flipOutY') flipOutY
+                                            optgroup(label='Lightspeed')
+                                                option(value='lightSpeedIn') lightSpeedIn
+                                                option(value='lightSpeedOut') lightSpeedOut
+                                            optgroup(label='Rotating Entrances')
+                                                option(value='rotateIn') rotateIn
+                                                option(value='rotateInDownLeft') rotateInDownLeft
+                                                option(value='rotateInDownRight') rotateInDownRight
+                                                option(value='rotateInUpLeft') rotateInUpLeft
+                                                option(value='rotateInUpRight') rotateInUpRight
+                                            optgroup(label='Rotating Exits')
+                                                option(value='rotateOut') rotateOut
+                                                option(value='rotateOutDownLeft') rotateOutDownLeft
+                                                option(value='rotateOutDownRight') rotateOutDownRight
+                                                option(value='rotateOutUpLeft') rotateOutUpLeft
+                                                option(value='rotateOutUpRight') rotateOutUpRight
+                                            optgroup(label='Sliding Entrances')
+                                                option(value='slideInUp') slideInUp
+                                                option(value='slideInDown') slideInDown
+                                                option(value='slideInLeft') slideInLeft
+                                                option(value='slideInRight') slideInRight
+                                            optgroup(label='Sliding Exits')
+                                                option(value='slideOutUp') slideOutUp
+                                                option(value='slideOutDown') slideOutDown
+                                                option(value='slideOutLeft') slideOutLeft
+                                                option(value='slideOutRight') slideOutRight
+                                            optgroup(label='Zoom Entrances')
+                                                option(value='zoomIn') zoomIn
+                                                option(value='zoomInDown') zoomInDown
+                                                option(value='zoomInLeft') zoomInLeft
+                                                option(value='zoomInRight') zoomInRight
+                                                option(value='zoomInUp') zoomInUp
+                                            optgroup(label='Zoom Exits')
+                                                option(value='zoomOut') zoomOut
+                                                option(value='zoomOutDown') zoomOutDown
+                                                option(value='zoomOutLeft') zoomOutLeft
+                                                option(value='zoomOutRight') zoomOutRight
+                                                option(value='zoomOutUp') zoomOutUp
+                                            optgroup(label='Specials')
+                                                option(value='hinge') hinge
+                                                option(value='rollIn') rollIn
+                                                option(value='rollOut') rollOut
+                                    .clearfix
+                    #p-use.p-wrap-title
+                        blockquote
+                            h1 使用方法
+                        .p-wrap-content.part-file
+                            h3 文件结构
+                            .content-wrap
+                                ul
+                                    li
+                                        | css
+                                        ul
+                                            li animations.css
+                    .p-wrap-content.part-attention
+                        h3 核心代码
+                        .content-wrap
+                            pre.
+                                &lt;!DOCTYPE html&gt;
+                                &lt;html&gt;
+                                &lt;head&gt;
+                                    &lt;!-- CSS --&gt;
+                                    &lt;link type="text/css" rel="stylesheet" href="css/animate.css" /&gt;
+                                &lt;/head&gt;
+                                &lt;body&gt;
+                                    &lt;!-- 动效 --&gt;
+                                    &lt;h1 class="animated infinite bounce"&gt;Example&lt;/h1&gt;
+                                &lt;/body&gt;
+                                &lt;/html&gt;
+                    #p-code.p-wrap-title
+                        blockquote
+                            h1 页面源码
+                    .p-wrap-content.part-html
+                        h3 HTML
+                        .content-wrap
+                            p 1.Animate.css是一个单独的CSS样式库，只需引入animate.css。
+                            p html代码：
+                            pre.
+                                &lt;!-- CSS --&gt;
+                                &lt;link type="text/css" rel="stylesheet" href="css/animate.css" /&gt;
+                        .content-wrap
+                            p 2.页面书写html元素，并赋予指定的类名，调用不同的动效方法。
+                            p html代码：
+                            pre.
+                                &lt;select class="form-control input input--dropdown js--animations"&gt;
+                                    &lt;optgroup label="Attention Seekers"&gt;
+                                        &lt;option value="bounce"&gt;bounce&lt;/option&gt;
+                                        &lt;option value="flash"&gt;flash&lt;/option&gt;
+                                        &lt;option value="pulse"&gt;pulse&lt;/option&gt;
+                                        &lt;option value="rubberBand"&gt;rubberBand&lt;/option&gt;
+                                        &lt;option value="shake"&gt;shake&lt;/option&gt;
+                                        &lt;option value="swing"&gt;swing&lt;/option&gt;
+                                        &lt;option value="tada"&gt;tada&lt;/option&gt;
+                                        &lt;option value="wobble"&gt;wobble&lt;/option&gt;
+                                        &lt;option value="jello"&gt;jello&lt;/option&gt;
+                                    &lt;/optgroup&gt;
+                                    &lt;optgroup label="Bouncing Entrances"&gt;
+                                        &lt;option value="bounceIn"&gt;bounceIn&lt;/option&gt;
+                                        &lt;option value="bounceInDown"&gt;bounceInDown&lt;/option&gt;
+                                        &lt;option value="bounceInLeft"&gt;bounceInLeft&lt;/option&gt;
+                                        &lt;option value="bounceInRight"&gt;bounceInRight&lt;/option&gt;
+                                        &lt;option value="bounceInUp"&gt;bounceInUp&lt;/option&gt;
+                                    &lt;/optgroup&gt;
+                                    &lt;optgroup label="Bouncing Exits"&gt;
+                                        &lt;option value="bounceOut"&gt;bounceOut&lt;/option&gt;
+                                        &lt;option value="bounceOutDown"&gt;bounceOutDown&lt;/option&gt;
+                                        &lt;option value="bounceOutLeft"&gt;bounceOutLeft&lt;/option&gt;
+                                        &lt;option value="bounceOutRight"&gt;bounceOutRight&lt;/option&gt;
+                                        &lt;option value="bounceOutUp"&gt;bounceOutUp&lt;/option&gt;
+                                    &lt;/optgroup&gt;
+                                    &lt;optgroup label="Fading Entrances"&gt;
+                                        &lt;option value="fadeIn"&gt;fadeIn&lt;/option&gt;
+                                        &lt;option value="fadeInDown"&gt;fadeInDown&lt;/option&gt;
+                                        &lt;option value="fadeInDownBig"&gt;fadeInDownBig&lt;/option&gt;
+                                        &lt;option value="fadeInLeft"&gt;fadeInLeft&lt;/option&gt;
+                                        &lt;option value="fadeInLeftBig"&gt;fadeInLeftBig&lt;/option&gt;
+                                        &lt;option value="fadeInRight"&gt;fadeInRight&lt;/option&gt;
+                                        &lt;option value="fadeInRightBig"&gt;fadeInRightBig&lt;/option&gt;
+                                        &lt;option value="fadeInUp"&gt;fadeInUp&lt;/option&gt;
+                                        &lt;option value="fadeInUpBig"&gt;fadeInUpBig&lt;/option&gt;
+                                    &lt;/optgroup&gt;
+                                    &lt;optgroup label="Fading Exits"&gt;
+                                        &lt;option value="fadeOut"&gt;fadeOut&lt;/option&gt;
+                                        &lt;option value="fadeOutDown"&gt;fadeOutDown&lt;/option&gt;
+                                        &lt;option value="fadeOutDownBig"&gt;fadeOutDownBig&lt;/option&gt;
+                                        &lt;option value="fadeOutLeft"&gt;fadeOutLeft&lt;/option&gt;
+                                        &lt;option value="fadeOutLeftBig"&gt;fadeOutLeftBig&lt;/option&gt;
+                                        &lt;option value="fadeOutRight"&gt;fadeOutRight&lt;/option&gt;
+                                        &lt;option value="fadeOutRightBig"&gt;fadeOutRightBig&lt;/option&gt;
+                                        &lt;option value="fadeOutUp"&gt;fadeOutUp&lt;/option&gt;
+                                        &lt;option value="fadeOutUpBig"&gt;fadeOutUpBig&lt;/option&gt;
+                                    &lt;/optgroup&gt;
+                                    &lt;optgroup label="Flippers"&gt;
+                                        &lt;option value="flip"&gt;flip&lt;/option&gt;
+                                        &lt;option value="flipInX"&gt;flipInX&lt;/option&gt;
+                                        &lt;option value="flipInY"&gt;flipInY&lt;/option&gt;
+                                        &lt;option value="flipOutX"&gt;flipOutX&lt;/option&gt;
+                                        &lt;option value="flipOutY"&gt;flipOutY&lt;/option&gt;
+                                    &lt;/optgroup&gt;
+                                    &lt;optgroup label="Lightspeed"&gt;
+                                        &lt;option value="lightSpeedIn"&gt;lightSpeedIn&lt;/option&gt;
+                                        &lt;option value="lightSpeedOut"&gt;lightSpeedOut&lt;/option&gt;
+                                    &lt;/optgroup&gt;
+                                    &lt;optgroup label="Rotating Entrances"&gt;
+                                        &lt;option value="rotateIn"&gt;rotateIn&lt;/option&gt;
+                                        &lt;option value="rotateInDownLeft"&gt;rotateInDownLeft&lt;/option&gt;
+                                        &lt;option value="rotateInDownRight"&gt;rotateInDownRight&lt;/option&gt;
+                                        &lt;option value="rotateInUpLeft"&gt;rotateInUpLeft&lt;/option&gt;
+                                        &lt;option value="rotateInUpRight"&gt;rotateInUpRight&lt;/option&gt;
+                                    &lt;/optgroup&gt;
+                                    &lt;optgroup label="Rotating Exits"&gt;
+                                        &lt;option value="rotateOut"&gt;rotateOut&lt;/option&gt;
+                                        &lt;option value="rotateOutDownLeft"&gt;rotateOutDownLeft&lt;/option&gt;
+                                        &lt;option value="rotateOutDownRight"&gt;rotateOutDownRight&lt;/option&gt;
+                                        &lt;option value="rotateOutUpLeft"&gt;rotateOutUpLeft&lt;/option&gt;
+                                        &lt;option value="rotateOutUpRight"&gt;rotateOutUpRight&lt;/option&gt;
+                                    &lt;/optgroup&gt;
+                                    &lt;optgroup label="Sliding Entrances"&gt;
+                                        &lt;option value="slideInUp"&gt;slideInUp&lt;/option&gt;
+                                        &lt;option value="slideInDown"&gt;slideInDown&lt;/option&gt;
+                                        &lt;option value="slideInLeft"&gt;slideInLeft&lt;/option&gt;
+                                        &lt;option value="slideInRight"&gt;slideInRight&lt;/option&gt;
+                                    &lt;/optgroup&gt;
+                                    &lt;optgroup label="Sliding Exits"&gt;
+                                        &lt;option value="slideOutUp"&gt;slideOutUp&lt;/option&gt;
+                                        &lt;option value="slideOutDown"&gt;slideOutDown&lt;/option&gt;
+                                        &lt;option value="slideOutLeft"&gt;slideOutLeft&lt;/option&gt;
+                                        &lt;option value="slideOutRight"&gt;slideOutRight&lt;/option&gt;
+                                    &lt;/optgroup&gt;
+                                    &lt;optgroup label="Zoom Entrances"&gt;
+                                        &lt;option value="zoomIn"&gt;zoomIn&lt;/option&gt;
+                                        &lt;option value="zoomInDown"&gt;zoomInDown&lt;/option&gt;
+                                        &lt;option value="zoomInLeft"&gt;zoomInLeft&lt;/option&gt;
+                                        &lt;option value="zoomInRight"&gt;zoomInRight&lt;/option&gt;
+                                        &lt;option value="zoomInUp"&gt;zoomInUp&lt;/option&gt;
+                                    &lt;/optgroup&gt;
+                                    &lt;optgroup label="Zoom Exits"&gt;
+                                        &lt;option value="zoomOut"&gt;zoomOut&lt;/option&gt;
+                                        &lt;option value="zoomOutDown"&gt;zoomOutDown&lt;/option&gt;
+                                        &lt;option value="zoomOutLeft"&gt;zoomOutLeft&lt;/option&gt;
+                                        &lt;option value="zoomOutRight"&gt;zoomOutRight&lt;/option&gt;
+                                        &lt;option value="zoomOutUp"&gt;zoomOutUp&lt;/option&gt;
+                                    &lt;/optgroup&gt;
+                                    &lt;optgroup label="Specials"&gt;
+                                        &lt;option value="hinge"&gt;hinge&lt;/option&gt;
+                                        &lt;option value="rollIn"&gt;rollIn&lt;/option&gt;
+                                        &lt;option value="rollOut"&gt;rollOut&lt;/option&gt;
+                                    &lt;/optgroup&gt;
+                                &lt;/select&gt;
+                    .p-wrap-content.part-js
+                        h3 Javascript
+                        .content-wrap
+                            p
+                                | 1.主要由css类名控制，js代码辅助控制，可省略。
+                            p JS代码：
+                            pre.
+                                function testAnim(x) {
+                                    $('#animationSandbox').removeClass().addClass(x + ' animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+                                        $(this).removeClass();
+                                    });
+                                };
+                                $(function() {
+                                    //辅助代码，点击事件
+                                    $('.js--triggerAnimation').click(function(e){
+                                        e.preventDefault();
+                                        var anim = $('.js--animations').val();
+                                        testAnim(anim);
+                                    });
+                                    $('.js--animations').change(function(){
+                                        var anim = $(this).val();
+                                        testAnim(anim);
+                                    });
+                                });
+                    #p-attention.p-wrap-title
+                        blockquote
+                            h1 注意事项
+                    .p-wrap-content.part-attention
+                        // <h2>注意事项</h2>
+                        .content-wrap
+                            p animate.css与css3-animate-it比较相似，不同点在于animate.css是一个单独的css库，可以方便的用在支持html5的小型移动web页面中（如微信中的html5页面）。
+                    // /.col-xs-12
+                    .clearfix
+                    // <hr>
+                // /.container
+            footer
+                include ../includes/footer
+
+        // javascript
+        include ../includes/javascripts
+        // Custom javascripts for this template
+        script(type='text/javascript').
+            function testAnim(x) {
+                $('#animationSandbox').removeClass().addClass(x + ' animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function () {
+                    $(this).removeClass();
+                });
+            }
+
+            $(function () {
+                $('.js--triggerAnimation').click(function (e) {
+                    e.preventDefault();
+                    var anim = $('.js--animations').val();
+                    testAnim(anim);
+                });
+
+                $('.js--animations').change(function () {
+                    var anim = $(this).val();
+                    testAnim(anim);
+                });
+            });

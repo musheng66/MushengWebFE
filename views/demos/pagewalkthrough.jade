@@ -1,0 +1,252 @@
+doctype html
+html
+    head
+        include ../includes/head
+        link(rel="stylesheet", type="text/css", href="/stylesheets/jquery.pagewalkthrough.css")
+    body
+        #pagewalkthrough.layout
+            nav#nav-head.navbar.navbar-fixed-top.navbar-inverse.animatedParent.animateOnce
+                include ../includes/nav
+            // /.navbar
+            .container
+                .col-xs-12
+                    #container-jum.jumbotron.animatedParent
+                        h1.animated.fadeInUp.delay-250 Pagewalkthrough
+                        p.animated.bounceInUp.delay-500
+                            | PageWalkthrough.js是简单易用的系统引导图层插件，引导用户如何使用产品，如使用演示的方式逐一介绍界面上的功能模块，从而提升了用户体验和产品的亲和力。
+                        p.animated.bounceInUp.delay-1000
+                            | 注：浏览器支持：IE8+，Chrome，Firefox，Safari
+                        address.animated.bounceInUp.delay-1000
+                            strong Github地址：
+                            a(href='https://github.com/jwarby/jquery-pagewalkthrough', target='_blank') https://github.com/jwarby/jquery-pagewalkthrough
+                    // /.col-xs-12.col-sm-9
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a#show-pagewalkthrough.btn.btn-primary.col-xs-12.btn-custom(href='javascript:void(0);') 展示效果
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a.btn.btn-success.col-xs-12.btn-custom(href='#p-use') 使用方法
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a.btn.btn-info.col-xs-12.btn-custom(href='#p-code') 查看源码
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a.btn.btn-warning.col-xs-12.btn-custom(href='#p-attention') 注意事项
+                #container-code.col-xs-12
+                    #p-use.p-wrap-title
+                        blockquote
+                            h1 使用方法
+                    .p-wrap-content.part-file
+                        h3 文件结构
+                        .content-wrap
+                            ul
+                                li
+                                    | js
+                                    ul
+                                        li jquery.min.js
+                                        li jquery.pagewalkthrough.js
+                                li
+                                    | css
+                                    ul
+                                        li jquery.pagewalkthrough.css
+                                li
+                                    | images
+                                    ul
+                                        li pagewalkthrough
+                    .p-wrap-content.part-attention
+                        h3 核心代码
+                        .content-wrap
+                            pre.
+                                &lt;!DOCTYPE html&gt;
+                                &lt;html&gt;
+                                &lt;head&gt;
+                                    &lt;!-- CSS --&gt;
+                                    &lt;link type="text/css" rel="stylesheet" href="css/jquery.pagewalkthrough.css" /&gt;
+                                &lt;/head&gt;
+                                &lt;body&gt;
+                                    &lt;div id="show-pwt"&gt;
+                                        &lt;h1&gt;Hello World!&lt;/h1&gt;
+                                    &lt;/div&gt;
+                                    &lt;!-- jQuery --&gt;
+                                    &lt;script type="text/javascript" src="jquery.min.js"&gt;&lt;/script&gt;
+                                    &lt;!-- Page walkthrough plugin --&gt;
+                                    &lt;script type="text/javascript" src="jquery.pagewalkthrough.js"&gt;&lt;/script&gt;
+                                    &lt;script type="text/javascript"&gt;
+                                        $(function(){
+                                            //配置
+                                            $('.layout').pagewalkthrough({
+                                               name: 'introduction',
+                                               steps: [{
+                                                   wrapper: '#show-pwt',   //此处为需要高亮显示的css选择器参数
+                                                   popup: {
+                                                       content: '#walkthrough-1',  //此处为预先定义的引导内容
+                                                       type: 'modal'   //此处定义引导内容的模型，可选modal或tooltip
+                                                   }
+                                               }]
+                                            });
+                                            //调用
+                                            $('body').pagewalkthrough('show');
+                                        });
+                                    &lt;/script&gt;
+                                &lt;/body&gt;
+                                &lt;/html&gt;
+                    #p-code.p-wrap-title
+                        blockquote
+                            h1 页面源码
+                    .p-wrap-content.part-html
+                        h3 HTML
+                        .content-wrap
+                            p 1.加载所需的css文件和jQuery库文件，以及pagewalkthrough插件。
+                            p html代码：
+                            pre.
+                                &lt;!-- CSS --&gt;
+                                &lt;link type="text/css" rel="stylesheet" href="css/jquery.pagewalkthrough.css" /&gt;
+                                &lt;!-- jQuery --&gt;
+                                &lt;script type="text/javascript" src="jquery.min.js"&gt;&lt;/script&gt;
+                                &lt;!-- Page walkthrough plugin --&gt;
+                                &lt;script type="text/javascript" src="jquery.pagewalkthrough.js"&gt;&lt;/script&gt;
+                        .content-wrap
+                            p 2.在页面的最下部加入引导内容，就是每一步需要展示的内容，默认先隐藏内容，等会用js调用。
+                            p html代码：
+                            pre.
+                                &lt;div id="walkthrough-content" style="display: none;"&gt;
+                                    &lt;div id="walkthrough-1"&gt;
+                                        &lt;h3&gt;欢迎来到PageWalkThrough页面&lt;/h3&gt;
+                                        &lt;p&gt;点击下一步了解更多...&lt;/p&gt;
+                                    &lt;/div&gt;
+                                    &lt;div id="walkthrough-2"&gt;
+                                        导航栏
+                                    &lt;/div&gt;
+                                    &lt;div id="walkthrough-3"&gt;
+                                        简介
+                                    &lt;/div&gt;
+                                    &lt;div id="walkthrough-4"&gt;
+                                        点此查看效果
+                                    &lt;/div&gt;
+                                &lt;/div&gt;&gt;
+                    .p-wrap-content.part-js
+                        h3 Javascript
+                        .content-wrap
+                            p
+                                | 1.可在页面
+                                code <javascript>
+                                | 标签中使用jquery配置并调用pagewalkthrough。
+                            p JS代码：
+                            pre.
+                                $(function() {
+                                    //配置
+                                    $('.layout').pagewalkthrough({
+                                        name: 'introduction',
+                                        steps: [{
+                                            wrapper: '.layout',
+                                            popup: {
+                                                content: '#walkthrough-1',
+                                                type: 'modal'
+                                            }
+                                        }, {
+                                            wrapper: '#nav-div',
+                                            popup: {
+                                                content: '#walkthrough-2',
+                                                type: 'tooltip',
+                                                position: 'bottom'
+                                            }
+                                        }, {
+                                            wrapper: '#container-jum',
+                                            popup: {
+                                                content: '#walkthrough-3',
+                                                type: 'tooltip',
+                                                position: 'bottom'
+                                            }
+                                        }, {
+                                            wrapper: '#show-pagewalkthrough',
+                                            popup: {
+                                                content: '#walkthrough-4',
+                                                type: 'tooltip',
+                                                position: 'top'
+                                            }
+                                        }]
+                                    });
+                                    //调用
+                                    $('.layout').pagewalkthrough('show');
+                                    $('#show-pagewalkthrough').click(function () {
+                                        $('.layout').pagewalkthrough('show');
+                                    });
+                                });
+                    #p-attention.p-wrap-title
+                        blockquote
+                            h1 注意事项
+                    .p-wrap-content.part-attention
+                        // <h2>注意事项</h2>
+                        .content-wrap
+                            p
+                                | 1.引导内容支持html内容，你可以在里面加入链接、图片等信息。还有就是引导页所需的箭头图片已经打包好，直接用css调用，关于字体，你可以调用外部字体，如手写字体可能效果更好。
+                            p
+                                | 2.可以在页面底部加入如下代码来调用pagewalkthrough，关键选项steps是一个数组，定义每一步引导调用的内容，参数 wrapper定义了当前引导对应的元素位置，参数popup定义弹出提示引导层，参数content定义关联的内容元素，参数type定义弹出方式，包 括tooltip和modal以及nohighlight三种方式，参数position定义了弹出层位置，包括top,left, right or bottom。
+                            p
+                                | 3.pagewalkthrough.js插件官方提供了很多参数配置，包括设置弹出层宽度、滚动速度，是否自动滚 动，锁定滚动，以及多种回调函数，定义上一步下一步按钮，以及方法调用等等。
+                    // /.col-xs-12
+                    .clearfix
+                    // <hr>
+                // /.container
+            footer
+                include ../includes/footer
+
+        // pagewalkthrough html
+        #walkthrough-content(style='display: none;')
+            #walkthrough-1
+                h3 欢迎来到PageWalkThrough页面
+                p 点击下一步了解更多...
+            #walkthrough-2
+                | 导航栏
+            #walkthrough-3
+                | 简介
+            #walkthrough-4
+                | 点此查看效果
+
+        // javascript
+        include ../includes/javascripts
+        // Custom javascripts for this template
+        script(type='text/javascript', src='../javascripts/jquery.pagewalkthrough.js')
+        script(type='text/javascript').
+            $(function () {
+                //配置
+                $('.layout').pagewalkthrough({
+                    name: 'introduction',
+                    steps: [{
+                        wrapper: '.layout',
+                        popup: {
+                            content: '#walkthrough-1',
+                            type: 'modal'
+                        }
+                    }, {
+                        wrapper: '#nav-div',
+                        popup: {
+                            content: '#walkthrough-2',
+                            type: 'tooltip',
+                            position: 'bottom'
+                        }
+                    }, {
+                        wrapper: '#container-jum',
+                        popup: {
+                            content: '#walkthrough-3',
+                            type: 'tooltip',
+                            position: 'bottom'
+                        }
+                    }, {
+                        wrapper: '#show-pagewalkthrough',
+                        popup: {
+                            content: '#walkthrough-4',
+                            type: 'tooltip',
+                            position: 'top'
+                        }
+                    }]
+                });
+                //可根据cookie判断是否第一次浏览，从而判断是否调用pagewalkthrough
+                /*if($.cookie("ebenbjyffirst") == "false"){
+                 $('.layout').pagewalkthrough('show');
+                 } else {
+                 $('.layout').pagewalkthrough('show');
+                 $.cookie("ebenbjyffirst", "false", { expires: 365 });
+                 }*/
+                //调用
+                $('.layout').pagewalkthrough('show');
+                $('#show-pagewalkthrough').click(function () {
+                    $('.layout').pagewalkthrough('show');
+                });
+            });

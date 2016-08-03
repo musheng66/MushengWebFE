@@ -1,0 +1,45 @@
+div.container
+    div.navbar-header
+        button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+        a.navbar-brand(href='javascript:void(0);') 北研Web前端
+    #navbar.collapse.navbar-collapse
+        ul.nav.navbar-nav
+            if active_a == 'home'
+                li.active
+                    a(href='/home') 主页
+            else
+                li
+                    a(href='/home') 主页
+            if active_a == 'abouts'
+                li.active
+                    a(href='/home/abouts') 关于
+            else
+                li
+                    a(href='/home/abouts') 关于
+            if active_a == 'contact'
+                li.active
+                    a(href='/home/contact') 联系
+            else
+                li
+                    a(href='/home/contact') 联系
+        ul.nav.navbar-nav.navbar-right
+            li
+                a#c_username(href='javascript:void(0);') 欢迎
+            li.dropdown
+                a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-haspopup='true', aria-expanded='false')
+                    | 选项
+                    span.caret
+                ul.dropdown-menu
+                    li
+                        a(href='javascript:void(0);', id='delUser' title='删除此用户') 注销用户
+                    li.divider(role='separator')
+                    li
+                        a(href='javascript:void(0);', id='changeUser' title='更换至其他用户') 切换用户
+                    li.divider(role='separator')
+                    li
+                        a(href='/' title='返回开始页面') 返回开始
+    // /.nav-collapse

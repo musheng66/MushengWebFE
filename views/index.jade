@@ -1,0 +1,232 @@
+doctype html
+html
+    head
+        include includes/head
+        //Custom styles for this template
+        link(rel="stylesheet", type="text/css", href="/stylesheets/cover.css")
+    body(style='padding: 0;')
+        #page_mark.site-wrapper(data-mark='index')
+            .site-wrapper-inner
+                .cover-container.animatedParent
+                    .masthead.clearfix.animated.fadeInDownShort
+                        .inner
+                            h3.masthead-brand 壹人壹本-北研
+                            nav
+                                ul.nav.masthead-nav
+                                    li#signedNot.active
+                                        a(href='javascript:void(0);' id='show_login_btn') 登录
+                                        span
+                                            | |
+                                        a(href='javascript:void(0);' id='show_sign_btn') 注册
+                                    li#signedInfo
+                                        span#name
+                    .inner.cover.animated.fadeIn.slow.delay-500
+                        h1.cover-heading 北京研发中心-Web前端工具文档
+                        p.lead 此文档包含适合本团队的Web前端工具框架和工具类库
+                        p.lead node.js版（Express）
+                        p.lead 版本：v1.0.20160630.alpha
+                        p.lead
+                            a.btn.btn-lg.btn-default.btn-hc(href='/home') 开  始
+                    .mastfoot.animated.fadeInUpShort
+                        .inner
+                            p
+                                | E本北研Web前端工具文档, 作者：
+                                a(href='javascript:void(0);') 沐圣
+        //登录弹框
+        #login_form_div.modal.fade(role="dialog", aria-labelledby="mySmallModalLabel", aria-hidden="true")
+            .modal-dialog.modal-sm
+                .modal-content
+                    form#loginSubForm.form-horizontal(method='post', action='')
+                        .modal-header
+                            button.close(type='button', data-dismiss='modal', aria-label='Close')
+                                span(aria-hidden='true') ×
+                            h4.modal-title 登录
+                        .modal-body
+                            .row.row-ct
+                                .form-group
+                                    .input-group
+                                        .input-group-addon
+                                            i.fa.fa-user(aria-hidden='true')
+                                        input#username.form-control(type='text', name='username', placeholder="用户名", required='', data-bv-notempty-message='请输入用户名', pattern='[a-zA-Z0-9\u4e00-\u9fa5]', data-bv-regexp-message='请输入中文，英文或数字', data-bv-stringlength='true', data-bv-stringlength-min='1', data-bv-stringlength-max='30', data-bv-stringlength-message='请输入30个字以内的内容')
+                                //
+                                .form-group
+                                    .input-group
+                                        .input-group-addon
+                                            i.fa.fa-lock
+                                        input#password.form-control(type='password', name='password', value="" placeholder="密码", data-bv-notempty-message='请输入密码', pattern='[a-zA-Z0-9\u4e00-\u9fa5]', data-bv-regexp-message='请输入中文，英文或数字')
+                                .clear
+                        .modal-footer
+                            button#login_btn.btn(type='submit') 登录
+        //注册弹框
+        #sign_form_div.modal.fade(role="dialog", aria-labelledby="mySmallModalLabel", aria-hidden="true")
+            .modal-dialog.modal-sm
+                .modal-content
+                    form#signSubForm.form-horizontal(method='post', action='')
+                        .modal-header
+                            button.close(type='button', data-dismiss='modal', aria-label='Close')
+                                span(aria-hidden='true') ×
+                            h4.modal-title 注册
+                        .modal-body
+                            .row.row-ct
+                                .form-group
+                                    .input-group
+                                        .input-group-addon
+                                            i.fa.fa-user-secret(aria-hidden='true')
+                                        input#usernamesign.form-control(type='text', name='usernamesign', placeholder="用户名", required='', data-bv-notempty-message='请输入用户名', pattern='[a-zA-Z0-9\u4e00-\u9fa5]', data-bv-regexp-message='请输入中文，英文或数字', data-bv-stringlength='true', data-bv-stringlength-min='1', data-bv-stringlength-max='30', data-bv-stringlength-message='请输入30个字以内的内容')
+                                .form-group
+                                    .input-group
+                                        .input-group-addon
+                                            i.fa.fa-lock(aria-hidden='true')
+                                        input#passwordsign.form-control(type='password', name='passwordsign', value="" placeholder="密码", data-bv-notempty-message='请输入密码', pattern='^[a-zA-Z0-9\u4e00-\u9fa5]', data-bv-regexp-message='请输入中文，英文或数字')
+                                .form-group
+                                    .input-group
+                                        .input-group-addon
+                                            i.fa.fa-user(aria-hidden='true')
+                                        input#nicknamesign.form-control(type='text', name='nicknamesign', placeholder="昵称", required='', data-bv-notempty-message='请输入昵称', pattern='^[a-zA-Z0-9\u4e00-\u9fa5]', data-bv-regexp-message='请输入中文，英文或数字', data-bv-stringlength='true', data-bv-stringlength-min='1', data-bv-stringlength-max='10', data-bv-stringlength-message='请输入10个字以内的内容')
+                                .clear
+                        .modal-footer
+                            button#sign_btn.btn(type='submit') 注册
+        include includes/javascripts
+        // Custom javascripts for this template
+        script(type='text/javascript', src='/javascripts/bootstrapValidator.min.js')
+        script(type='text/javascript').
+            $(function () {
+                //获取cookie并判断
+                if(Cookies.get('webfe_user') && Cookies.get('webfe_user').length > 0){
+                    $("#signedNot").css("display","none");
+                    $("#signedInfo").css("display","block");
+                    $("#name").html('欢迎 | ' + Cookies.get('webfe_name'));
+                }
+
+                //显示登录弹框
+                $("#show_login_btn").click(function () {
+                    $("#login_form_div").modal("show");
+                });
+
+                //显示注册弹框
+                $("#show_sign_btn").click(function () {
+                    $("#sign_form_div").modal("show");
+                });
+
+                //初始化表单验证
+                $('#loginSubForm').bootstrapValidator().on('success.form.bv', function(e) {
+                    // Prevent form submission
+                    e.preventDefault();
+
+                    // Get the form instance
+                    var $form = $(e.target);
+
+                    // Get the BootstrapValidator instance
+                    var bv = $form.data('bootstrapValidator');
+
+                    //提交表单
+                    login_submit();
+                });
+
+                $('#signSubForm').bootstrapValidator().on('success.form.bv', function(e) {
+                    // Prevent form submission
+                    e.preventDefault();
+
+                    // Get the form instance
+                    var $form = $(e.target);
+
+                    // Get the BootstrapValidator instance
+                    var bv = $form.data('bootstrapValidator');
+
+                    //提交表单
+                    sign_submit();
+                });
+
+                //弹出框隐藏
+                $("#login_form_div").on("hide.bs.modal", function () {
+                    $("#loginSubForm").data('bootstrapValidator').resetForm();
+                    $("#username").val('');
+                    $("#password").val('');
+                });
+
+                $("#sign_form_div").on("hide.bs.modal", function () {
+                    $("#signSubForm").data('bootstrapValidator').resetForm();
+                    $("#usernamesign").val('');
+                    $("#nicknamesign").val('');
+                    $("#passwordsign").val('');
+                });
+
+            });
+
+            //登录方法
+            function login_submit() {
+                var json = {
+                    username : jQuery.trim($("#username").val())
+                };
+                $("#login_form_div").modal("hide");
+                $.ajax({
+                    type: "POST",
+                    url: "../../user/login",
+                    dataType:"JSON",
+                    data: json,
+                    success:function(data){
+                        if(data && data.length > 0){
+                            $("#signedNot").css("display","none");
+                            $("#signedInfo").css("display","block");
+                            $("#name").html('欢迎 | ' + data[0].nickname);
+                            $("#loginSubForm").data('bootstrapValidator').resetForm();
+                            layer.msg('登录成功，即将跳转到主页');
+                            Cookies.remove('webfe_user', { path : '/' });
+                            Cookies.remove('webfe_username', { path : '/' });
+                            Cookies.remove('webfe_name', { path : '/' });
+                            Cookies.set('webfe_user', data[0].id, { expires: 365, path: '/' });
+                            Cookies.set('webfe_username', data[0].username, { expires: 365, path: '/' });
+                            Cookies.set('webfe_name', data[0].nickname, { expires: 365, path: '/' });
+                            setTimeout(function(){
+                                window.location.href = '/home';
+                            }, 2000);
+                        } else {
+                            layer.msg('登录失败');
+                        }
+                    },
+                    error:function(data){
+                        layer.msg('操作失败');
+                        $("#loginSubForm").data('bootstrapValidator').resetForm();
+                    }
+                });
+            }
+
+            //注册方法
+            function sign_submit() {
+                var json = {
+                    username : jQuery.trim($("#usernamesign").val()),
+                    nickname : jQuery.trim($("#nicknamesign").val()),
+                    password : jQuery.trim($("#passwordsign").val())
+                };
+                $("#sign_form_div").modal("hide");
+                $.ajax({
+                    type: "POST",
+                    url: "../../user/addUser",
+                    dataType:"JSON",
+                    data: json,
+                    success:function(data){
+                        if(data.code == 200){
+                            $("#signedNot").css("display","none");
+                            $("#signedInfo").css("display","block");
+                            $("#name").html('欢迎 | ' + data.nickname);
+                            $("#signSubForm").data('bootstrapValidator').resetForm();
+                            layer.msg('注册成功，自动登录中...');
+                            Cookies.remove('webfe_user', { path : '/' });
+                            Cookies.remove('webfe_username', { path : '/' });
+                            Cookies.remove('webfe_name', { path : '/' });
+                            Cookies.set('webfe_user', data.id, { expires: 365, path: '/' });
+                            Cookies.set('webfe_username', data.username, { expires: 365, path: '/' });
+                            Cookies.set('webfe_name', data.nickname, { expires: 365, path: '/' });
+                            setTimeout(function(){
+                                window.location.href = '/home';
+                            }, 3000);
+                        } else {
+                            layer.msg('注册失败');
+                        }
+                    },
+                    error:function(data){
+                        layer.msg('操作失败');
+                        $("#loginSubForm").data('bootstrapValidator').resetForm();
+                    }
+                });
+            }

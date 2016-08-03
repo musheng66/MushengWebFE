@@ -1,0 +1,228 @@
+doctype html
+html
+    head
+        include ../includes/head
+    body
+        #jscookie.layout
+            nav#nav-head.navbar.navbar-fixed-top.navbar-inverse.animatedParent.animateOnce
+                include ../includes/nav
+            // /.navbar
+            .container
+                .col-xs-12
+                    #container-jum.jumbotron.animatedParent
+                        h1.animated.fadeInUp.delay-250 JavaScriptCookie
+                        p.animated.bounceInUp.delay-500
+                            | js.cookie.js 是由jquery.cookie.js发展而来的 cookie 插件，可以读取，写入和删除 cookie。
+                        address.animated.bounceInUp.delay-1000
+                            strong Github地址：
+                            a(href='https://github.com/js-cookie/js-cookie', target='_blank') https://github.com/js-cookie/js-cookie
+                // /.col-xs-12.col-sm-9
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a.btn.btn-primary.col-xs-12.btn-custom(href='#p-show') 展示效果
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a.btn.btn-success.col-xs-12.btn-custom(href='#p-use') 使用方法
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a.btn.btn-info.col-xs-12.btn-custom(href='#p-code') 查看源码
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a.btn.btn-warning.col-xs-12.btn-custom(href='#p-attention') 注意事项
+                #container-code.col-xs-12
+                    #p-show.p-wrap-title
+                    blockquote
+                        h1 展示效果
+                    // 实例展示
+                    .p-wrap-content.part-show
+                        .content-wrap
+                            // Nav tabs
+                            ul.nav.nav-tabs(role='tablist')
+                                li.active(role='presentation')
+                                    a(href='#home', aria-controls='home', role='tab', data-toggle='tab') 说明
+                                li(role='presentation')
+                                    a(href='#profile', aria-controls='profile', role='tab', data-toggle='tab') 实例
+                            // Tab panes
+                            .tab-content
+                                #home.tab-pane.active(role='tabpanel')
+                                    img.img-responsive.form-group(src='../images/jscookie/demo.gif', alt='示例图1')
+                                    img.img-responsive.form-group(src='../images/jscookie/demo.svg', alt='示例图1')
+                                #profile.tab-pane(role='tabpanel')
+                                    .form-group.col-lg-2.col-md-4.col-xs-6.col-phone-12
+                                        button#cookie_add.btn.btn-primary.btn-group.col-xs-12 新建cookie
+                                    .form-group.col-lg-2.col-md-4.col-xs-6.col-phone-12
+                                        button#cookie_edit.btn.btn-primary.btn-group.col-xs-12 编辑cookie
+                                    .form-group.col-lg-2.col-md-4.col-xs-6.col-phone-12
+                                        button#cookie_del.btn.btn-primary.btn-group.col-xs-12 删除cookie
+                                    .form-group.col-lg-2.col-md-4.col-xs-6.col-phone-12
+                                        button#cookie_get.btn.btn-success.btn-group.col-xs-12 获取cookie
+                                    .clearfix
+                    #p-use.p-wrap-title
+                        blockquote
+                            h1 使用方法
+                        .p-wrap-content.part-file
+                            h3 文件结构
+                            .content-wrap
+                                ul
+                                    li
+                                        | js
+                                        ul
+                                            li jquery.min.js（非必需）
+                                            li js.cookie.js
+                    .p-wrap-content.part-attention
+                        h3 核心代码
+                        .content-wrap
+                            pre.
+                                &lt;!DOCTYPE html&gt;
+                                &lt;html&gt;
+                                &lt;head&gt;
+                                &lt;/head&gt;
+                                &lt;body&gt;
+                                    &lt;!-- 无需代码 --&gt;
+                                    &lt;!-- Cookie plugin --&gt;
+                                    &lt;script type="text/javascript" src="js.cookie.js"&gt;&lt;/script&gt;
+                                    &lt;script type="text/javascript"&gt;
+                                        $(function(){
+
+                                            //新建cookie
+                                            $("#cookie_add").click(function(){
+                                                //指定一个cookie的键和值，以键名为唯一标识，且键名不可重复。expires为cookie有效期，以天为单位。path为作用域，可省略。
+                                                Cookies.set('cookieName', '观察者', { expires: 7, path: '/' });
+                                            });
+
+                                            //编辑cookie
+                                            $("#cookie_edit").click(function(){
+                                                //与新建类似，直接复写新值。
+                                                Cookies.set('cookieName', '守护者');
+                                            });
+
+                                            //删除cookie
+                                            $("#cookie_del").click(function(){
+                                                //若指定了作用域，则需写上相同的path配置方可删除。
+                                                Cookies.remove('cookieName', { path : '/' });
+                                            });
+
+                                            //获取cookie
+                                            $("#cookie_get").click(function(){
+                                                //获取指定键名的cookie的值。获取所有则用$.cookie()方法。
+                                                var cookieNameToShow = Cookies.get('cookieName');
+                                            });
+                                        });
+                                    &lt;/script&gt;
+                                &lt;/body&gt;
+                                &lt;/html&gt;
+                    #p-code.p-wrap-title
+                        blockquote
+                            h1 页面源码
+                    .p-wrap-content.part-html
+                        h3 HTML
+                        .content-wrap
+                            p 1.加载所需的jQuery库文件，以及JavaScriptCookie插件。
+                            p html代码：
+                            pre.
+                                &lt;!-- Cookie plugin --&gt;
+                                &lt;script type="text/javascript" src="js.cookie.js"&gt;&lt;/script&gt;
+                        .content-wrap
+                            p 2.本插件操作页面cookie，无需在页面写任何html代码。
+                            p html代码：
+                            pre.
+                                &lt;!-- 无需代码 --&gt;
+                    .p-wrap-content.part-js
+                        h3 Javascript
+                        .content-wrap
+                            p
+                                | 1.可在页面
+                                code <javascript>
+                                | 标签中使用cookie对象的方法，可对其进行增，删，改，查操作。
+                            p JS代码：
+                            pre.
+                                $(function() {
+
+                                    //新建cookie
+                                    $("#cookie_add").click(function(){
+                                        Cookies.set('jscusname', '观察者');
+                                    });
+
+                                    //编辑cookie
+                                    $("#cookie_edit").click(function(){
+                                        Cookies.set('jscusname', '守护者');
+                                    });
+
+                                    //删除cookie
+                                    $("#cookie_del").click(function(){
+                                        Cookies.remove('jscusname');
+                                    });
+
+                                    //获取cookie
+                                    $("#cookie_get").click(function(){
+                                        var jscusname = Cookies.get('jscusname');
+                                    });
+                                });
+                    #p-attention.p-wrap-title
+                        blockquote
+                            h1 注意事项
+                    .p-wrap-content.part-attention
+                        // <h2>注意事项</h2>
+                        .content-wrap
+                            p 1.js.cookie.js由javascript源生代码编写，省去了jquery的依赖关系，更轻便简洁。
+                            p 2.对cookie的操作需要注意，cookie的键值相对，以键名为唯一标识，因此在新建cookie的时候，尽量确保键名不会重复。
+                    // /.col-xs-12
+                    .clearfix
+                    // <hr>
+                // /.container
+            footer
+                include ../includes/footer
+
+        // javascript
+        include ../includes/javascripts
+        // Custom javascripts for this template
+        script(type='text/javascript', src='../javascripts/js.cookie.js')
+        script(type='text/javascript').
+            $(function () {
+                //新建cookie
+                $("#cookie_add").click(function () {
+                    Cookies.set('jscusname', '观察者');
+                    //layer
+                    layer.alert('已新增cookie，内容为：{ “jscusname”：“观察者” }。点击&lt;获取cookie&gt;按钮可查看', {
+                        title: '提示信息',
+                        icon: 6
+                    });
+                });
+
+                //编辑cookie
+                $("#cookie_edit").click(function () {
+                    var jscusname = Cookies.get('jscusname');
+                    if (!jscusname || jscusname.length == 0) {
+                        //layer
+                        layer.alert('未找到指定cookie', {
+                            title: '提示信息',
+                            icon: 5
+                        });
+                        return;
+                    }
+                    Cookies.set('jscusname', '守护者');
+                    //layer
+                    layer.alert('已修改cookie，内容为：{ “jscusname”：“观察者已改变为守护者” }。点击&lt;获取cookie&gt;按钮可查看', {
+                        title: '提示信息',
+                        icon: 6
+                    });
+                });
+
+                //删除cookie
+                $("#cookie_del").click(function () {
+                    Cookies.remove('jscusname');
+                    //layer
+                    layer.alert('已删除cookie', {
+                        title: '提示信息',
+                        icon: 5
+                    });
+                });
+
+                //获取cookie
+                $("#cookie_get").click(function () {
+                    var jscusname = Cookies.get('jscusname');
+                    if (!jscusname || jscusname.length == 0) {
+                        jscusname = '空';
+                    }
+                    //layer
+                    layer.alert('cookie内容为 : ' + jscusname, {
+                        title: '提示信息'
+                    });
+                });
+            });

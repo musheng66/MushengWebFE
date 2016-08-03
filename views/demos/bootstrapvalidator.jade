@@ -1,0 +1,302 @@
+doctype html
+html
+    head
+        include ../includes/head
+    body
+        #bootstrapvalidator.layout
+            nav#nav-head.navbar.navbar-fixed-top.navbar-inverse.animatedParent.animateOnce
+                include ../includes/nav
+            // /.navbar
+            .container
+                .col-xs-12
+                    #container-jum.jumbotron.animatedParent
+                        h1.animated.fadeInUp.delay-250 BootstrapValidator
+                        p.animated.bounceInUp.delay-500
+                            | BootstrapValidator是基于bootstrap的表单验证插件，可以实现非空验证，正则验证，限制字符数，异步请求验证等功能。
+                        p.animated.bounceInUp.delay-500
+                            | 注：近期其Github托管项目不再维护，原作者推荐使用FormValidation
+                        address.animated.bounceInUp.delay-1000
+                            strong Github地址：
+                            a(href='https://github.com/nghuuphuoc/bootstrapvalidator', target='_blank') https://github.com/nghuuphuoc/bootstrapvalidator
+                        address.animated.bounceInUp.delay-1000
+                            strong 文档地址：
+                            a(href='http://bv.doc.javake.cn/', target='_blank') http://bv.doc.javake.cn/
+                // /.col-xs-12.col-sm-9
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a.btn.btn-primary.col-xs-12.btn-custom(href='#p-show') 展示效果
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a.btn.btn-success.col-xs-12.btn-custom(href='#p-use') 使用方法
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a.btn.btn-info.col-xs-12.btn-custom(href='#p-code') 查看源码
+                .col-lg-3.col-md-4.col-xs-6.col-phone-12
+                    a.btn.btn-warning.col-xs-12.btn-custom(href='#p-attention') 注意事项
+                #container-code.col-xs-12
+                    #p-show.p-wrap-title
+                    blockquote
+                        h1 展示效果
+                    // 实例展示
+                    .p-wrap-content.part-show
+                        .content-wrap
+                            // Nav tabs
+                            ul.nav.nav-tabs(role='tablist')
+                                li.active(role='presentation')
+                                    a(href='#home', aria-controls='home', role='tab', data-toggle='tab') 示例图
+                                li(role='presentation')
+                                    a(href='#profile', aria-controls='profile', role='tab', data-toggle='tab') 实例
+                            // Tab panes
+                            .tab-content
+                                #home.tab-pane.active(role='tabpanel')
+                                    img.img-responsive(src='../images/bootstrapvalidator/demo.gif', alt='bootstrapValidator示例图')
+                                #profile.tab-pane(role='tabpanel')
+                                    .col-xs-8.col-phone-12.col-sm-6.col-lg-4
+                                        form#loginFormSub.form-horizontal1(method='post', action='')
+                                            h3 表单
+                                            .form-group
+                                                input#username.form-control(type='text', name='username', autocomplete='off', required='', data-bv-notempty-message='请输入用户名', data-bv-stringlength='true', data-bv-stringlength-min='1', data-bv-stringlength-max='30', data-bv-stringlength-message='请输入30个字以内的内容', pattern='^[a-zA-Z0-9_\u4e00-\u9fa5]+$', data-bv-regexp-message='请输入中文，英文，数字或下划线', placeholder='请输入用户名')
+                                            .form-group
+                                                input#password.form-control(type='password', placeholder='密码', name='password', required='', autocomplete='off', data-bv-notempty-message='请输入密码', data-bv-stringlength='true', data-bv-stringlength-min='1')
+                                            .form-group
+                                                p
+                                                    button.btn.btn-primary(type='submit') 提  交
+                                    .clearfix
+                    #p-use.p-wrap-title
+                        blockquote
+                            h1 使用方法
+                        .p-wrap-content.part-file
+                            h3 文件结构
+                            .content-wrap
+                                ul
+                                    li
+                                        | js
+                                        ul
+                                            li jquery.min.js
+                                            li bootstrap.min.js
+                                            li bootstrapValidator.min.js
+                                    li
+                                        | css
+                                        ul
+                                            li bootstrap.min.css
+                    .p-wrap-content.part-attention
+                        h3 核心代码
+                        .content-wrap
+                            pre.
+                                &lt;!DOCTYPE html&gt;
+                                &lt;html&gt;
+                                &lt;head&gt;
+                                    &lt;!-- CSS --&gt;
+                                    &lt;link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" /&gt;
+                                &lt;/head&gt;
+                                &lt;body&gt;
+                                    &lt;form id="loginFormSub" class="form-horizontal1" method="post" action=""&gt;
+                                    &lt;div class="form-group"&gt;
+                                    &lt;input type="text" class="form-control" id="username" name="username" autocomplete="off" required=""
+                                        data-bv-notempty-message="请输入用户名" data-bv-stringlength="true" data-bv-stringlength-min="1"
+                                        data-bv-stringlength-max="30" data-bv-stringlength-message="请输入30个字以内的内容"
+                                        pattern="^[a-zA-Z0-9{}~!@#$%^&*_+|\-\\~！@#￥%……&*（）？！：；【】『』——，。‘’“”、《》 \u4e00-\u9fa5]+$"
+                                        data-bv-regexp-message="请输入中文，英文，数字或标点" placeholder="用户名"&gt;
+                                    &lt;/div&gt;
+                                    &lt;button class="btn btn-primary btn-block" type="submit"&gt;提  交&lt;/button&gt;
+                                    &lt;/form&gt;
+                                    &lt;!-- jQuery --&gt;
+                                    &lt;script type="text/javascript" src="jquery.min.js"&gt;&lt;/script&gt;
+                                    &lt;script type="text/javascript" src="bootstrap.min.js"&gt;&lt;/script&gt;
+                                    &lt;!-- BootstrapValidator plugin --&gt;
+                                    &lt;script type="text/javascript" src="bootstrapValidator.min.js"&gt;&lt;/script&gt;
+                                    &lt;script type="text/javascript"&gt;
+                                        $(function(){
+
+                                            //配置方法1：（简单配置，结合输入框属性配置的方法）
+                                            $('#loginFormSub').bootstrapValidator().on('success.form.bv', function(e) {
+                                                // 禁用表单默认提交动作
+                                                e.preventDefault();
+                                                // 获得表单对象
+                                                var $form = $(e.target);
+                                                // 获得bootstrapValidator对象
+                                                var bv = $form.data('bootstrapValidator');
+                                                //提交表单
+                                                //自定义提交方法...
+                                            });
+
+                                            //配置方法2：（完全配置，以参数方式配置的方法）
+                                            $('#loginFormSub').bootstrapValidator({
+                                                fields: {
+                                                    username: {    //name属性为username的表单元素
+                                                        message: '',
+                                                        validators: {
+                                                            //ajax方法异步验证输入的内容是否合法
+                                                            /*
+                                                            返回值为json格式：
+                                                            {'success':true,'valid':false,'message':''}表示输入的内容不合法，表单无法提交；
+                                                            {'success':false,'valid':true}表示输入的内容合法，表单可以提交
+                                                            */
+                                                            remote: {
+                                                                type: 'POST',
+                                                                url: '',
+                                                                data:{
+                                                                    //以匿名函数的方式传递username的值
+                                                                    username: function(validator){ return $('#username').val() }
+                                                                },
+                                                                //当验证未通过时，返回值json中若包含message:'xxx'数据，则显示message的值
+                                                                message: '验证不通过',
+                                                                delay: 500
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }).on('success.form.bv', function(e) {
+                                                // 禁用表单默认提交动作
+                                                e.preventDefault();
+                                                // 获得表单对象
+                                                var $form = $(e.target);
+                                                // 获得bootstrapValidator对象
+                                                var bv = $form.data('bootstrapValidator');
+                                                //提交表单
+                                                //自定义提交方法...
+                                            });
+                                        });
+                                    &lt;/script&gt;
+                                &lt;/body&gt;
+                                &lt;/html&gt;
+                    #p-code.p-wrap-title
+                        blockquote
+                            h1 页面源码
+                    .p-wrap-content.part-html
+                        h3 HTML
+                        .content-wrap
+                            p 1.加载所需的css文件和jQuery库文件，以及bootstrapValidator插件。
+                            p html代码：
+                            pre.
+                                &lt;!-- CSS --&gt;
+                                &lt;link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" /&gt;
+                                &lt;!-- jQuery --&gt;
+                                &lt;script type="text/javascript" src="jquery.min.js"&gt;&lt;/script&gt;
+                                &lt;!-- Bootstrap --&gt;
+                                &lt;script type="text/javascript" src="bootstrap.min.js"&gt;&lt;/script&gt;
+                                &lt;!-- BootstrapValidator plugin --&gt;
+                                &lt;script type="text/javascript" src="bootstrapValidator.min.js"&gt;&lt;/script&gt;
+                        .content-wrap
+                            p 2.在页面表单中的输入框中添加必要的属性，配置bootstrapValidator。输入框属性可配置如非空，字数，正则等验证，只需填写对应的属性名和值即可。
+                            p html代码：
+                            pre.
+                                &lt;form id="loginFormSub" method="post" class="form-horizontal1" action=""&gt;
+                                    &lt;h3&gt;表单&lt;/h3&gt;
+                                    &lt;div class="form-group"&gt;
+                                        &lt;input type="text" id="username" name="username" autocomplete="off" required
+                                            data-bv-notempty-message="请输入用户名" data-bv-stringlength="true"
+                                            data-bv-stringlength-min="1" data-bv-stringlength-max="30"
+                                            data-bv-stringlength-message="请输入30个字以内的内容"
+                                            pattern="^[a-zA-Z0-9_\u4e00-\u9fa5]+$"
+                                            data-bv-regexp-message="请输入中文，英文，数字或下划线" placeholder="请输入用户名"
+                                            class="form-control"&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class="form-group"&gt;
+                                        &lt;input type="password" placeholder="密码" class="form-control"
+                                            id="password" name="password" required autocomplete="off"
+                                            data-bv-notempty-message="请输入密码" data-bv-stringlength="true"
+                                            data-bv-stringlength-min="1"&gt;
+                                    &lt;/div&gt;
+                                    &lt;div class="form-group"&gt;
+                                        &lt;p&gt;&lt;button type="submit" class="btn btn-primary" &gt;提&nbsp;&nbsp;交&lt;/button&gt;&lt;/p&gt;
+                                    &lt;/div&gt;
+                                &lt;/form&gt;
+                    .p-wrap-content.part-js
+                        h3 Javascript
+                        .content-wrap
+                            p
+                                | 1.可在页面
+                                code <javascript>
+                                | 标签中使用jquery配置bootstrapValidator。
+                            p JS代码：
+                            pre.
+                                $(function() {
+                                    //配置
+                                    $('#loginFormSub').bootstrapValidator().on('success.form.bv', function(e) {
+                                        // Prevent form submission
+                                        e.preventDefault();
+                                        // Get the form instance
+                                        var $form = $(e.target);
+                                        // Get the BootstrapValidator instance
+                                        var bv = $form.data('bootstrapValidator');
+                                        //提交表单
+                                        var username = jQuery.trim($("#username").val());
+                                        var password = jQuery.trim($("#password").val());
+                                        layer.alert('提交表单'+ '\n' + 'username : ' + username + '\n' + 'password : ' + password);
+                                        //重置表单验证
+                                        $("#loginFormSub").data('bootstrapValidator').resetForm();
+                                    });
+                                });
+                    #p-attention.p-wrap-title
+                        blockquote
+                            h1 注意事项
+                    .p-wrap-content.part-attention
+                        // <h2>注意事项</h2>
+                        .content-wrap
+                            p
+                                | 1.BootstrapValidator是基于Bootstrap框架开发出来的，因此其样式文件已包含在bootstrap.css文件中，无需单独引入。
+                            p
+                                | 2.BootstrapValidator支持两种书写方式，一种是写在表单中，作为表单元素的属性的方式，另一种是写在js方法中，作为参数配置的方式。
+                                | 非空，正则，字符数限制通常以元素属性的方式书写，异步请求判断则需写在参数配置中。
+                            p
+                                | 3.表单中的name属性是必须属性，插件根据name属性查找该元素进行验证，且
+                                code &lt;form&gt;
+                                | 表单中必须有一个type="submit"的
+                                code &lt;button&gt;
+                                | 提交按钮。
+                    // /.col-xs-12
+                    .clearfix
+                    // <hr>
+                // /.container
+            footer
+                include ../includes/footer
+
+        // javascript
+        include ../includes/javascripts
+        // Custom javascripts for this template
+        script(type='text/javascript', src='../javascripts/bootstrapValidator.min.js')
+        script(type='text/javascript').
+            $(function () {
+                //配置
+                $('#loginFormSub').bootstrapValidator().on('success.form.bv', function (e) {
+                    // Prevent form submission
+                    e.preventDefault();
+
+                    // Get the form instance
+                    var $form = $(e.target);
+
+                    // Get the BootstrapValidator instance
+                    var bv = $form.data('bootstrapValidator');
+
+                    //提交表单
+                    var username = jQuery.trim($("#username").val());
+                    var password = jQuery.trim($("#password").val());
+                    /*var json = {
+                     username : username,
+                     password : password
+                     };*/
+                    layer.alert('提交表单' + '\n' + 'username : ' + username + '\n' + 'password : ' + password);
+
+                    //重置表单验证
+                    $("#loginFormSub").data('bootstrapValidator').resetForm();
+
+                    /*$.ajax({
+                         type: "POST",
+                         url: "/login/",
+                         dataType:"JSON",
+                         data: json,
+                         success:function(data){
+                             $("#loginFormSub").data('bootstrapValidator').resetForm();
+                             if (data.success == true) {
+                                 window.location.href = "/index/";
+                             } else {
+                                alert(data.message);
+                                return;
+                             }
+                         },
+                         error:function(data){
+                             $("#loginFormSub").data('bootstrapValidator').resetForm();
+                             alert("登录失败：内部错误");
+                             return;
+                         }
+                     });*/
+                });
+            });

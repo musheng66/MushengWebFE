@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="description" content="">
+    <meta name="author" content="MuSheng">
+    <!-- styles -->
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="../css/font-awesome.min.css" />
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="../css/font-awesome-ie7.min.css" />
+    <![endif]-->
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" type="text/css" href="../css/customstyles.css"/>
+    <!--fav and touch icons -->
+    <link rel="shortcut icon" href=""/>
+    <!-- Standard iPhone -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href=""/>
+    <!-- Retina iPhone -->
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href=""/>
+    <!-- Standard iPad -->
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href=""/>
+    <!-- Retina iPad -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href=""/>
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="../js/oldIE/html5shiv.min.js"></script>
+    <script src="../js/oldIE/respond.min.js"></script>
+    <![endif]-->
+    <title>ECharts</title>
+</head>
+<body>
+<div class="layout">
+    <nav class="navbar navbar-fixed-top navbar-inverse" id="nav-head">
+
+    </nav><!-- /.navbar -->
+
+    <div class="container">
+        <div class="col-xs-12">
+            <div class="jumbotron" id="container-jum">
+                <h1>ECharts</h1>
+                <p>
+                    ECharts，一个纯 Javascript 的图表库，可以流畅的运行在 PC 和移动设备上，兼容当前绝大部分浏览器（IE8/9/10/11，Chrome，Firefox，Safari等），底层依赖轻量级的 Canvas 类库 ZRender，提供直观，生动，可交互，可高度个性化定制的数据可视化图表。
+                </p>
+                <address>
+                    <strong>Github地址：</strong>
+                    <a href="https://github.com/ecomfe/echarts" target="_blank">https://github.com/ecomfe/echarts</a>
+                </address>
+                <address>
+                    <strong>官网地址：</strong>
+                    <a href="http://echarts.baidu.com/" target="_blank">http://echarts.baidu.com/</a>
+                </address>
+            </div>
+
+        </div><!--/.col-xs-12.col-sm-9-->
+        <div class="col-lg-3 col-md-4 col-xs-6 col-phone-12">
+            <a href="#p-show" class="btn btn-primary col-xs-12 btn-custom">展示效果</a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-xs-6 col-phone-12">
+            <a href="#p-use" class="btn btn-success col-xs-12 btn-custom">使用方法</a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-xs-6 col-phone-12">
+            <a href="#p-code" class="btn btn-info col-xs-12 btn-custom">查看源码</a>
+        </div>
+        <div class="col-lg-3 col-md-4 col-xs-6 col-phone-12">
+            <a href="#p-attention" class="btn btn-warning col-xs-12 btn-custom">注意事项</a>
+        </div>
+
+        <div class="col-xs-12" id="container-code">
+            <div class="p-wrap-title" id="p-show">
+                <blockquote>
+                    <h1>展示效果</h1>
+                </blockquote>
+            </div>
+            <!--实例展示-->
+            <div class="p-wrap-content part-show">
+                <div class="content-wrap">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">示例图</a></li>
+                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">实例</a></li>
+                     </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="home">
+                            <img src="../images/echarts/demo1.png" class="img-responsive" alt="示例图">
+                            <img src="../images/echarts/demo2.png" class="img-responsive" alt="示例图">
+                            <img src="../images/echarts/demo3.png" class="img-responsive" alt="示例图">
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="profile">
+                            <div class="col-xs-10 col-phone-12 col-sm-8 col-lg-6">
+                                <div id="mainChart1" class="ECharts" style="height: 500px; width: 500px;"></div>
+                            </div>
+                            <div class="col-xs-10 col-phone-12 col-sm-8 col-lg-6 echarts-div">
+                                <div id="mainChart2" class="ECharts" style="height: 500px; width: 550px;"></div>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="p-wrap-title" id="p-use">
+                <blockquote>
+                    <h1>使用方法</h1>
+                </blockquote>
+            </div>
+            <div class="p-wrap-content part-file">
+                <h3>文件结构</h3>
+                <div class="content-wrap">
+                    <ul>
+                        <li>js
+                            <ul>
+                                <li>echarts.min.js</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="p-wrap-content part-attention">
+                <h3>核心代码</h3>
+                <div class="content-wrap">
+                    <pre>
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div id="main" class="" style="width:100%;height:300px;"&gt;&lt;/div&gt;
+&lt;!-- ECharts plugin --&gt;
+&lt;script type="text/javascript" src="echarts.min.js"&gt;&lt;/script&gt;
+&lt;script type="text/javascript"&gt;
+//配置
+var option = {
+    title : {
+        text: '',
+        subtext: ''
+    },
+    tooltip : {
+        trigger: 'axis'
+    },
+    toolbox: {
+        show : true,
+        feature : {
+            dataView : {show: true, readOnly: false},
+            magicType : {show: true, type: ['line', 'bar']},
+            restore : {show: true},
+            saveAsImage : {show: true}
+        }
+    },
+    xAxis : [
+        {
+            type : 'category',
+            boundaryGap : false,
+            data : <{if $xAxisdata}><{$xAxisdata}><{else}>['无数据']<{/if}>
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value',
+            axisLabel : {
+                formatter: function(value){
+					return value + ' 次';
+				},
+			},
+        }
+    ],
+    series : [
+        {
+            name:'启动次数',
+            type:'line',
+            data:<{if $seriesdata}><{$seriesdata}><{else}>[0]<{/if}>,
+            markPoint : {
+                data : [
+                    {type : 'max', name: '最大启动次数'},
+                    {type : 'min', name: '最小启动次数'}
+                ]
+            },
+           itemStyle:
+            {
+                normal: {
+                     lineStyle: {
+                       color : 'skyblue'
+                     }
+                }
+            },
+        }
+    ],
+
+};
+$(function(){
+    //配置：
+    var myChart = echarts.init(document.getElementById('main'));
+	myChart.setOption(option);
+});
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+                </div>
+            </div>
+            <div class="p-wrap-title" id="p-code">
+                <blockquote>
+                    <h1>页面源码</h1>
+                </blockquote>
+            </div>
+            <div class="p-wrap-content part-html">
+                <h3>HTML</h3>
+                <div class="content-wrap">
+                    <p>1.echarts并不基于jquery，可独立使用，仅需引入ECharts插件。</p>
+                    <p>html代码：</p>
+                    <pre>
+&lt;!-- ECharts plugin --&gt;
+&lt;script type="text/javascript" src="echarts.min.js"&gt;&lt;/script&gt;
+</pre>
+                </div>
+                <div class="content-wrap">
+                    <p>2.在页面中加入一个div，以便配置显示ECharts。</p>
+                    <p>html代码：</p>
+                    <pre>
+&lt;div id="mainChart1" class="ECharts" style="height: 500px; width: 500px;"&gt;&lt;/div&gt;
+</pre>
+                </div>
+            </div>
+            <div class="p-wrap-content part-js">
+                <h3>Javascript</h3>
+                <div class="content-wrap">
+                    <p>1.可在页面<code>&lt;javascript&gt;</code>标签中配置ECharts。</p>
+                    <p>JS代码：</p>
+                    <pre>
+option1 = {
+    title: {
+        text: '世界人口总量',
+        subtext: '数据来自网络'
+    },
+    tooltip: {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'shadow'
+        }
+    },
+    legend: {
+        data: ['2011年', '2012年']
+    },
+    grid: {
+        left: '3%',
+        right: '4%',
+        bottom: '3%',
+        containLabel: true
+    },
+    xAxis: {
+        type: 'value',
+        boundaryGap: [0, 0.01]
+    },
+    yAxis: {
+        type: 'category',
+        data: ['巴西','印尼','美国','印度','中国','世界人口(万)']
+    },
+    series: [
+        {
+            name: '2011年',
+            type: 'bar',
+            data: [18203, 23489, 29034, 104970, 131744, 630230]
+        },
+        {
+            name: '2012年',
+            type: 'bar',
+            data: [19325, 23438, 31000, 121594, 134141, 681807]
+        }
+    ]
+};
+
+$(function() {
+    //配置
+    var myChart1 = echarts.init(document.getElementById('mainChart1'));
+    myChart1.setOption(option1);
+});</pre>
+                </div>
+            </div>
+            <div class="p-wrap-title" id="p-attention">
+                <blockquote>
+                    <h1>注意事项</h1>
+                </blockquote>
+            </div>
+            <div class="p-wrap-content part-attention">
+                <!--<h2>注意事项</h2>-->
+                <div class="content-wrap">
+                    <p>
+                        1.ECharts 在初始化图表的时候，选定的展示图表的div标签必须设定固定的width和height属性值，否则其内层标签无长宽，图表无法显示。
+                    </p>
+                </div>
+            </div>
+        </div><!--/.col-xs-12-->
+
+
+        <div class="clearfix"></div>
+        <!--<hr>-->
+    </div>
+
+    <footer>
+
+    </footer>
+</div>
+
+<!-- Bootstrap core JavaScript -->
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<script type="text/javascript" src="../js/jquery.cookie.js"></script>
+<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+<!-- Custom javascripts for this template -->
+<script type="text/javascript" src="../js/echarts.min.js"></script>
+<script type="text/javascript" src="../js/commonjs.js"></script>
+<script type="text/javascript">
+    //配置1
+    var s2011 = [18203, 23489, 29034, 104970, 131744, 630230];
+    var s2012 = [19325, 23438, 31000, 121594, 134141, 681807];
+    option1 = {
+        title: {
+            text: '世界人口总量',
+            subtext: '数据来自网络'
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow'
+            }
+        },
+        legend: {
+            data: ['2011年', '2012年']
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: {
+            type: 'value',
+            boundaryGap: [0, 0.01]
+        },
+        yAxis: {
+            type: 'category',
+            data: ['巴西','印尼','美国','印度','中国','世界人口(万)']
+        },
+        series: [
+            {
+                name: '2011年',
+                type: 'bar',
+                data: [18203, 23489, 29034, 104970, 131744, 630230]
+            },
+            {
+                name: '2012年',
+                type: 'bar',
+                data: [19325, 23438, 31000, 121594, 134141, 681807]
+            }
+        ]
+    };
+
+    //配置2
+    option2 = {
+        title: {
+            text: '未来一周气温变化',
+            subtext: '纯属虚构'
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data:['最高气温','最低气温']
+        },
+        toolbox: {
+            show: true,
+            feature: {
+                dataZoom: {},
+                dataView: {readOnly: false},
+                magicType: {type: ['line', 'bar']},
+                restore: {},
+                saveAsImage: {}
+            }
+        },
+        xAxis:  {
+            type: 'category',
+            boundaryGap: false,
+            data: ['周一','周二','周三','周四','周五','周六','周日']
+        },
+        yAxis: {
+            type: 'value',
+            axisLabel: {
+                formatter: '{value} °C'
+            }
+        },
+        series: [
+            {
+                name:'最高气温',
+                type:'line',
+                data:[11, 11, 15, 13, 12, 13, 10],
+                markPoint: {
+                    data: [
+                        {type: 'max', name: '最大值'},
+                        {type: 'min', name: '最小值'}
+                    ]
+                },
+                markLine: {
+                    data: [
+                        {type: 'average', name: '平均值'}
+                    ]
+                }
+            },
+            {
+                name:'最低气温',
+                type:'line',
+                data:[1, -2, 2, 5, 3, 2, 0],
+                markPoint: {
+                    data: [
+                        {name: '周最低', value: -2, xAxis: 1, yAxis: -1.5}
+                    ]
+                },
+                markLine: {
+                    data: [
+                        {type: 'average', name: '平均值'},
+                        [{
+                            symbol: 'arrow',
+                            label: {
+                                normal: {
+                                    formatter: '最大值'
+                                }
+                            },
+                            type: 'max',
+                            name: '最大值'
+                        }, {
+                            symbol: 'circle',
+                            x: '60%',
+                            y: '50%'
+                        }]
+                    ]
+                }
+            }
+        ]
+    };
+
+
+    $(function () {
+        //配置1
+        /*if(s2011.length >= 1 && s2012.length >= 1){
+            $("#mainChart1").css("height", 40 * (s2011.length + s2012.length) + "px");
+        }*/
+
+        setTimeout(function(){
+            var myChart1 = echarts.init(document.getElementById('mainChart1'));
+            myChart1.setOption(option1);
+
+        }, 500);
+
+        //配置2
+        setTimeout(function(){
+            var myChart2 = echarts.init(document.getElementById('mainChart2'));
+            myChart2.setOption(option2);
+        }, 500);
+
+    });
+</script>
+</body>
+</html>
