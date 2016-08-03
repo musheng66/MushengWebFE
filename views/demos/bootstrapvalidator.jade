@@ -211,7 +211,27 @@ html
                             pre.
                                 $(function() {
                                     //配置
-                                    $('#loginFormSub').bootstrapValidator().on('success.form.bv', function(e) {
+                                    $('#loginFormSub').bootstrapValidator(
+                                        fields: {
+                                            username: {
+                                                message: '',
+                                                validators: {
+                                                    remote: {
+                                                        type: 'POST',
+                                                        url: '../user/checkusername',
+                                                        data: {
+                                                            //以匿名函数的方式传递username的值
+                                                            username: function (validator) {
+                                                                return $('#username').val()
+                                                            }
+                                                        },
+                                                        message: '验证不通过',
+                                                        delay: 500
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    ).on('success.form.bv', function(e) {
                                         // Prevent form submission
                                         e.preventDefault();
                                         // Get the form instance
@@ -226,6 +246,57 @@ html
                                         $("#loginFormSub").data('bootstrapValidator').resetForm();
                                     });
                                 });
+                    .p-wrap-content.part-nodejs
+                        h3 Node.js
+                        .content-wrap
+                            p 1.在routes里接收参数并传递给dao层处理。
+                            pre.
+                                router.all('/checkusername', function(req, res) {
+                                    console.log('checkusername controller param:' + req.body.username);
+                                    userDao.usernameQuery(req, res);
+                                });
+                        .content-wrap
+                            p 2.在dao层查询并根据结果返回json数据。
+                            pre.
+                                usernameQuery : function (req, res) {
+                                    pool.getConnection(function(err, connection){
+                                        //获取前台参数
+                                        var param = req.body || req.query || req.params;
+                                        //建立连接，查询数据
+                                        connection.query($sql.queryByUsername, [param.username], function (err, result) {
+                                            console.log(result);
+                                            if(!result || result.length == 0){  //不存在返回
+                                                result = {
+                                                    success : false,
+                                                    valid : true
+                                                }
+                                            } else {
+                                                result = {  //存在返回
+                                                    success : true,
+                                                    valid : false,
+                                                    message : '已经存在'
+                                                }
+                                            }
+                                            //返回json给前台
+                                            jsonWrite(res, result);
+
+                                            //释放连接
+                                            connection.release();
+                                        });
+                                    });
+                                }
+
+                                //向前台返回json方法
+                                var jsonWrite = function(res, ret){
+                                    if(typeof ret === 'undefined'){
+                                        res.json({
+                                        code : '1',
+                                        msg : '失败，未获取到返回结果'
+                                        });
+                                    } else {
+                                        res.json(ret);
+                                    }
+                                };
                     #p-attention.p-wrap-title
                         blockquote
                             h1 注意事项
