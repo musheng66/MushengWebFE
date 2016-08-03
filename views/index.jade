@@ -123,7 +123,27 @@ html
                     login_submit();
                 });
 
-                $('#signSubForm').bootstrapValidator().on('success.form.bv', function(e) {
+                $('#signSubForm').bootstrapValidator({
+                    fields: {
+                        usernamesign: {
+                            message: '',
+                            validators: {
+                                remote: {
+                                    type: 'POST',
+                                    url: 'user/checkusername',
+                                    data: {
+                                        //以匿名函数的方式传递username的值
+                                        username: function (validator) {
+                                            return $('#usernamesign').val()
+                                        }
+                                    },
+                                    message: '验证不通过',
+                                    delay: 500
+                                }
+                            }
+                        }
+                    }
+                }).on('success.form.bv', function(e) {
                     // Prevent form submission
                     e.preventDefault();
 

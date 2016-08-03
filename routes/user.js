@@ -16,6 +16,12 @@ router.all('/addUser', function(req, res, next) {
     userDao.add(req, res, next);
 });
 
+/* 用户名查重 */
+router.all('/checkusername', function(req, res) {
+    console.log('checkusername controller param:' + req.body.username);
+    userDao.usernameQuery(req, res);
+});
+
 /* 用户登录 */
 router.all('/login', function(req, res) {
     console.log('login controller param:' + req.body.username);

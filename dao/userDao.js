@@ -100,5 +100,32 @@ module.exports = {
                 connection.release();
             });
         });
+    },
+    usernameQuery : function (req, res) {
+        pool.getConnection(function(err, connection){
+            //获取前台参数
+            var param = req.body || req.query || req.params;
+            //建立连接，查询数据
+            connection.query($sql.queryByUsername, [param.username], function (err, result) {
+                console.log(result);
+                if(!result || result.length == 0){
+                    result = {
+                        success : false,
+                        valid : true
+                    }
+                } else {
+                    result = {
+                        success : true,
+                        valid : false,
+                        message : '已经存在'
+                    }
+                }
+                //返回json给前台
+                jsonWrite(res, result);
+
+                //释放连接
+                connection.release();
+            });
+        });
     }
 };
