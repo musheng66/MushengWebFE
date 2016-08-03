@@ -52,9 +52,9 @@
 
 继续下面的操作
 
-`git remote add origin git@github.com:XXX/XXX.git`
-`git pull origin master`
-`git push -u origin master`
+1. `git remote add origin git@github.com:XXX/XXX.git`
+2. `git pull origin master`
+3. `git push -u origin master`
  
 这个git@github.com:XXX/XXX.git就是上面创建项目是生成的地址。现在打开你的项目网址，你就可以发现你的代码已经展示出来了。如果你要更新代码的话，就重复上面的吧。
 如果提交了敏感信息，比如代码中设置的自己的密码什么的忘删除就上传上去了怎么办？重新修改过后上传依然有历史记录，而使用Git删除历史记录貌似很麻烦，于是就采用删除项目吧，删除了再重新上传。删除项目需要在GitHub网站上右上方找到admin按钮，进去后右边最下面有个删除的按钮，这样就可以删除了。
