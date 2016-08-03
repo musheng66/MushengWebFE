@@ -4,6 +4,8 @@
 ## 说明：
 * 未上传node_modules文件夹，此文件夹为Express生成，用于存放项目依赖的各种类库。
 * 项目自行添加类库为：mysql（数据库），multiparty（文件上传）。
+  * `npm install multiparty`
+  * `npm install mysql`
 
 ## 使用Express创建项目：
   * [点击查看原网页](http://www.cnblogs.com/Darren_code/p/express4.html "创建Express项目")
