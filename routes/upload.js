@@ -13,8 +13,19 @@ router.get('/', function(req, res, next) {
 /* jqueryfileupload */
 router.all('/jqueryfileupload', function(req, res, next) {
     var ret = {};
+	//获取日期，JS不支持格式化，因此需要单独获取年月日再进行拼接
     var date = new Date();
-    var dateUrl = date.toLocaleDateString().replace(/-/g, '');
+	var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    if(month < 10){
+        month = '0' + month.toString();
+    }
+    var day = date.getDate();
+    if(day < 10){
+        day = '0' + day.toString();
+    }
+    var dateUrl = year.toString() + month.toString() + day.toString();
+    //var dateUrl = date.toLocaleDateString().replace(/-/g, '');
     var uid = req.cookies.webfe_user; //这是个字典对象，你可以用括号的方式获得
     //创建路径 fs.mkdirSync方法只能建立单级目录，需要多次创建目录
     var dstheadPath = './public/upload_tmp/jqueryfileupload/' + dateUrl + '/';
