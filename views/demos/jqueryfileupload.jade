@@ -388,7 +388,18 @@ html
                                 router.all('/jqueryfileupload', function(req, res, next) {
                                     var ret = {};
                                     var date = new Date();
-                                    var dateUrl = date.toLocaleDateString().replace(/-/g, '');
+                                    //获取日期，JS不支持格式化，因此需要单独获取年月日再进行拼接
+                                    var date = new Date();
+                                    var year = date.getFullYear();
+                                    var month = date.getMonth() + 1;
+                                    if(month < 10){
+                                        month = '0' + month.toString();
+                                    }
+                                    var day = date.getDate();
+                                    if(day < 10){
+                                        day = '0' + day.toString();
+                                    }
+                                    var dateUrl = year.toString() + month.toString() + day.toString();
                                     var uid = req.cookies.webfe_user; //这是个字典对象，你可以用括号的方式获得
 
                                     //创建路径 fs.mkdirSync方法只能建立单级目录，需要多次创建目录
@@ -424,8 +435,13 @@ html
                                             console.log('parse files: ' + filesTmp);
                                             var inputFile = files['files[]'][0];
                                             var uploadedPath = inputFile.path;
-                                            var dstPath = dstheadPath + inputFile.originalFilename;
-
+                                            var filename = inputFile.originalFilename;
+                                            //获取文件类型
+                                            var filetype = filename.substring(filename.lastIndexOf('.') + 1, filename.length);
+                                            //生成时间戳文件名
+                                            var savename = date.getTime() + '.' + filetype;
+                                            //以时间戳为名，以防重名
+                                            var dstPath = dstheadPath + savename;
                                             //重命名为真实文件名
                                             fs.rename(uploadedPath, dstPath, function (err) {
                                                 if (err) {
@@ -463,6 +479,7 @@ html
                                                 fileurl : dstheadPath,
                                                 filesize : filesize,
                                                 filetype : filetype,
+                                                savename : savename,
                                                 uid : uid
                                             };
 
@@ -524,7 +541,7 @@ html
                                 htmlForAdd += '<div class="uploaded-files-div" id="uploadedFile_' + val.id + '">'
                                                 + '<a class="filedel-a" href="javascript:void(0);" onclick="delUploadedFile(' + val.id + ')"><i class="fa fa-times-circle fa-2x"></i></a>'
                                                 + '<span class="filename-span">文件：' + val.filename + '</span>'
-                                                + '<img class="file-img" src="../' + val.fileurl + val.filename + '">'
+                                                + '<img class="file-img" src="../' + val.fileurl + val.savename + '">'
                                                 + '<span class="filesize-span">' + val.filesize + '</span>'
                                             + '</div>';
                             });
@@ -625,7 +642,7 @@ html
                             htmlForAdd += '<div class="uploaded-files-div" id="uploadedFile_' + data.result.fid + '">'
                                             + '<a class="filedel-a" href="javascript:void(0);" onclick="delUploadedFile(' + data.result.fid + ')"><i class="fa fa-times-circle fa-2x"></i></a>'
                                             + '<span class="filename-span">文件：' + data.result.filename + '</span>'
-                                            + '<img class="file-img" src="../' + data.result.fileurl + data.result.filename + '">'
+                                            + '<img class="file-img" src="../' + data.result.fileurl + data.result.savename + '">'
                                             + '<span class="filesize-span">' + data.result.filesize + '</span>'
                                         + '</div>';
                             $(htmlForAdd).appendTo('#uploaded-files');

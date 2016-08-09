@@ -31,7 +31,7 @@ module.exports = {
         pool.getConnection(function(err, connection){
             //建立连接，插入新数据
             var fileurl = fileInfo.fileurl.replace('./public/', '');
-            connection.query($sql.insert, [fileInfo.filename, fileurl, fileInfo.filetype, fileInfo.filesize, fileInfo.uid], function (err, result) {
+            connection.query($sql.insert, [fileInfo.filename, fileurl, fileInfo.filetype, fileInfo.filesize, fileInfo.uid, file.savename], function (err, result) {
                 console.log(result);
 
                 var ret = {
@@ -40,7 +40,8 @@ module.exports = {
                     fid : result.insertId,
                     filename : fileInfo.filename,
                     filesize : fileInfo.filesize,
-                    fileurl : fileurl
+                    fileurl : fileurl,
+                    savename : fileInfo.savename
                 };
 
                 //返回json给前台
@@ -59,7 +60,7 @@ module.exports = {
                 if(result && result.length > 0){
                     console.log('file_queryById:');
                     console.log(result);
-                    var filepath = './public/' + result[0].fileurl + result[0].filename;
+                    var filepath = './public/' + result[0].fileurl + result[0].savename;
                     fs.exists(filepath, function () {
                         fs.unlink(filepath, function (err) {
                             console.log(err);
