@@ -55,7 +55,7 @@ html
                                         #uploaded-files
 
                                         button#upload-btn.btn.btn-success 上传文件
-                                        input#fileupload(type='file', style='display: none;', data-url='../upload/jqueryfileupload', formmethod='post', formenctype='multipart/form-data', multiple='multiple', accept='image/png')
+                                        input#fileupload(type='file', style='display: none;', data-url='../upload/jqueryfileupload', formmethod='post', formenctype='multipart/form-data', multiple='multiple', accept='image/png, image/jpg')
                                         button#reset-btn.btn.btn-primary 重置
                                         #tips(style='margin: 15px 0;')
                                             span
@@ -589,9 +589,11 @@ html
                         return;
                     }
                     var fname = $('#fileupload').prop('files')[0].name;
-                    fname = fname.substring(fname.lastIndexOf('.')+1,fname.length);
-                    if(fname != 'png'){
-                        alert("请选择一个正确的png格式文件");
+                    fname = fname.substring(fname.lastIndexOf('.')+1,fname.length).toLowerCase();
+                    if(fname == 'png' || fname == 'jpg' || fname == 'jpeg'){
+
+                    } else {
+                        layer.alert("请选择一个正确的png或jpg格式的文件");
                         $('#fileupload').val('');
                     }
                 });

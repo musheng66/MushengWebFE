@@ -60,7 +60,12 @@ router.all('/jqueryfileupload', function(req, res, next) {
             var inputFile = files['files[]'][0];
             var uploadedPath = inputFile.path;
             var filename = inputFile.originalFilename;
-            var dstPath = dstheadPath + filename;
+            //获取文件类型
+            var filetype = filename.substring(filename.lastIndexOf('.') + 1, filename.length);
+            //生成时间戳文件名
+            var savename = date.getTime() + '.' + filetype;
+            //以时间戳为名，以防重名
+            var dstPath = dstheadPath + savename;
             //重命名为真实文件名
             fs.rename(uploadedPath, dstPath, function (err) {
                 if (err) {
@@ -74,8 +79,6 @@ router.all('/jqueryfileupload', function(req, res, next) {
                     console.log('rename ok');
                 }
             });
-            //获取文件类型
-            var filetype = filename.substring(filename.lastIndexOf('.') + 1, filename.length);
             //获取文件大小
             var filesizeOrigin = inputFile['size'];
             var filesize = '';
@@ -97,6 +100,7 @@ router.all('/jqueryfileupload', function(req, res, next) {
                 fileurl : dstheadPath,
                 filesize : filesize,
                 filetype : filetype,
+                savename : savename,
                 uid : uid
 
             };
