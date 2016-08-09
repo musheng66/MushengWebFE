@@ -31,7 +31,7 @@ module.exports = {
         pool.getConnection(function(err, connection){
             //建立连接，插入新数据
             var fileurl = fileInfo.fileurl.replace('./public/', '');
-            connection.query($sql.insert, [fileInfo.filename, fileurl, fileInfo.filetype, fileInfo.filesize, fileInfo.uid, file.savename], function (err, result) {
+            connection.query($sql.insert, [fileInfo.filename, fileurl, fileInfo.filetype, fileInfo.filesize, fileInfo.uid, fileInfo.savename], function (err, result) {
                 console.log(result);
 
                 var ret = {
