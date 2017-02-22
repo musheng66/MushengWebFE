@@ -2,8 +2,7 @@
 一个基于node.js的Express+jade开发的前端工具文档
 
 ## 说明：
-* 未上传node_modules文件夹，此文件夹为Express生成，用于存放项目依赖的各种类库。
-* 上传了node_modules文件夹的压缩包，解压缩后放在项目中即可。
+* node_modules为项目依赖的各种类库，下载项目后执行npm install即可。
 * 项目中自行添加的类库为：mysql（数据库），multiparty（文件上传）。
   * `npm install multiparty`
   * `npm install mysql`
