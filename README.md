@@ -2,10 +2,10 @@
 一个基于node.js的Express+jade开发的前端工具文档
 
 ## 说明：
-* node_modules为项目依赖的各种类库，下载项目后执行npm install即可。
 * 项目中自行添加的类库为：mysql（数据库），multiparty（文件上传）。
   * `npm install multiparty`
   * `npm install mysql`
+* 执行npm install。  
 
 ## 使用Express创建项目：
   * [点击查看原网页](http://www.cnblogs.com/Darren_code/p/express4.html "创建Express项目")
